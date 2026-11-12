@@ -1,6 +1,6 @@
 // Xray 辅内核配置生成验证工具：对 xhttp 传输与内核路由生成样例配置，
 // 供 xray run -test 校验字段合法性。用法：
-//   dotnet run --project XrayConfigVerifier -c Release -- <输出目录> <xray.exe 路径>
+//   dotnet run --project XrayConfigVerifier -c Release -- <输出目录> <xray.exe 路径> [sing-box.exe 路径]
 using System.Diagnostics;
 using System.Text.Json;
 using Netch;
@@ -18,16 +18,22 @@ Global.Settings.V2RayConfig.AllowInsecure = false;
 // File.Copy 源不存在直接炸、产物写歪目录（CI 首跑 2026-11-12 实证）
 outDir = Path.GetFullPath(outDir);
 var xrayPath = args.Length > 1 ? Path.GetFullPath(args[1]) : null;
+var singboxPath = args.Length > 2 ? Path.GetFullPath(args[2]) : null;
 
 // Guard 以 CWD 解析 bin\xray.exe，dotnet run 下 CWD=仓库根；对齐到程序目录（Global.NetchDir 同源）
 Environment.CurrentDirectory = AppContext.BaseDirectory;
 
-// 路由断言会真实构造 XrayController/SingboxController（Guard 检查 bin\ 内核存在），把传入的 xray.exe 复制到本进程 bin 下
-if (xrayPath != null)
+// 路由断言会真实构造 XrayController/SingboxController（Guard 检查 bin\ 内核存在），把传入的内核复制到本进程 bin 下。
+// sing-box 必须同传：常规协议「路由不变」断言构造 SingboxController 同样过 Guard，
+// 本地程序 bin 的历史残留曾掩盖该依赖（CI 干净环境二跑实证）
+if (xrayPath != null || singboxPath != null)
 {
     var binDir = Path.Combine(AppContext.BaseDirectory, "bin");
     Directory.CreateDirectory(binDir);
-    File.Copy(xrayPath, Path.Combine(binDir, "xray.exe"), true);
+    if (xrayPath != null)
+        File.Copy(xrayPath, Path.Combine(binDir, "xray.exe"), true);
+    if (singboxPath != null)
+        File.Copy(singboxPath, Path.Combine(binDir, "sing-box.exe"), true);
 }
 
 var failed = new List<string>();

@@ -101,7 +101,7 @@ jobs:
         run: dotnet run --project SingboxConfigVerifier -c Release --no-build -- verify_out --check tools/bin/sing-box.exe
 
       - name: Xray config check
-        run: dotnet run --project XrayConfigVerifier -c Release --no-build -- verify_out_xray tools/bin/xray.exe
+        run: dotnet run --project XrayConfigVerifier -c Release --no-build -- verify_out_xray tools/bin/xray.exe tools/bin/sing-box.exe
 
       # 内核预置进 release/bin = build.ps1 的用户区 stash 链路会收走并嵌入 exe，与本地发版同一路径
       - name: Stage kernels for embedding

@@ -60,7 +60,7 @@ jobs:
         run: dotnet run --project SingboxConfigVerifier -c Release --no-build -- verify_out --check tools/bin/sing-box.exe
 
       - name: Xray config check
-        run: dotnet run --project XrayConfigVerifier -c Release --no-build -- verify_out_xray tools/bin/xray.exe
+        run: dotnet run --project XrayConfigVerifier -c Release --no-build -- verify_out_xray tools/bin/xray.exe tools/bin/sing-box.exe
 
       - name: Upload verify output
         if: always()
