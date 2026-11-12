@@ -14,15 +14,20 @@ Directory.CreateDirectory(outDir);
 
 Global.Settings.V2RayConfig.AllowInsecure = false;
 
+// 相对入参必须在切换 CWD 前锚定为绝对路径：切换后相对路径改以程序目录解析，
+// File.Copy 源不存在直接炸、产物写歪目录（CI 首跑 2026-11-12 实证）
+outDir = Path.GetFullPath(outDir);
+var xrayPath = args.Length > 1 ? Path.GetFullPath(args[1]) : null;
+
 // Guard 以 CWD 解析 bin\xray.exe，dotnet run 下 CWD=仓库根；对齐到程序目录（Global.NetchDir 同源）
 Environment.CurrentDirectory = AppContext.BaseDirectory;
 
 // 路由断言会真实构造 XrayController/SingboxController（Guard 检查 bin\ 内核存在），把传入的 xray.exe 复制到本进程 bin 下
-if (args.Length > 1)
+if (xrayPath != null)
 {
     var binDir = Path.Combine(AppContext.BaseDirectory, "bin");
     Directory.CreateDirectory(binDir);
-    File.Copy(args[1], Path.Combine(binDir, "xray.exe"), true);
+    File.Copy(xrayPath, Path.Combine(binDir, "xray.exe"), true);
 }
 
 var failed = new List<string>();
@@ -246,7 +251,7 @@ if (args.Length > 1)
         var name = Path.GetFileNameWithoutExtension(json);
         var process = Process.Start(new ProcessStartInfo
         {
-            FileName = args[1],
+            FileName = xrayPath!,
             Arguments = $"run -test -c \"{json}\"",
             RedirectStandardOutput = true,
             RedirectStandardError = true,
