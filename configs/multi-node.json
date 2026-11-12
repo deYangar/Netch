@@ -1,0 +1,175 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2801
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "trojan",
+      "tag": "node-0",
+      "server": "::1",
+      "server_port": 443,
+      "password": "test-password",
+      "tls": {
+        "enabled": true,
+        "disable_sni": false,
+        "server_name": "sni.example.com",
+        "insecure": false
+      }
+    },
+    {
+      "type": "vmess",
+      "tag": "node-1",
+      "server": "::1",
+      "server_port": 443,
+      "uuid": "b831381d-6324-4d53-ad4f-8cda48b30811",
+      "security": "auto",
+      "alter_id": 0,
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "disable_sni": false,
+        "server_name": "sni.example.com",
+        "insecure": false
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/v2ray"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "node-2",
+      "server": "::1",
+      "server_port": 443,
+      "uuid": "b831381d-6324-4d53-ad4f-8cda48b30811",
+      "flow": "xtls-rprx-vision",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "disable_sni": false,
+        "server_name": "sni.example.com",
+        "insecure": false,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "jNXHt1yRo0vDuchQlIP6Z0ZvjT3KtzVI-T4E7RoLJS0"
+        }
+      }
+    },
+    {
+      "type": "trojan",
+      "tag": "node-3",
+      "server": "::1",
+      "server_port": 443,
+      "password": "test-password",
+      "tls": {
+        "enabled": true,
+        "disable_sni": false,
+        "server_name": "localhost",
+        "insecure": false
+      }
+    },
+    {
+      "type": "selector",
+      "tag": "proxy",
+      "outbounds": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3",
+        "auto"
+      ],
+      "default": "node-0",
+      "interrupt_exist_connections": false
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "node-0",
+        "node-1",
+        "node-2",
+        "node-3"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50,
+      "idle_timeout": "30m"
+    }
+  ],
+  "http_clients": [
+    {
+      "tag": "rule-set-fetch",
+      "detour": "proxy"
+    }
+  ],
+  "dns": {
+    "servers": [
+      {
+        "type": "udp",
+        "tag": "dns-china",
+        "server": "223.5.5.5"
+      },
+      {
+        "type": "https",
+        "tag": "dns-remote",
+        "server": "1.1.1.1",
+        "detour": "proxy"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": [
+          "geosite-cn"
+        ],
+        "server": "dns-china"
+      }
+    ],
+    "final": "dns-remote",
+    "strategy": "prefer_ipv4"
+  },
+  "route": {
+    "rules": [
+      {
+        "action": "hijack-dns",
+        "port": [
+          53
+        ]
+      }
+    ],
+    "final": "proxy",
+    "default_domain_resolver": "dns-china",
+    "auto_detect_interface": true,
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://cdn.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-cn.srs",
+        "initial_path": "rule-set\\geosite-cn.srs",
+        "http_client": "rule-set-fetch",
+        "update_interval": "1d"
+      }
+    ]
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090"
+    },
+    "cache_file": {
+      "enabled": true
+    }
+  }
+}

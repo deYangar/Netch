@@ -1,0 +1,10 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "NatTypeTester"
+  },
+  "handle": [
+    "NatTypeTester.exe"
+  ],
+  "bypass": []
+}

@@ -1,0 +1,11 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "ForzaHorizon 4"
+  },
+  "handle": [
+    "ForzaHorizon4.exe",
+    "XboxApp.exe"
+  ],
+  "bypass": []
+}

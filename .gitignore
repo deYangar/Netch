@@ -1,0 +1,8 @@
+/.vs
+/.idea
+/release
+/packages
+/TestResults
+bin/
+obj/
+Storage/kernel/*.zip

@@ -1,0 +1,13 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Halo The Master Chief Collection"
+  },
+  "handle": [
+    "mcclauncher.exe",
+    "MCC-Win64-Shipping.exe",
+    "easyanticheat_setup.exe",
+    "UnrealCEFSubProcess.exe"
+  ],
+  "bypass": []
+}

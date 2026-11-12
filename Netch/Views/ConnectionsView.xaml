@@ -1,0 +1,132 @@
+<UserControl x:Class="Netch.Views.ConnectionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:Netch.Localization"
+             xmlns:controls="clr-namespace:Netch.Controls"
+             Focusable="False">
+    <!-- 连接观测页（07§C + B6 反馈①）：进程列吃剩余空间（流速列收窄定宽）；
+         三页均带 远端地址（内核页另拆嗅探域名列）与归属地（v4=ip2region 国家/省/市/ISP，v6=mmdb 国名）；
+         三页长寿命集合（VM 按 Id 就地更新）——表头点击排序稳定不被刷新冲掉；
+         上/下列 = 流速（自动单位 B/s..）；历史页 = 累计流量（自动单位）；
+         进程列 = AdaptivePathColumn 按列宽自适应（宽=全路径，窄=中间省略+文件名完整），ToolTip 全路径；
+         远端地址默认宽按最长完整 IPv6（39 字符 + [:端口]）核定，归属地容纳「国家 省 市 ISP」 -->
+    <UserControl.Resources>
+        <!-- 单元格通用样式：全文 ToolTip（地址/归属地/目标超宽截断时悬浮可见全文） -->
+        <Style x:Key="RemoteCell" TargetType="TextBlock">
+            <Setter Property="ToolTip" Value="{Binding RemoteText}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="GeoCell" TargetType="TextBlock">
+            <Setter Property="ToolTip" Value="{Binding Geo}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="GeoTextCell" TargetType="TextBlock">
+            <Setter Property="ToolTip" Value="{Binding GeoText}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="TargetCell" TargetType="TextBlock">
+            <Setter Property="ToolTip" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- 页面标题（咩咩 2026-11-03：侧栏收起时点进任意页，右区要一眼知道这是哪） -->
+        <TextBlock Grid.Row="0" Text="{loc:I18N main.nav.connections}" Style="{StaticResource TextBlock.H1}" Margin="0,0,0,10" />
+
+        <DockPanel Grid.Row="1" Margin="0,0,0,10">
+            <ComboBox x:Name="tabSelector" DockPanel.Dock="Left" Width="120" Margin="0,0,10,0"
+                      SelectedIndex="{Binding SelectedTabIndex}">
+                <ComboBoxItem Content="{loc:I18N connections.tab.process}" />
+                <ComboBoxItem Content="{loc:I18N connections.tab.kernel}" />
+                <ComboBoxItem Content="{loc:I18N connections.tab.history}" />
+            </ComboBox>
+            <ToggleButton DockPanel.Dock="Right" Margin="10,0,0,0" Padding="10,4"
+                    Content="{loc:I18N connections.pause}" IsChecked="{Binding PauseRefresh}" />
+            <TextBox Width="220" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="{Binding SummaryText}" Style="{StaticResource TextBlock.Caption}"
+                       VerticalAlignment="Center" Margin="14,0,0,0" TextTrimming="CharacterEllipsis" />
+        </DockPanel>
+
+        <!-- 进程页 -->
+        <DataGrid x:Name="processGrid" Grid.Row="2"
+                  ItemsSource="{Binding ProcessConnections}"
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
+                  Visibility="{Binding TabProcessVis}"
+                  EnableRowVirtualization="True"
+                  VirtualizingPanel.VirtualizationMode="Recycling">
+            <DataGrid.Columns>
+                <controls:AdaptivePathColumn Header="{loc:I18N connections.col.process}" Binding="{Binding Process}" Width="*" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.remote}" Binding="{Binding RemoteText}" Width="280">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="ToolTip" Value="{Binding RemoteText}" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="{loc:I18N connections.col.geo}" Binding="{Binding Geo}" Width="176">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="ToolTip" Value="{Binding Geo}" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="{loc:I18N connections.col.up}" Binding="{Binding UpSpeed, Converter={StaticResource Bytes}, ConverterParameter=rate}" Width="84" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.down}" Binding="{Binding DownSpeed, Converter={StaticResource Bytes}, ConverterParameter=rate}" Width="84" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- 内核页 -->
+        <DataGrid x:Name="kernelGrid" Grid.Row="2"
+                  ItemsSource="{Binding KernelConnections}"
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
+                  Visibility="{Binding TabKernelVis}"
+                  EnableRowVirtualization="True"
+                  VirtualizingPanel.VirtualizationMode="Recycling">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{loc:I18N connections.col.target}" Binding="{Binding Target}" Width="*"
+                                    ElementStyle="{StaticResource TargetCell}" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.remote}" Binding="{Binding RemoteText}" Width="280"
+                                    ElementStyle="{StaticResource RemoteCell}" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.geo}" Binding="{Binding Geo}" Width="176"
+                                    ElementStyle="{StaticResource GeoCell}" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.rule}" Binding="{Binding Rule}" Width="150" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.chains}" Binding="{Binding Chains}" Width="150" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.up}" Binding="{Binding UpSpeed, Converter={StaticResource Bytes}, ConverterParameter=rate}" Width="84" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.down}" Binding="{Binding DownSpeed, Converter={StaticResource Bytes}, ConverterParameter=rate}" Width="84" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.start}" Binding="{Binding Start, StringFormat=HH:mm:ss}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- 历史页（带结束时间；上/下 = 该连接生命周期累计流量） -->
+        <DataGrid x:Name="historyGrid" Grid.Row="2"
+                  ItemsSource="{Binding History}"
+                  AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
+                  Visibility="{Binding TabHistoryVis}"
+                  EnableRowVirtualization="True"
+                  VirtualizingPanel.VirtualizationMode="Recycling">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{loc:I18N connections.col.target}" Binding="{Binding Connection.TargetText}" Width="*"
+                                    ElementStyle="{StaticResource TargetCell}" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.remote}" Binding="{Binding RemoteText}" Width="280"
+                                    ElementStyle="{StaticResource RemoteCell}" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.geo}" Binding="{Binding GeoText}" Width="176"
+                                    ElementStyle="{StaticResource GeoTextCell}" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.rule}" Binding="{Binding Connection.Rule}" Width="150" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.chains}" Binding="{Binding Chains}" Width="150" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.up}" Binding="{Binding Connection.Upload, Converter={StaticResource Bytes}}" Width="84" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.down}" Binding="{Binding Connection.Download, Converter={StaticResource Bytes}}" Width="84" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.start}" Binding="{Binding Connection.Start, StringFormat=HH:mm:ss}" Width="100" />
+                <DataGridTextColumn Header="{loc:I18N connections.col.closedAt}" Binding="{Binding ClosedAt, StringFormat=HH:mm:ss}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

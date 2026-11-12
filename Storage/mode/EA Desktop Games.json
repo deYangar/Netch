@@ -1,0 +1,18 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "EA Desktop Games"
+  },
+  "handle": [
+    "\\\\EA Games\\\\"
+  ],
+  "bypass": [],
+  "rules": [
+    {
+      "domainSuffix": [
+        "origin-a.akamaihd.net"
+      ],
+      "action": 1
+    }
+  ]
+}

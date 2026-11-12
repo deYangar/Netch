@@ -1,0 +1,19 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Discord"
+  },
+  "handle": [
+    "Discord"
+  ],
+  "bypass": [],
+  "rules": [
+    {
+      "domainSuffix": [
+        "cdn.discordapp.com",
+        "discordapp.net"
+      ],
+      "action": 1
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "JetBrains"
+  },
+  "handle": [
+    "7z.exe",
+    "jetbrains-toolbox-helper.exe",
+    "jetbrains-toolbox.exe",
+    "Uninstall.exe"
+  ],
+  "bypass": []
+}

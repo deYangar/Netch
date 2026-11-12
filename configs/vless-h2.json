@@ -1,0 +1,97 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2801
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "proxy",
+      "server": "::1",
+      "server_port": 443,
+      "uuid": "b831381d-6324-4d53-ad4f-8cda48b30811",
+      "packet_encoding": "xudp",
+      "tls": {
+        "enabled": true,
+        "disable_sni": false,
+        "server_name": "h2.example.com",
+        "insecure": false
+      },
+      "transport": {
+        "type": "http",
+        "path": "/h2path",
+        "host": [
+          "h2.example.com"
+        ]
+      }
+    }
+  ],
+  "http_clients": [
+    {
+      "tag": "rule-set-fetch",
+      "detour": "proxy"
+    }
+  ],
+  "dns": {
+    "servers": [
+      {
+        "type": "udp",
+        "tag": "dns-china",
+        "server": "223.5.5.5"
+      },
+      {
+        "type": "https",
+        "tag": "dns-remote",
+        "server": "1.1.1.1",
+        "detour": "proxy"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": [
+          "geosite-cn"
+        ],
+        "server": "dns-china"
+      }
+    ],
+    "final": "dns-remote",
+    "strategy": "prefer_ipv4"
+  },
+  "route": {
+    "rules": [
+      {
+        "action": "hijack-dns",
+        "port": [
+          53
+        ]
+      }
+    ],
+    "final": "proxy",
+    "default_domain_resolver": "dns-china",
+    "auto_detect_interface": true,
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://cdn.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-cn.srs",
+        "initial_path": "rule-set\\geosite-cn.srs",
+        "http_client": "rule-set-fetch",
+        "update_interval": "1d"
+      }
+    ]
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    }
+  }
+}

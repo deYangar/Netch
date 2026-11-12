@@ -1,0 +1,11 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Tom Clancy's Rainbow Six Siege"
+  },
+  "handle": [
+    "\\\\Tom Clancy's Rainbow Six Siege\\\\",
+    "\\\\Ubisoft Game Launcher\\\\"
+  ],
+  "bypass": []
+}

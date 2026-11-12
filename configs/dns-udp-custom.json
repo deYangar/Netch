@@ -1,0 +1,118 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2801
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "socks",
+      "tag": "proxy",
+      "server": "::1",
+      "server_port": 1080,
+      "password": "pass",
+      "version": "5",
+      "username": "user"
+    }
+  ],
+  "http_clients": [
+    {
+      "tag": "rule-set-fetch",
+      "detour": "proxy"
+    }
+  ],
+  "dns": {
+    "servers": [
+      {
+        "type": "udp",
+        "tag": "dns-china",
+        "server": "223.5.5.5"
+      },
+      {
+        "type": "udp",
+        "tag": "dns-remote",
+        "server": "8.8.8.8",
+        "server_port": 5353,
+        "detour": "proxy"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": [
+          "geosite-cn"
+        ],
+        "server": "dns-china"
+      }
+    ],
+    "final": "dns-remote",
+    "strategy": "prefer_ipv4"
+  },
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "action": "hijack-dns",
+        "port": [
+          53
+        ]
+      },
+      {
+        "action": "route",
+        "outbound": "direct",
+        "domain_suffix": [
+          "steamcontent.com",
+          "steamserver.net"
+        ]
+      },
+      {
+        "action": "route",
+        "outbound": "proxy",
+        "domain_suffix": [
+          "steampowered.com",
+          "steamcommunity.com"
+        ]
+      },
+      {
+        "action": "reject",
+        "port": [
+          25
+        ]
+      }
+    ],
+    "final": "proxy",
+    "default_domain_resolver": "dns-china",
+    "auto_detect_interface": true,
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://cdn.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-cn.srs",
+        "initial_path": "rule-set\\geosite-cn.srs",
+        "http_client": "rule-set-fetch",
+        "update_interval": "1d"
+      }
+    ]
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9098"
+    },
+    "cache_file": {
+      "enabled": true
+    }
+  }
+}

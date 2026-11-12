@@ -1,0 +1,33 @@
+<UserControl x:Class="Netch.Views.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:Netch.Localization"
+             Focusable="False">
+    <!-- 关于页（07§D）：版本+仓库链接/检查更新（含 Beta）/新版本横幅/FAQ/开源许可摘要 -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="16" MaxWidth="720" HorizontalAlignment="Left">
+            <TextBlock Text="Netch" Style="{StaticResource TextBlock.H1}" Margin="0,0,0,4" />
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                <TextBlock x:Name="versionText" Style="{StaticResource TextBlock.H2}" VerticalAlignment="Center" />
+                <Button Content="{loc:I18N about.openRepo}" Margin="16,0,0,0" Padding="10,4" x:Name="repoButton" />
+            </StackPanel>
+
+            <Button Style="{StaticResource Btn.Primary}" Content="{loc:I18N common.checkUpdate}" Command="{Binding CheckUpdateCommand}" Margin="0,0,0,8" />
+            <CheckBox Content="{loc:I18N settings.others.checkBetaUpdate}" IsChecked="{Binding CheckBetaUpdate}" Margin="0,0,0,12" />
+
+            <Border Background="{DynamicResource Brush.Accent.Soft}" CornerRadius="{StaticResource Radius.Corner.M}"
+                    Padding="12,8" Margin="0,0,0,16"
+                    Visibility="{Binding NewVersionVisible, Converter={StaticResource BoolToVis}}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding NewVersionText}" VerticalAlignment="Center" />
+                    <Button Content="↓" Margin="12,0,0,0" Padding="10,2" Command="{Binding DownloadCommand}" />
+                </StackPanel>
+            </Border>
+
+            <Button Content="{loc:I18N about.faq}" x:Name="faqButton" HorizontalAlignment="Left" Margin="0,0,0,16" />
+
+            <TextBlock Text="{loc:I18N about.licenseTitle}" Style="{StaticResource TextBlock.H2}" Margin="0,0,0,8" />
+            <TextBlock Style="{StaticResource TextBlock.Caption}" TextWrapping="Wrap" Text="{loc:I18N about.licenseBody}" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

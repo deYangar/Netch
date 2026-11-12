@@ -1,0 +1,19 @@
+<UserControl x:Class="Netch.Views.LogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:Netch.Localization"
+             Focusable="False">
+    <!-- 日志页（07§D：LogForm 替身，导航页形态写死）：环形 5000 行只读虚拟化 -->
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!-- 页面标题统一 H1（咩咩 2026-11-03：侧栏收起时点进任意页，右区要一眼知道这是哪） -->
+        <TextBlock Text="{loc:I18N main.nav.log}" Style="{StaticResource TextBlock.H1}" Margin="0,0,0,10" />
+        <ListBox Grid.Row="1" x:Name="logList" FontFamily="Consolas" BorderBrush="{DynamicResource Brush.Stroke}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 VirtualizingPanel.IsVirtualizing="True"
+                 VirtualizingPanel.VirtualizationMode="Recycling" />
+    </Grid>
+</UserControl>

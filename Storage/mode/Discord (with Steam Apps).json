@@ -1,0 +1,20 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Discord (with Steam Apps)"
+  },
+  "handle": [
+    "Discord",
+    "\\\\steamapps\\\\"
+  ],
+  "bypass": [],
+  "rules": [
+    {
+      "domainSuffix": [
+        "cdn.discordapp.com",
+        "discordapp.net"
+      ],
+      "action": 1
+    }
+  ]
+}

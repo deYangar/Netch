@@ -1,0 +1,34 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Steam"
+  },
+  "handle": [
+    "html5app_steam.exe",
+    "steamwebhelper.exe",
+    "gldriverquery.exe",
+    "gldriverquery64.exe",
+    "secure_desktop_capture.exe",
+    "steamservice.exe",
+    "steam_monitor.exe",
+    "x64launcher.exe",
+    "x86launcher.exe",
+    "GameOverlayUI.exe",
+    "steam.exe",
+    "steamerrorreporter.exe",
+    "steamerrorreporter64.exe",
+    "streaming_client.exe",
+    "WriteMiniDump.exe"
+  ],
+  "bypass": [],
+  "rules": [
+    {
+      "domainSuffix": ["steamcontent.com", "steamserver.net"],
+      "action": "Direct"
+    },
+    {
+      "domainSuffix": ["steampowered.com", "steamcommunity.com"],
+      "action": "Proxy"
+    }
+  ]
+}

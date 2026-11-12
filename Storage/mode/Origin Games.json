@@ -1,0 +1,18 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Origin Games"
+  },
+  "handle": [
+    "\\\\OriginGames\\\\"
+  ],
+  "bypass": [],
+  "rules": [
+    {
+      "domainSuffix": [
+        "origin-a.akamaihd.net"
+      ],
+      "action": 1
+    }
+  ]
+}

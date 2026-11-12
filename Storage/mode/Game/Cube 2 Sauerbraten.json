@@ -1,0 +1,10 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Cube 2: Sauerbraten"
+  },
+  "handle": [
+    "sauerbraten.exe"
+  ],
+  "bypass": []
+}

@@ -1,0 +1,73 @@
+name: Build CI
+
+# 轻 workflow：PR / 手动触发，编译 + 单元测试 + 双内核配置校验（不产出发布包）。
+# push main 的全链构建与条件发版在 release.yml，此处不再重复触发。
+on:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: 10.0.x
+  SINGBOX_VERSION: 1.14.4
+  SINGBOX_SHA256: 99185d75d314a07dbba4a130c8ad986cbeb629a07927975636b341ca61f991df
+  XRAY_VERSION: v26.10.21
+  XRAY_ZIP_SHA256: fc58c39ee2f2717b4c54d28d374362389e5319b20ae44aea76ea45a5243ec827
+
+jobs:
+  build:
+    name: Build, test & verify
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Build main project
+        run: dotnet build Netch/Netch.csproj -c Release --nologo
+
+      - name: Unit tests
+        run: dotnet test Tests/Tests.csproj -c Release --nologo
+
+      - name: Build verifiers
+        run: |
+          dotnet build SingboxConfigVerifier/SingboxConfigVerifier.csproj -c Release --nologo
+          dotnet build XrayConfigVerifier/XrayConfigVerifier.csproj -c Release --nologo
+
+      # verifier 依赖真实内核二进制：从官方 release 固定版本下载并按 SHA256 校验
+      - name: Fetch kernels
+        shell: pwsh
+        run: |
+          $url = "https://github.com/SagerNet/sing-box/releases/download/v$env:SINGBOX_VERSION/sing-box-$env:SINGBOX_VERSION-windows-amd64.zip"
+          Invoke-WebRequest -Uri $url -OutFile sing-box.zip
+          $hash = (Get-FileHash sing-box.zip -Algorithm SHA256).Hash.ToLower()
+          if ($hash -ne $env:SINGBOX_SHA256) { throw "sing-box checksum mismatch: $hash" }
+          Expand-Archive sing-box.zip -DestinationPath tools -Force
+          New-Item -ItemType Directory -Force tools/bin | Out-Null
+          Copy-Item "tools/sing-box-$env:SINGBOX_VERSION-windows-amd64/sing-box.exe" tools/bin/sing-box.exe
+
+          $xrayUrl = "https://github.com/XTLS/Xray-core/releases/download/$env:XRAY_VERSION/Xray-windows-64.zip"
+          Invoke-WebRequest -Uri $xrayUrl -OutFile xray.zip
+          $xrayHash = (Get-FileHash xray.zip -Algorithm SHA256).Hash.ToLower()
+          if ($xrayHash -ne $env:XRAY_ZIP_SHA256) { throw "xray checksum mismatch: $xrayHash" }
+          Expand-Archive xray.zip -DestinationPath tools/xray -Force
+          Copy-Item tools/xray/xray.exe tools/bin/xray.exe
+
+      - name: sing-box config check
+        run: dotnet run --project SingboxConfigVerifier -c Release --no-build -- verify_out --check tools/bin/sing-box.exe
+
+      - name: Xray config check
+        run: dotnet run --project XrayConfigVerifier -c Release --no-build -- verify_out_xray tools/bin/xray.exe
+
+      - name: Upload verify output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-configs
+          path: |
+            verify_out
+            verify_out_xray
+          retention-days: 7

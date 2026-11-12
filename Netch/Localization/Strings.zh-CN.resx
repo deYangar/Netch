@@ -1,0 +1,2010 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about.faq" xml:space="preserve">
+    <value>常见问题</value>
+  </data>
+  <data name="about.licenseBody" xml:space="preserve">
+    <value>Netch 以 GPL-3.0 开源。内置 sing-box、Xray-core、Redirector（NF 驱动）等组件，详见随程序分发的 NOTICE.txt。</value>
+  </data>
+  <data name="about.licenseTitle" xml:space="preserve">
+    <value>开源许可</value>
+  </data>
+  <data name="about.openRepo" xml:space="preserve">
+    <value>打开仓库</value>
+  </data>
+  <data name="bypassIp.correctIpAddress" xml:space="preserve">
+    <value>请输入正确的 IP 地址</value>
+  </data>
+  <data name="bypassIp.invalid" xml:space="preserve">
+    <value>无效 IP：</value>
+  </data>
+  <data name="bypassIp.ip" xml:space="preserve">
+    <value>请输入 IP</value>
+  </data>
+  <data name="bypassIp.selectIp" xml:space="preserve">
+    <value>请选择 IP</value>
+  </data>
+  <data name="common.0WonTGetDevelopers" xml:space="preserve">
+    <value>{0} 将不会得到开发者的支持，请不要报告任何问题或寻求开发人员的帮助。</value>
+  </data>
+  <data name="common.about" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="common.action" xml:space="preserve">
+    <value>动作</value>
+  </data>
+  <data name="common.address" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="common.aiodnsTunModeLegacy" xml:space="preserve">
+    <value>AioDNS（TUN 模式专用）</value>
+  </data>
+  <data name="common.allDirectCn" xml:space="preserve">
+    <value>全部国内直连</value>
+  </data>
+  <data name="common.allViaProxy" xml:space="preserve">
+    <value>全部经代理</value>
+  </data>
+  <data name="common.alterId" xml:space="preserve">
+    <value>额外 ID</value>
+  </data>
+  <data name="common.assigningUnicastIp" xml:space="preserve">
+    <value>正在分配单播 IP</value>
+  </data>
+  <data name="common.auto" xml:space="preserve">
+    <value>自动（国内直连，其余经代理）</value>
+  </data>
+  <data name="common.autoSelectFastestNodeGroup" xml:space="preserve">
+    <value>分组启动时自动选择最快节点（urltest）</value>
+  </data>
+  <data name="common.block" xml:space="preserve">
+    <value>阻止</value>
+  </data>
+  <data name="common.builtGeositeCnGeoipCn" xml:space="preserve">
+    <value>内置：geosite-cn、geoip-cn（无需配置）</value>
+  </data>
+  <data name="common.bypassRuleIps" xml:space="preserve">
+    <value>绕过规则 IP</value>
+  </data>
+  <data name="common.bypassRules" xml:space="preserve">
+    <value>分流规则</value>
+  </data>
+  <data name="common.cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="common.checkBetaUpdate" xml:space="preserve">
+    <value>检查 Beta 更新</value>
+  </data>
+  <data name="common.checkUpdate" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="common.checkUpdateBtn" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="common.checkUpdateOpened" xml:space="preserve">
+    <value>打开软件时检查更新</value>
+  </data>
+  <data name="common.chinaDnsServerIpPort" xml:space="preserve">
+    <value>国内 DNS（IP[:端口]）</value>
+  </data>
+  <data name="common.cleanDnsCache" xml:space="preserve">
+    <value>清理 DNS 缓存</value>
+  </data>
+  <data name="common.clearHistory" xml:space="preserve">
+    <value>清空历史</value>
+  </data>
+  <data name="common.colon" xml:space="preserve">
+    <value>：</value>
+  </data>
+  <data name="common.configuration" xml:space="preserve">
+    <value>配置信息</value>
+  </data>
+  <data name="common.confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="common.connections" xml:space="preserve">
+    <value>连接</value>
+  </data>
+  <data name="common.copyLink" xml:space="preserve">
+    <value>复制链接</value>
+  </data>
+  <data name="common.copyRow" xml:space="preserve">
+    <value>复制整行</value>
+  </data>
+  <data name="common.createProcessMode" xml:space="preserve">
+    <value>创建进程模式</value>
+  </data>
+  <data name="common.createRouteTableRule" xml:space="preserve">
+    <value>创建路由表规则</value>
+  </data>
+  <data name="common.currentNode" xml:space="preserve">
+    <value>当前节点</value>
+  </data>
+  <data name="common.custom" xml:space="preserve">
+    <value>自定义</value>
+  </data>
+  <data name="common.delayTestAfterStartSec" xml:space="preserve">
+    <value>启动后延迟测试（秒）</value>
+  </data>
+  <data name="common.delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="common.deleteServers" xml:space="preserve">
+    <value>删除订阅节点</value>
+  </data>
+  <data name="common.detectionTickSec" xml:space="preserve">
+    <value>检测心跳（秒）</value>
+  </data>
+  <data name="common.direct" xml:space="preserve">
+    <value>直连</value>
+  </data>
+  <data name="common.disableSupportWarning" xml:space="preserve">
+    <value>停用支持警告</value>
+  </data>
+  <data name="common.disabled" xml:space="preserve">
+    <value>已禁用</value>
+  </data>
+  <data name="common.dnsPolicy" xml:space="preserve">
+    <value>DNS 策略</value>
+  </data>
+  <data name="common.domain" xml:space="preserve">
+    <value>域名</value>
+  </data>
+  <data name="common.domainKeyword" xml:space="preserve">
+    <value>域名关键字</value>
+  </data>
+  <data name="common.domainRegex" xml:space="preserve">
+    <value>域名正则表达式</value>
+  </data>
+  <data name="common.domainSuffix" xml:space="preserve">
+    <value>域名后缀</value>
+  </data>
+  <data name="common.down" xml:space="preserve">
+    <value>下移</value>
+  </data>
+  <data name="common.downloadInstall" xml:space="preserve">
+    <value>立即下载并安装？</value>
+  </data>
+  <data name="common.downloadRuleSetsViaProxy" xml:space="preserve">
+    <value>规则集经代理下载</value>
+  </data>
+  <data name="common.downloadUpdate" xml:space="preserve">
+    <value>下载更新</value>
+  </data>
+  <data name="common.downloadUpdateFailed" xml:space="preserve">
+    <value>下载更新错误</value>
+  </data>
+  <data name="common.edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="common.editProcessMode" xml:space="preserve">
+    <value>修改进程模式</value>
+  </data>
+  <data name="common.editRouteRule" xml:space="preserve">
+    <value>编辑路由规则</value>
+  </data>
+  <data name="common.editRouteTableRule" xml:space="preserve">
+    <value>修改路由表规则</value>
+  </data>
+  <data name="common.editRuleSet" xml:space="preserve">
+    <value>编辑规则集</value>
+  </data>
+  <data name="common.enabled" xml:space="preserve">
+    <value>已启用</value>
+  </data>
+  <data name="common.encryptMethod" xml:space="preserve">
+    <value>加密方式</value>
+  </data>
+  <data name="common.error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="common.exitClosed" xml:space="preserve">
+    <value>关闭时退出</value>
+  </data>
+  <data name="common.extractAllFilesThenRun" xml:space="preserve">
+    <value>请先解压所有文件再执行程序！</value>
+  </data>
+  <data name="common.extractAllFirst" xml:space="preserve">
+    <value>请先解压所有文件再执行程序！</value>
+  </data>
+  <data name="common.fakeType" xml:space="preserve">
+    <value>伪装类型</value>
+  </data>
+  <data name="common.faq" xml:space="preserve">
+    <value>常见问题</value>
+  </data>
+  <data name="common.fileAlreadyExistsChangeFilename" xml:space="preserve">
+    <value>文件名已存在，请修改文件名</value>
+  </data>
+  <data name="common.filename" xml:space="preserve">
+    <value>文件名</value>
+  </data>
+  <data name="common.filter" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+  <data name="common.filterDomainIpRuleOutbound" xml:space="preserve">
+    <value>筛选（域名 / IP / 规则 / 出站）</value>
+  </data>
+  <data name="common.fullconeSupportRequiredServerXray" xml:space="preserve">
+    <value>FullCone 支持（需服务端 Xray-core v1.3.0+）</value>
+  </data>
+  <data name="common.gateway" xml:space="preserve">
+    <value>网关</value>
+  </data>
+  <data name="common.globalBypassIps" xml:space="preserve">
+    <value>全局直连 IP</value>
+  </data>
+  <data name="common.grpcMode" xml:space="preserve">
+    <value>QUIC 模式</value>
+  </data>
+  <data name="common.grpcServicename" xml:space="preserve">
+    <value>QUIC 服务名称</value>
+  </data>
+  <data name="common.handleChildProcess" xml:space="preserve">
+    <value>处理子进程</value>
+  </data>
+  <data name="common.handleDnsDnsHijacking" xml:space="preserve">
+    <value>处理 DNS（DNS 劫持）</value>
+  </data>
+  <data name="common.handleDnsThroughProxy" xml:space="preserve">
+    <value>经过代理处理 DNS</value>
+  </data>
+  <data name="common.handleHandledProcessSDns" xml:space="preserve">
+    <value>处理被处理进程 DNS</value>
+  </data>
+  <data name="common.handleIcmp" xml:space="preserve">
+    <value>处理 ICMP</value>
+  </data>
+  <data name="common.handleLan" xml:space="preserve">
+    <value>处理局域网</value>
+  </data>
+  <data name="common.handleLocalLoopback" xml:space="preserve">
+    <value>处理本地回环</value>
+  </data>
+  <data name="common.handleRules" xml:space="preserve">
+    <value>处理规则</value>
+  </data>
+  <data name="common.handleTcp" xml:space="preserve">
+    <value>处理 TCP</value>
+  </data>
+  <data name="common.handleUdp" xml:space="preserve">
+    <value>处理 UDP</value>
+  </data>
+  <data name="common.help" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="common.history" xml:space="preserve">
+    <value>历史</value>
+  </data>
+  <data name="common.host" xml:space="preserve">
+    <value>主机</value>
+  </data>
+  <data name="common.icmpDelayMs" xml:space="preserve">
+    <value>ICMP 延迟（毫秒）</value>
+  </data>
+  <data name="common.importServersFromClipboard" xml:space="preserve">
+    <value>从剪贴板导入服务器</value>
+  </data>
+  <data name="common.info" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="common.kernel" xml:space="preserve">
+    <value>内核</value>
+  </data>
+  <data name="common.kernelUpdate" xml:space="preserve">
+    <value>内核更新</value>
+  </data>
+  <data name="common.language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="common.link" xml:space="preserve">
+    <value>链接</value>
+  </data>
+  <data name="common.localAddresses" xml:space="preserve">
+    <value>本地地址(可多个)</value>
+  </data>
+  <data name="common.manageSubscriptions" xml:space="preserve">
+    <value>管理订阅</value>
+  </data>
+  <data name="common.minimizeStarted" xml:space="preserve">
+    <value>启动加速后隐藏</value>
+  </data>
+  <data name="common.mode" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="common.modeFilename" xml:space="preserve">
+    <value>请输入模式的文件名</value>
+  </data>
+  <data name="common.modeSpecificOptions" xml:space="preserve">
+    <value>模式专用设置</value>
+  </data>
+  <data name="common.netmask" xml:space="preserve">
+    <value>子网掩码</value>
+  </data>
+  <data name="common.networkDebounceSeconds" xml:space="preserve">
+    <value>网络事件防抖（秒）</value>
+  </data>
+  <data name="common.nfService" xml:space="preserve">
+    <value>NF 服务</value>
+  </data>
+  <data name="common.noActiveConnections" xml:space="preserve">
+    <value>暂无活动连接</value>
+  </data>
+  <data name="common.noSupport" xml:space="preserve">
+    <value>不受支持</value>
+  </data>
+  <data name="common.notTested" xml:space="preserve">
+    <value>未测</value>
+  </data>
+  <data name="common.obfs" xml:space="preserve">
+    <value>混淆</value>
+  </data>
+  <data name="common.obfsParam" xml:space="preserve">
+    <value>混淆参数</value>
+  </data>
+  <data name="common.ok" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="common.openBinFolder" xml:space="preserve">
+    <value>打开 bin 目录</value>
+  </data>
+  <data name="common.openDirectory" xml:space="preserve">
+    <value>打开目录</value>
+  </data>
+  <data name="common.options" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="common.other" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="common.outboundChain" xml:space="preserve">
+    <value>出站链</value>
+  </data>
+  <data name="common.password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="common.path" xml:space="preserve">
+    <value>路径/服务名称</value>
+  </data>
+  <data name="common.pauseNetworkLoss" xml:space="preserve">
+    <value>断网时自动暂停</value>
+  </data>
+  <data name="common.pauseRefresh" xml:space="preserve">
+    <value>暂停刷新</value>
+  </data>
+  <data name="common.pingProtocol" xml:space="preserve">
+    <value>延迟测试协议</value>
+  </data>
+  <data name="common.plugin" xml:space="preserve">
+    <value>插件</value>
+  </data>
+  <data name="common.pluginOptions" xml:space="preserve">
+    <value>插件参数</value>
+  </data>
+  <data name="common.port" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="common.privateKey" xml:space="preserve">
+    <value>私钥</value>
+  </data>
+  <data name="common.process" xml:space="preserve">
+    <value>进程</value>
+  </data>
+  <data name="common.processModeDnsHijackedSing" xml:space="preserve">
+    <value>进程模式 DNS 由 sing-box 内核劫持（端口 53）</value>
+  </data>
+  <data name="common.processNameXxxExe" xml:space="preserve">
+    <value>请输入一个进程名（xxx.exe）</value>
+  </data>
+  <data name="common.profile" xml:space="preserve">
+    <value>配置名</value>
+  </data>
+  <data name="common.profileCount" xml:space="preserve">
+    <value>快捷配置数量</value>
+  </data>
+  <data name="common.profileNameFirst" xml:space="preserve">
+    <value>请先为该配置设置一个名称</value>
+  </data>
+  <data name="common.profiles" xml:space="preserve">
+    <value>配置</value>
+  </data>
+  <data name="common.protocol" xml:space="preserve">
+    <value>协议</value>
+  </data>
+  <data name="common.protocolParam" xml:space="preserve">
+    <value>协议参数</value>
+  </data>
+  <data name="common.protocolStack" xml:space="preserve">
+    <value>协议栈</value>
+  </data>
+  <data name="common.proxy" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="common.proxyDns" xml:space="preserve">
+    <value>代理 DNS</value>
+  </data>
+  <data name="common.proxyRuleIps" xml:space="preserve">
+    <value>代理规则 IP</value>
+  </data>
+  <data name="common.psk" xml:space="preserve">
+    <value>节点预共享密钥</value>
+  </data>
+  <data name="common.publicKey" xml:space="preserve">
+    <value>公钥</value>
+  </data>
+  <data name="common.quicSecret" xml:space="preserve">
+    <value>QUIC 加密密钥</value>
+  </data>
+  <data name="common.quicSecurity" xml:space="preserve">
+    <value>QUIC 加密方式</value>
+  </data>
+  <data name="common.reliability" xml:space="preserve">
+    <value>可靠性</value>
+  </data>
+  <data name="common.reloadModes" xml:space="preserve">
+    <value>重新加载模式</value>
+  </data>
+  <data name="common.remark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="common.remoteAddress" xml:space="preserve">
+    <value>远端地址</value>
+  </data>
+  <data name="common.remoteDnsDoh" xml:space="preserve">
+    <value>远程 DNS（DoH）</value>
+  </data>
+  <data name="common.remove" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="common.removeNetchFirewallRules" xml:space="preserve">
+    <value>移除 Netch 防火墙规则</value>
+  </data>
+  <data name="common.restartKernelCrash" xml:space="preserve">
+    <value>内核意外退出时自动重启</value>
+  </data>
+  <data name="common.restoreWindowSize" xml:space="preserve">
+    <value>恢复默认窗口大小</value>
+  </data>
+  <data name="common.routingRules" xml:space="preserve">
+    <value>路由规则</value>
+  </data>
+  <data name="common.rule" xml:space="preserve">
+    <value>规则</value>
+  </data>
+  <data name="common.ruleDoesNotConformC" xml:space="preserve">
+    <value>规则不符合 C++ 正则表达式语法</value>
+  </data>
+  <data name="common.ruleSet" xml:space="preserve">
+    <value>规则集</value>
+  </data>
+  <data name="common.ruleSetTag" xml:space="preserve">
+    <value>规则集标识</value>
+  </data>
+  <data name="common.ruleSets" xml:space="preserve">
+    <value>规则集</value>
+  </data>
+  <data name="common.runAtStartup" xml:space="preserve">
+    <value>开机自动启动</value>
+  </data>
+  <data name="common.runNetchAsAdministratorMake" xml:space="preserve">
+    <value>请以管理员身份运行 Netch，并确认 bin\wintun.dll 存在</value>
+  </data>
+  <data name="common.save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="common.scan" xml:space="preserve">
+    <value>扫描</value>
+  </data>
+  <data name="common.scanCompleted" xml:space="preserve">
+    <value>扫描完成</value>
+  </data>
+  <data name="common.select" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="common.selectFolder" xml:space="preserve">
+    <value>选择一个目录</value>
+  </data>
+  <data name="common.selfManagedKernelPlaceOfficial" xml:space="preserve">
+    <value>自备内核：将官方内核可执行文件放入 bin 目录即可</value>
+  </data>
+  <data name="common.server" xml:space="preserve">
+    <value>服务器</value>
+  </data>
+  <data name="common.settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="common.setupRouteTableRule" xml:space="preserve">
+    <value>配置路由规则</value>
+  </data>
+  <data name="common.show" xml:space="preserve">
+    <value>显示</value>
+  </data>
+  <data name="common.showHideConsole" xml:space="preserve">
+    <value>显示/隐藏控制台</value>
+  </data>
+  <data name="common.sniffedHost" xml:space="preserve">
+    <value>嗅探域名</value>
+  </data>
+  <data name="common.sponsor" xml:space="preserve">
+    <value>赞助商</value>
+  </data>
+  <data name="common.startOpened" xml:space="preserve">
+    <value>打开软件时启动加速</value>
+  </data>
+  <data name="common.status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="common.stopExited" xml:space="preserve">
+    <value>退出时停止</value>
+  </data>
+  <data name="common.strictRoutePreventDnsLeak" xml:space="preserve">
+    <value>严格路由（防 DNS 泄漏）</value>
+  </data>
+  <data name="common.stunServer" xml:space="preserve">
+    <value>STUN 服务器</value>
+  </data>
+  <data name="common.subscription" xml:space="preserve">
+    <value>订阅</value>
+  </data>
+  <data name="common.target" xml:space="preserve">
+    <value>目标</value>
+  </data>
+  <data name="common.tcpFastopen" xml:space="preserve">
+    <value>TCP 快速打开</value>
+  </data>
+  <data name="common.telegramChannel" xml:space="preserve">
+    <value>Telegram 频道</value>
+  </data>
+  <data name="common.testing" xml:space="preserve">
+    <value>测试中</value>
+  </data>
+  <data name="common.timeout" xml:space="preserve">
+    <value>超时</value>
+  </data>
+  <data name="common.tlsSecure" xml:space="preserve">
+    <value>TLS 底层传输安全</value>
+  </data>
+  <data name="common.transferProtocol" xml:space="preserve">
+    <value>传输协议</value>
+  </data>
+  <data name="common.tun" xml:space="preserve">
+    <value>TUN</value>
+  </data>
+  <data name="common.tunTapDriver" xml:space="preserve">
+    <value>TUN/TAP 驱动</value>
+  </data>
+  <data name="common.unableAddEmptyRule" xml:space="preserve">
+    <value>无法添加空规则</value>
+  </data>
+  <data name="common.uninstall0" xml:space="preserve">
+    <value>卸载 {0}</value>
+  </data>
+  <data name="common.unselect" xml:space="preserve">
+    <value>取消选择</value>
+  </data>
+  <data name="common.up" xml:space="preserve">
+    <value>上移</value>
+  </data>
+  <data name="common.updateInterval" xml:space="preserve">
+    <value>更新间隔</value>
+  </data>
+  <data name="common.updateServers" xml:space="preserve">
+    <value>更新服务器</value>
+  </data>
+  <data name="common.updateServersOpened" xml:space="preserve">
+    <value>打开软件时更新服务器</value>
+  </data>
+  <data name="common.updating0" xml:space="preserve">
+    <value>正在更新 {0}</value>
+  </data>
+  <data name="common.urlSrs" xml:space="preserve">
+    <value>URL（.srs）</value>
+  </data>
+  <data name="common.useCustomDns" xml:space="preserve">
+    <value>使用自定义 DNS</value>
+  </data>
+  <data name="common.useMux" xml:space="preserve">
+    <value>Mux 多路复用</value>
+  </data>
+  <data name="common.useProxySubscriptionUpdates" xml:space="preserve">
+    <value>订阅更新走代理</value>
+  </data>
+  <data name="common.used" xml:space="preserve">
+    <value>已使用</value>
+  </data>
+  <data name="common.user" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="common.userId" xml:space="preserve">
+    <value>用户 ID</value>
+  </data>
+  <data name="common.username" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="common.validation" xml:space="preserve">
+    <value>验证</value>
+  </data>
+  <data name="common.verboseRedirectorLogTroubleshooting" xml:space="preserve">
+    <value>Redirector 详细日志（排查用）</value>
+  </data>
+  <data name="common.version" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="common.warn" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="connections.closedConnections" xml:space="preserve">
+    <value>已关闭连接</value>
+  </data>
+  <data name="connections.col.chains" xml:space="preserve">
+    <value>出站链</value>
+  </data>
+  <data name="connections.col.closedAt" xml:space="preserve">
+    <value>结束时间</value>
+  </data>
+  <data name="connections.col.down" xml:space="preserve">
+    <value>下行</value>
+  </data>
+  <data name="connections.col.geo" xml:space="preserve">
+    <value>归属地</value>
+  </data>
+  <data name="connections.col.process" xml:space="preserve">
+    <value>进程</value>
+  </data>
+  <data name="connections.col.remote" xml:space="preserve">
+    <value>远端地址</value>
+  </data>
+  <data name="connections.col.rule" xml:space="preserve">
+    <value>命中规则</value>
+  </data>
+  <data name="connections.col.start" xml:space="preserve">
+    <value>连接时间</value>
+  </data>
+  <data name="connections.col.target" xml:space="preserve">
+    <value>域名 / IP</value>
+  </data>
+  <data name="connections.col.up" xml:space="preserve">
+    <value>上行</value>
+  </data>
+  <data name="connections.pause" xml:space="preserve">
+    <value>暂停刷新</value>
+  </data>
+  <data name="connections.startNetchViewConnections" xml:space="preserve">
+    <value>启动 Netch 后可查看连接</value>
+  </data>
+  <data name="connections.summary" xml:space="preserve">
+    <value>连接 {0}（代理 {1} / 直连 {2}）</value>
+  </data>
+  <data name="connections.summary.history" xml:space="preserve">
+    <value>历史 {0}</value>
+  </data>
+  <data name="connections.summary.process" xml:space="preserve">
+    <value>连接 {0}</value>
+  </data>
+  <data name="connections.tab.history" xml:space="preserve">
+    <value>历史</value>
+  </data>
+  <data name="connections.tab.kernel" xml:space="preserve">
+    <value>内核</value>
+  </data>
+  <data name="connections.tab.process" xml:space="preserve">
+    <value>进程</value>
+  </data>
+  <data name="configuration.loadFailedExit" xml:space="preserve">
+    <value>配置文件及其备份均损坏，Netch 无法启动；详情见 logging\netch.log</value>
+  </data>
+  <data name="controller.0PortReservedSystem" xml:space="preserve">
+    <value>{0} 端口是系统保留端口</value>
+  </data>
+  <data name="controller.0PortUse" xml:space="preserve">
+    <value>{0} 端口已被占用</value>
+  </data>
+  <data name="controller.0PortUsed1" xml:space="preserve">
+    <value>{0} 端口被 {1} 占用。</value>
+  </data>
+  <data name="controller.aboveRulesDoesNotConform" xml:space="preserve">
+    <value>以上规则不符合 C++ 正则表达式语法</value>
+  </data>
+  <data name="controller.builtinDriverFilesMissingCan" xml:space="preserve">
+    <value>内置驱动文件缺失，无法安装 NF 驱动</value>
+  </data>
+  <data name="controller.failedRegisterNetfilter2Driver" xml:space="preserve">
+    <value>注册 netfilter2 驱动失败</value>
+  </data>
+  <data name="controller.installingNetfilter2Driver" xml:space="preserve">
+    <value>正在安装 netfilter2 驱动</value>
+  </data>
+  <data name="controller.kernelBinMissing" xml:space="preserve">
+    <value>bin\{0} 文件不存在！</value>
+  </data>
+  <data name="controller.kernel0StartFailed" xml:space="preserve">
+    <value>{0} 控制器启动失败</value>
+  </data>
+  <data name="controller.kernel0StartTimeout" xml:space="preserve">
+    <value>{0} 控制器启动超时</value>
+  </data>
+  <data name="controller.lookupServerHostnameFailed" xml:space="preserve">
+    <value>解析服务器主机名失败</value>
+  </data>
+  <data name="controller.missingFileRuntimeComponents" xml:space="preserve">
+    <value>缺少文件或运行库</value>
+  </data>
+  <data name="controller.runNetchAsAdministratorMake" xml:space="preserve">
+    <value>请以管理员身份运行 Netch 并确认 bin\wintun.dll 存在</value>
+  </data>
+  <data name="controller.serverType0NotSupported" xml:space="preserve">
+    <value>{0} 协议不再支持</value>
+  </data>
+  <data name="controller.starting0" xml:space="preserve">
+    <value>正在启动 {0}</value>
+  </data>
+  <data name="controller.tunInterfaceWasNotCreated" xml:space="preserve">
+    <value>TUN 接口创建失败</value>
+  </data>
+  <data name="controller.tunModeOnlySupportedSing" xml:space="preserve">
+    <value>TUN 模式仅支持 sing-box 内核，请更换节点或内核</value>
+  </data>
+  <data name="controller.unhandledException" xml:space="preserve">
+    <value>未处理异常</value>
+  </data>
+  <data name="controller.uninstallFailed" xml:space="preserve">
+    <value>卸载失败</value>
+  </data>
+  <data name="controller.youCanDownloadSettingsKernel" xml:space="preserve">
+    <value>可在设置「内核」页下载，或将官方内核可执行文件自行放入 bin 目录</value>
+  </data>
+  <data name="home.addServerFormat" xml:space="preserve">
+    <value>添加 [{0}] 服务器</value>
+  </data>
+  <data name="home.deleteMode0" xml:space="preserve">
+    <value>删除模式 {0}？</value>
+  </data>
+  <data name="home.deleteServer0" xml:space="preserve">
+    <value>删除服务器 {0}？</value>
+  </data>
+  <data name="home.importDone" xml:space="preserve">
+    <value>已从剪贴板导入 {0} 个服务器</value>
+  </data>
+  <data name="home.mode.delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="home.mode.edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="home.mode.new" xml:space="preserve">
+    <value>新建模式</value>
+  </data>
+  <data name="home.mode.newProcess" xml:space="preserve">
+    <value>新建进程模式</value>
+  </data>
+  <data name="home.mode.newRoute" xml:space="preserve">
+    <value>新建路由模式</value>
+  </data>
+  <data name="home.mode.reload" xml:space="preserve">
+    <value>重载</value>
+  </data>
+  <data name="home.mode.title" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="home.noSavedProfileHereSave" xml:space="preserve">
+    <value>当前按钮下没有保存配置，请先使用 CTRL + 左键 点击该按钮保存一个配置</value>
+  </data>
+  <data name="home.selectModeFirst" xml:space="preserve">
+    <value>请先选择一个模式</value>
+  </data>
+  <data name="home.selectServerFirst" xml:space="preserve">
+    <value>请先选择一个服务器</value>
+  </data>
+  <data name="home.server.add" xml:space="preserve">
+    <value>添加服务器</value>
+  </data>
+  <data name="home.server.copyLink" xml:space="preserve">
+    <value>复制链接</value>
+  </data>
+  <data name="home.server.delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="home.server.edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="home.server.empty" xml:space="preserve">
+    <value>还没有服务器，添加或从剪贴板导入</value>
+  </data>
+  <data name="home.server.filterAll" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="home.server.import" xml:space="preserve">
+    <value>从剪贴板导入</value>
+  </data>
+  <data name="home.server.lockedWhileRunning" xml:space="preserve">
+    <value>运行中节点选择已锁定，停止后可切换</value>
+  </data>
+  <data name="home.server.search" xml:space="preserve">
+    <value>搜索 备注/地址</value>
+  </data>
+  <data name="home.server.test" xml:space="preserve">
+    <value>测速</value>
+  </data>
+  <data name="home.server.testAll" xml:space="preserve">
+    <value>测速全部</value>
+  </data>
+  <data name="home.server.title" xml:space="preserve">
+    <value>服务器</value>
+  </data>
+  <data name="kernel.invalidDnsServer0" xml:space="preserve">
+    <value>无效的 DNS 服务器 "{0}"</value>
+  </data>
+  <data name="kernel.invalidDomainRegex0" xml:space="preserve">
+    <value>域名正则表达式 "{0}" 无效</value>
+  </data>
+  <data name="kernel.invalidIpCidr0" xml:space="preserve">
+    <value>IP CIDR "{0}" 无效</value>
+  </data>
+  <data name="kernel.invalidPortRange0Expected" xml:space="preserve">
+    <value>端口或端口范围 "{0}" 无效（应为 443 或 1000:2000）</value>
+  </data>
+  <data name="kernel.serverType0NotSupported" xml:space="preserve">
+    <value>sing-box 内核不支持 {0} 协议</value>
+  </data>
+  <data name="kernel.shadowsocksrNotSupportedSingBox" xml:space="preserve">
+    <value>sing-box 内核不支持 ShadowsocksR</value>
+  </data>
+  <data name="kernel.unknownRuleSet0" xml:space="preserve">
+    <value>未知规则集 "{0}"，请先在设置中添加</value>
+  </data>
+  <data name="kernel.unknownSniffedProtocol0Supported" xml:space="preserve">
+    <value>未知的嗅探协议 "{0}"（支持：{1}）</value>
+  </data>
+  <data name="kernel.vlessRealityRequiresRealityPublickey" xml:space="preserve">
+    <value>VLESS Reality 需要 Reality 公钥（pbk）</value>
+  </data>
+  <data name="kernel.vmessVlessTcpHeaderObfuscation" xml:space="preserve">
+    <value>sing-box 内核不支持 VMess/VLESS tcp 头部混淆</value>
+  </data>
+  <data name="kernel.vmessVlessTransportNotSupported" xml:space="preserve">
+    <value>sing-box 内核不支持 VMess/VLESS 传输层</value>
+  </data>
+  <data name="main.0HasBeenUninstalled" xml:space="preserve">
+    <value>{0} 已卸载</value>
+  </data>
+  <data name="main.allowOtherDevicesConnect" xml:space="preserve">
+    <value>允许其他设备连入</value>
+  </data>
+  <data name="main.alreadyLatestVersion" xml:space="preserve">
+    <value>已经是最新版本</value>
+  </data>
+  <data name="main.autoRestoreFailedStopped" xml:space="preserve">
+    <value>自动恢复失败，已停止</value>
+  </data>
+  <data name="main.checkUpdateFailed" xml:space="preserve">
+    <value>检查更新失败</value>
+  </data>
+  <data name="main.dnsCacheCleanupSucceeded" xml:space="preserve">
+    <value>DNS 缓存清理成功</value>
+  </data>
+  <data name="main.downloadInstallNNUpdatechecker" xml:space="preserve">
+    <value>Download and install now?\n\n{UpdateChecker.GetLatestReleaseContent()}</value>
+  </data>
+  <data name="main.downloadedFileHasWrongHash" xml:space="preserve">
+    <value>下载的文件哈希不正确</value>
+  </data>
+  <data name="main.kernelExitedUnexpectedlyRestarting0" xml:space="preserve">
+    <value>内核意外退出，正在重启（{0}/{1}）</value>
+  </data>
+  <data name="main.kernelFatalStopped" xml:space="preserve">
+    <value>内核报致命错误已停止（不再自动重启），详情见内核日志</value>
+  </data>
+  <data name="main.kernelKeepsExitingStopped" xml:space="preserve">
+    <value>内核反复退出，已停止</value>
+  </data>
+  <data name="main.localPort" xml:space="preserve">
+    <value>本地端口</value>
+  </data>
+  <data name="main.nat.failed" xml:space="preserve">
+    <value>测试失败</value>
+  </data>
+  <data name="main.nat.testing" xml:space="preserve">
+    <value>正在测试 NAT 类型</value>
+  </data>
+  <data name="main.nav.about" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="main.nav.connections" xml:space="preserve">
+    <value>连接</value>
+  </data>
+  <data name="main.nav.home" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="main.nav.log" xml:space="preserve">
+    <value>日志</value>
+  </data>
+  <data name="main.nav.settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="main.nav.subscriptions" xml:space="preserve">
+    <value>订阅</value>
+  </data>
+  <data name="main.netchMinimizedNotificationBarDouble" xml:space="preserve">
+    <value>Netch 已最小化至通知栏，双击此图标恢复窗口</value>
+  </data>
+  <data name="main.networkRestoredConnectionRebuilt" xml:space="preserve">
+    <value>网络已恢复，连接已重建</value>
+  </data>
+  <data name="main.newVersion" xml:space="preserve">
+    <value>发现新版本</value>
+  </data>
+  <data name="main.newVersionCheckFailed" xml:space="preserve">
+    <value>检查新版本失败（网络错误）</value>
+  </data>
+  <data name="main.none" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="main.pressStopButtonFirst" xml:space="preserve">
+    <value>请先点击停止按钮</value>
+  </data>
+  <data name="main.profile.add" xml:space="preserve">
+    <value>新建快速配置</value>
+  </data>
+  <data name="main.profile.delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="main.profile.moveDown" xml:space="preserve">
+    <value>下移</value>
+  </data>
+  <data name="main.profile.moveUp" xml:space="preserve">
+    <value>上移</value>
+  </data>
+  <data name="main.profile.namePrompt" xml:space="preserve">
+    <value>配置名称</value>
+  </data>
+  <data name="main.profile.newTitle" xml:space="preserve">
+    <value>新建快速配置</value>
+  </data>
+  <data name="main.profile.none" xml:space="preserve">
+    <value>空</value>
+  </data>
+  <data name="main.profile.rename" xml:space="preserve">
+    <value>重命名</value>
+  </data>
+  <data name="main.profile.renameTitle" xml:space="preserve">
+    <value>重命名快速配置</value>
+  </data>
+  <data name="main.restoringNetwork" xml:space="preserve">
+    <value>正在恢复网络…</value>
+  </data>
+  <data name="main.start" xml:space="preserve">
+    <value>启动</value>
+  </data>
+  <data name="main.startDownloadingNewVersion" xml:space="preserve">
+    <value>开始下载新版本</value>
+  </data>
+  <data name="main.startFailed" xml:space="preserve">
+    <value>启动失败</value>
+  </data>
+  <data name="main.starting" xml:space="preserve">
+    <value>正在启动中</value>
+  </data>
+  <data name="main.state.degraded" xml:space="preserve">
+    <value>等待网络…</value>
+  </data>
+  <data name="main.state.started" xml:space="preserve">
+    <value>已启动</value>
+  </data>
+  <data name="main.state.starting" xml:space="preserve">
+    <value>正在启动中</value>
+  </data>
+  <data name="main.state.stopped" xml:space="preserve">
+    <value>已停止</value>
+  </data>
+  <data name="main.state.stopping" xml:space="preserve">
+    <value>正在停止中</value>
+  </data>
+  <data name="main.state.waiting" xml:space="preserve">
+    <value>等待命令中</value>
+  </data>
+  <data name="main.stop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="main.stopping" xml:space="preserve">
+    <value>正在停止中</value>
+  </data>
+  <data name="main.title" xml:space="preserve">
+    <value>Netch</value>
+  </data>
+  <data name="main.unhandledUiErrorTip" xml:space="preserve">
+    <value>界面发生未处理错误</value>
+  </data>
+  <data name="main.unhandledUpdateServersError" xml:space="preserve">
+    <value>更新服务器发生未处理错误</value>
+  </data>
+  <data name="main.uninstalling0" xml:space="preserve">
+    <value>正在卸载 {0} 中</value>
+  </data>
+  <data name="main.update.downloadConfirm" xml:space="preserve">
+    <value>立即下载并安装？
+
+{0}</value>
+  </data>
+  <data name="modeEditor.addRule" xml:space="preserve">
+    <value>添加规则</value>
+  </data>
+  <data name="modeEditor.checkedMatcherRequiresAtLeast" xml:space="preserve">
+    <value>勾选的匹配项至少需要填写一个值</value>
+  </data>
+  <data name="modeEditor.clear" xml:space="preserve">
+    <value>清空</value>
+  </data>
+  <data name="modeEditor.col.action" xml:space="preserve">
+    <value>出站</value>
+  </data>
+  <data name="modeEditor.col.ruleSet" xml:space="preserve">
+    <value>规则集</value>
+  </data>
+  <data name="modeEditor.dnsProxy" xml:space="preserve">
+    <value>DNS 经代理</value>
+  </data>
+  <data name="modeEditor.fileAlreadyExistsNChange" xml:space="preserve">
+    <value>File already exists.\n Please Change the filename</value>
+  </data>
+  <data name="modeEditor.fileExists" xml:space="preserve">
+    <value>文件已存在，请更换备注</value>
+  </data>
+  <data name="modeEditor.handleChild" xml:space="preserve">
+    <value>处理子进程</value>
+  </data>
+  <data name="modeEditor.handleDNS" xml:space="preserve">
+    <value>处理 DNS（DNS 劫持）</value>
+  </data>
+  <data name="modeEditor.handleICMP" xml:space="preserve">
+    <value>处理 ICMP</value>
+  </data>
+  <data name="modeEditor.handleProcDNS" xml:space="preserve">
+    <value>处理已接管进程的 DNS</value>
+  </data>
+  <data name="modeEditor.handleTCP" xml:space="preserve">
+    <value>处理 TCP</value>
+  </data>
+  <data name="modeEditor.handleUDP" xml:space="preserve">
+    <value>处理 UDP</value>
+  </data>
+  <data name="modeEditor.icmpDelay" xml:space="preserve">
+    <value>ICMP 延迟（毫秒）</value>
+  </data>
+  <data name="modeEditor.modeAddedSuccessfully" xml:space="preserve">
+    <value>模式添加成功</value>
+  </data>
+  <data name="modeEditor.modeRemark" xml:space="preserve">
+    <value>请输入模式的备注</value>
+  </data>
+  <data name="modeEditor.modeUpdatedSuccessfully" xml:space="preserve">
+    <value>模式修改成功</value>
+  </data>
+  <data name="modeEditor.moveDown" xml:space="preserve">
+    <value>下移</value>
+  </data>
+  <data name="modeEditor.moveUp" xml:space="preserve">
+    <value>上移</value>
+  </data>
+  <data name="modeEditor.processList" xml:space="preserve">
+    <value>进程列表</value>
+  </data>
+  <data name="modeEditor.processNameHint" xml:space="preserve">
+    <value>进程名，回车添加</value>
+  </data>
+  <data name="modeEditor.processTitle" xml:space="preserve">
+    <value>进程模式编辑器</value>
+  </data>
+  <data name="modeEditor.remark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="modeEditor.routeRuleRequiresAtLeast" xml:space="preserve">
+    <value>路由规则至少需要一个匹配条件（域名/IP/端口/协议）</value>
+  </data>
+  <data name="modeEditor.routeTitle" xml:space="preserve">
+    <value>路由模式编辑器</value>
+  </data>
+  <data name="modeEditor.ruleEditorTitle" xml:space="preserve">
+    <value>编辑选中规则</value>
+  </data>
+  <data name="modeEditor.ruleList" xml:space="preserve">
+    <value>路由规则</value>
+  </data>
+  <data name="modeEditor.ruleSetHint" xml:space="preserve">
+    <value>逗号分隔的规则集 tag（字母/数字/中划线）</value>
+  </data>
+  <data name="modeEditor.ruleSetRefs" xml:space="preserve">
+    <value>规则集引用</value>
+  </data>
+  <data name="modeEditor.ruleTagInvalid" xml:space="preserve">
+    <value>无效的规则集 tag「{0}」</value>
+  </data>
+  <data name="modeEditor.saveClose" xml:space="preserve">
+    <value>保存并关闭</value>
+  </data>
+  <data name="page.notBuilt" xml:space="preserve">
+    <value>此页面未施工</value>
+  </data>
+  <data name="ruleSet.dialogTitle" xml:space="preserve">
+    <value>规则集</value>
+  </data>
+  <data name="ruleSet.error.conflict" xml:space="preserve">
+    <value>tag「{0}」与内置规则集冲突</value>
+  </data>
+  <data name="ruleSet.error.interval" xml:space="preserve">
+    <value>无效间隔「{0}」（如 30m、1d）</value>
+  </data>
+  <data name="ruleSet.error.tag" xml:space="preserve">
+    <value>无效 tag「{0}」（字母/数字/中划线）</value>
+  </data>
+  <data name="ruleSet.error.url" xml:space="preserve">
+    <value>无效 URL「{0}」</value>
+  </data>
+  <data name="ruleSet.intervalHint" xml:space="preserve">
+    <value>如 30m、1d；留空用默认</value>
+  </data>
+  <data name="ruleSet.invalidRuleSetTag0" xml:space="preserve">
+    <value>无效的规则集标识 "{0}"（应为字母、数字、连字符）</value>
+  </data>
+  <data name="ruleSet.invalidRuleSetUrl0" xml:space="preserve">
+    <value>无效的规则集 URL "{0}"</value>
+  </data>
+  <data name="ruleSet.invalidUpdateInterval0Expected" xml:space="preserve">
+    <value>无效的更新间隔 "{0}"（应为 30m、1d 等）</value>
+  </data>
+  <data name="ruleSet.tag0ConflictsBuiltRule" xml:space="preserve">
+    <value>标识 "{0}" 与内置规则集冲突</value>
+  </data>
+  <data name="ruleSet.updateInterval" xml:space="preserve">
+    <value>更新间隔</value>
+  </data>
+  <data name="serverForm.anytls.host" xml:space="preserve">
+    <value>TLS SNI</value>
+  </data>
+  <data name="serverForm.anytls.password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="serverForm.error.int" xml:space="preserve">
+    <value>数字无效</value>
+  </data>
+  <data name="serverForm.error.port" xml:space="preserve">
+    <value>端口无效（1-65535）</value>
+  </data>
+  <data name="serverForm.error.required" xml:space="preserve">
+    <value>必填</value>
+  </data>
+  <data name="serverForm.hostname" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="serverForm.hy2.downMbps" xml:space="preserve">
+    <value>下行 Mbps</value>
+  </data>
+  <data name="serverForm.hy2.host" xml:space="preserve">
+    <value>TLS SNI</value>
+  </data>
+  <data name="serverForm.hy2.obfsPassword" xml:space="preserve">
+    <value>混淆密码</value>
+  </data>
+  <data name="serverForm.hy2.password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="serverForm.hy2.upMbps" xml:space="preserve">
+    <value>上行 Mbps</value>
+  </data>
+  <data name="serverForm.port" xml:space="preserve">
+    <value>端口</value>
+  </data>
+  <data name="serverForm.remark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="serverForm.socks5.password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="serverForm.socks5.remoteHostname" xml:space="preserve">
+    <value>级联代理地址</value>
+  </data>
+  <data name="serverForm.socks5.username" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="serverForm.socks5.version" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="serverForm.ss.encryptMethod" xml:space="preserve">
+    <value>加密方式</value>
+  </data>
+  <data name="serverForm.ss.password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="serverForm.ss.plugin" xml:space="preserve">
+    <value>插件</value>
+  </data>
+  <data name="serverForm.ss.pluginOptions" xml:space="preserve">
+    <value>插件选项</value>
+  </data>
+  <data name="serverForm.ssh.password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="serverForm.ssh.privateKey" xml:space="preserve">
+    <value>私钥</value>
+  </data>
+  <data name="serverForm.ssh.publicKey" xml:space="preserve">
+    <value>公钥</value>
+  </data>
+  <data name="serverForm.ssh.user" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="serverForm.ssr.deprecation" xml:space="preserve">
+    <value>SSR 协议已停止维护，新版内核不再支持。建议迁移到 Shadowsocks / Trojan / VLESS。</value>
+  </data>
+  <data name="serverForm.ssr.encryptMethod" xml:space="preserve">
+    <value>加密方式</value>
+  </data>
+  <data name="serverForm.ssr.obfs" xml:space="preserve">
+    <value>OBFS 混淆</value>
+  </data>
+  <data name="serverForm.ssr.obfsParam" xml:space="preserve">
+    <value>混淆参数</value>
+  </data>
+  <data name="serverForm.ssr.password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="serverForm.ssr.protocol" xml:space="preserve">
+    <value>协议</value>
+  </data>
+  <data name="serverForm.ssr.protocolParam" xml:space="preserve">
+    <value>协议参数</value>
+  </data>
+  <data name="serverForm.title" xml:space="preserve">
+    <value>服务器</value>
+  </data>
+  <data name="serverForm.trojan.host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="serverForm.trojan.password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="serverForm.trojan.tlsSecure" xml:space="preserve">
+    <value>TLS 安全</value>
+  </data>
+  <data name="serverForm.tuic.alpn" xml:space="preserve">
+    <value>ALPN</value>
+  </data>
+  <data name="serverForm.tuic.congestionControl" xml:space="preserve">
+    <value>拥塞控制</value>
+  </data>
+  <data name="serverForm.tuic.host" xml:space="preserve">
+    <value>TLS SNI</value>
+  </data>
+  <data name="serverForm.tuic.password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="serverForm.tuic.udpRelayMode" xml:space="preserve">
+    <value>UDP 中继</value>
+  </data>
+  <data name="serverForm.tuic.uuid" xml:space="preserve">
+    <value>UUID</value>
+  </data>
+  <data name="serverForm.vless.encryptMethod" xml:space="preserve">
+    <value>加密方式</value>
+  </data>
+  <data name="serverForm.vless.fakeType" xml:space="preserve">
+    <value>伪装类型</value>
+  </data>
+  <data name="serverForm.vless.fingerprint" xml:space="preserve">
+    <value>uTLS 指纹</value>
+  </data>
+  <data name="serverForm.vless.flow" xml:space="preserve">
+    <value>Flow 流控</value>
+  </data>
+  <data name="serverForm.vless.host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="serverForm.vless.packetEncoding" xml:space="preserve">
+    <value>分包编码</value>
+  </data>
+  <data name="serverForm.vless.path" xml:space="preserve">
+    <value>路径</value>
+  </data>
+  <data name="serverForm.vless.quicSecret" xml:space="preserve">
+    <value>QUIC 密钥</value>
+  </data>
+  <data name="serverForm.vless.quicSecurity" xml:space="preserve">
+    <value>QUIC 加密</value>
+  </data>
+  <data name="serverForm.vless.realityPublicKey" xml:space="preserve">
+    <value>Reality 公钥(pbk)</value>
+  </data>
+  <data name="serverForm.vless.realityShortId" xml:space="preserve">
+    <value>Reality ShortId(sid)</value>
+  </data>
+  <data name="serverForm.vless.sni" xml:space="preserve">
+    <value>服务器名(SNI)</value>
+  </data>
+  <data name="serverForm.vless.tlsSecure" xml:space="preserve">
+    <value>TLS 安全</value>
+  </data>
+  <data name="serverForm.vless.transferProtocol" xml:space="preserve">
+    <value>传输协议</value>
+  </data>
+  <data name="serverForm.vless.useMux" xml:space="preserve">
+    <value>使用 Mux</value>
+  </data>
+  <data name="serverForm.vless.uuid" xml:space="preserve">
+    <value>UUID</value>
+  </data>
+  <data name="serverForm.vmess.alterId" xml:space="preserve">
+    <value>额外 ID</value>
+  </data>
+  <data name="serverForm.vmess.encryptMethod" xml:space="preserve">
+    <value>加密方式</value>
+  </data>
+  <data name="serverForm.vmess.fakeType" xml:space="preserve">
+    <value>伪装类型</value>
+  </data>
+  <data name="serverForm.vmess.host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="serverForm.vmess.packetEncoding" xml:space="preserve">
+    <value>分包编码</value>
+  </data>
+  <data name="serverForm.vmess.path" xml:space="preserve">
+    <value>路径</value>
+  </data>
+  <data name="serverForm.vmess.quicSecret" xml:space="preserve">
+    <value>QUIC 密钥</value>
+  </data>
+  <data name="serverForm.vmess.quicSecurity" xml:space="preserve">
+    <value>QUIC 加密</value>
+  </data>
+  <data name="serverForm.vmess.sni" xml:space="preserve">
+    <value>服务器名(SNI)</value>
+  </data>
+  <data name="serverForm.vmess.tlsSecure" xml:space="preserve">
+    <value>TLS 安全</value>
+  </data>
+  <data name="serverForm.vmess.transferProtocol" xml:space="preserve">
+    <value>传输协议</value>
+  </data>
+  <data name="serverForm.vmess.useMux" xml:space="preserve">
+    <value>使用 Mux</value>
+  </data>
+  <data name="serverForm.vmess.userId" xml:space="preserve">
+    <value>用户 ID</value>
+  </data>
+  <data name="serverForm.wg.localAddresses" xml:space="preserve">
+    <value>本机地址</value>
+  </data>
+  <data name="serverForm.wg.mtu" xml:space="preserve">
+    <value>MTU</value>
+  </data>
+  <data name="serverForm.wg.peerPublicKey" xml:space="preserve">
+    <value>公钥</value>
+  </data>
+  <data name="serverForm.wg.preSharedKey" xml:space="preserve">
+    <value>预共享密钥</value>
+  </data>
+  <data name="serverForm.wg.privateKey" xml:space="preserve">
+    <value>私钥</value>
+  </data>
+  <data name="settings.0NotFoundBinDirectory" xml:space="preserve">
+    <value>bin 目录下未找到 {0}</value>
+  </data>
+  <data name="settings.autosave.hint" xml:space="preserve">
+    <value>设置更改后自动保存并即时生效；涉及内核或网络的更改在重启代理后应用。</value>
+  </data>
+  <data name="settings.checkKernelUpdateFailed" xml:space="preserve">
+    <value>检查内核更新失败</value>
+  </data>
+  <data name="settings.checkingKernelUpdates" xml:space="preserve">
+    <value>正在检查内核更新</value>
+  </data>
+  <data name="settings.dns.china" xml:space="preserve">
+    <value>国内 DNS（IP[:端口]）</value>
+  </data>
+  <data name="settings.dns.hint" xml:space="preserve">
+    <value>Auto：geosite-cn 直连，其余经节点 DoH；Custom：自定义下方上游</value>
+  </data>
+  <data name="settings.dns.remote" xml:space="preserve">
+    <value>远程 DNS（DoH / https）</value>
+  </data>
+  <data name="settings.dns.title" xml:space="preserve">
+    <value>DNS</value>
+  </data>
+  <data name="settings.downloadingKernelUpdate" xml:space="preserve">
+    <value>正在下载内核更新</value>
+  </data>
+  <data name="settings.general.accent" xml:space="preserve">
+    <value>强调色</value>
+  </data>
+  <data name="settings.general.accentDefault" xml:space="preserve">
+    <value>默认</value>
+  </data>
+  <data name="settings.general.accentHint" xml:space="preserve">
+    <value>自定义色值 #RRGGBB，留空恢复默认</value>
+  </data>
+  <data name="settings.general.detectionTick" xml:space="preserve">
+    <value>检测间隔（秒）</value>
+  </data>
+  <data name="settings.general.httpPort" xml:space="preserve">
+    <value>HTTP 端口</value>
+  </data>
+  <data name="settings.general.shareLan" xml:space="preserve">
+    <value>允许局域网设备连接</value>
+  </data>
+  <data name="settings.general.socks5" xml:space="preserve">
+    <value>Socks5</value>
+  </data>
+  <data name="settings.general.socks5Port" xml:space="preserve">
+    <value>Socks5 端口</value>
+  </data>
+  <data name="settings.general.startedPing" xml:space="preserve">
+    <value>启动后延迟测试间隔（秒）</value>
+  </data>
+  <data name="settings.general.theme" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="settings.general.title" xml:space="preserve">
+    <value>常规</value>
+  </data>
+  <data name="settings.invalidValue" xml:space="preserve">
+    <value>无效的值</value>
+  </data>
+  <data name="settings.kernelUpdateFailed" xml:space="preserve">
+    <value>内核更新失败</value>
+  </data>
+  <data name="settings.kernelUpdated0" xml:space="preserve">
+    <value>内核已更新到 {0}</value>
+  </data>
+  <data name="settings.newKernelVersionFound0" xml:space="preserve">
+    <value>发现新内核版本：{0}</value>
+  </data>
+  <data name="settings.noSuitableKernelPackageFound" xml:space="preserve">
+    <value>发行版中没有适合的内核安装包</value>
+  </data>
+  <data name="settings.others.checkBetaUpdate" xml:space="preserve">
+    <value>检查 Beta 更新</value>
+  </data>
+  <data name="settings.others.exitWhenClose" xml:space="preserve">
+    <value>关闭窗口时退出</value>
+  </data>
+  <data name="settings.others.minimizeWhenStarted" xml:space="preserve">
+    <value>启动后最小化</value>
+  </data>
+  <data name="settings.others.noSupportDialog" xml:space="preserve">
+    <value>不再弹出不受支持提示</value>
+  </data>
+  <data name="settings.others.requestTimeout" xml:space="preserve">
+    <value>请求超时（毫秒）</value>
+  </data>
+  <data name="settings.others.runAtStartup" xml:space="preserve">
+    <value>开机自启</value>
+  </data>
+  <data name="settings.others.startWhenOpened" xml:space="preserve">
+    <value>打开软件时启动</value>
+  </data>
+  <data name="settings.others.stopWhenExited" xml:space="preserve">
+    <value>退出时停止</value>
+  </data>
+  <data name="settings.others.title" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="settings.process.icmpDelay" xml:space="preserve">
+    <value>ICMP 延迟（毫秒）</value>
+  </data>
+  <data name="settings.process.procDns" xml:space="preserve">
+    <value>处理已接管进程的 DNS</value>
+  </data>
+  <data name="settings.process.title" xml:space="preserve">
+    <value>进程模式</value>
+  </data>
+  <data name="settings.rulesets.builtinEnable" xml:space="preserve">
+    <value>启用内置规则集（geosite-cn、geoip-cn）</value>
+  </data>
+  <data name="settings.saved" xml:space="preserve">
+    <value>保存成功</value>
+  </data>
+  <data name="settings.tag0AlreadyExists" xml:space="preserve">
+    <value>标识 "{0}" 已存在</value>
+  </data>
+  <data name="settings.tools.firewallRemoved" xml:space="preserve">
+    <value>已移除 Netch 防火墙规则</value>
+  </data>
+  <data name="settings.tools.showHideConsole" xml:space="preserve">
+    <value>显示/隐藏控制台</value>
+  </data>
+  <data name="settings.tools.title" xml:space="preserve">
+    <value>工具</value>
+  </data>
+  <data name="settings.tools.uninstallNf" xml:space="preserve">
+    <value>卸载 NF 服务</value>
+  </data>
+  <data name="settings.tun.bypassHint" xml:space="preserve">
+    <value>一行一个 IP/CIDR（如 192.168.1.0/24）</value>
+  </data>
+  <data name="settings.v2ray.kcp" xml:space="preserve">
+    <value>KCP</value>
+  </data>
+  <data name="settings.v2ray.title" xml:space="preserve">
+    <value>V2Ray</value>
+  </data>
+  <data name="settings.v2ray.tlsAllowInsecure" xml:space="preserve">
+    <value>TLS 允许不安全</value>
+  </data>
+  <data name="subscription.add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="subscription.col.link" xml:space="preserve">
+    <value>链接</value>
+  </data>
+  <data name="subscription.col.remark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="subscription.col.userAgent" xml:space="preserve">
+    <value>User-Agent</value>
+  </data>
+  <data name="subscription.confirmDeletion" xml:space="preserve">
+    <value>确认删除？</value>
+  </data>
+  <data name="subscription.copyLink" xml:space="preserve">
+    <value>复制链接</value>
+  </data>
+  <data name="subscription.deleteNotWillCleanUp" xml:space="preserve">
+    <value>是否删除？将会清理服务器列表中对应组的项目</value>
+  </data>
+  <data name="subscription.deleteServers" xml:space="preserve">
+    <value>删除订阅及节点</value>
+  </data>
+  <data name="subscription.deleteServersConfirm" xml:space="preserve">
+    <value>删除该订阅组的全部节点？</value>
+  </data>
+  <data name="subscription.duplicateRemark" xml:space="preserve">
+    <value>已存在同名订阅。节点按订阅名归属，重名订阅会互相覆盖对方的节点</value>
+  </data>
+  <data name="subscription.dialogTitle" xml:space="preserve">
+    <value>订阅</value>
+  </data>
+  <data name="subscription.error.linkRequired" xml:space="preserve">
+    <value>链接必填</value>
+  </data>
+  <data name="subscription.lastUpdate" xml:space="preserve">
+    <value>上次更新</value>
+  </data>
+  <data name="subscription.linkCanNotBeEmpty" xml:space="preserve">
+    <value>链接不可为空</value>
+  </data>
+  <data name="subscription.linkMustStartHttpHttps" xml:space="preserve">
+    <value>链接必须以 http:// 或 https:// 开头</value>
+  </data>
+  <data name="subscription.modify" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="subscription.none" xml:space="preserve">
+    <value>没有任何一条订阅链接</value>
+  </data>
+  <data name="subscription.remarkCanNotBeEmpty" xml:space="preserve">
+    <value>备注不可为空</value>
+  </data>
+  <data name="subscription.subscriptionSpecifiedRemarkAlreadyExists" xml:space="preserve">
+    <value>带有指定备注的订阅已存在</value>
+  </data>
+  <data name="subscription.update1ServerSFrom" xml:space="preserve">
+    <value>从 {0} 更新了 {1} 个服务器</value>
+  </data>
+  <data name="subscription.updateAll" xml:space="preserve">
+    <value>更新全部订阅</value>
+  </data>
+  <data name="subscription.updateOne" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="subscription.updateServersFailedFrom0" xml:space="preserve">
+    <value>从 {0} 更新服务器失败</value>
+  </data>
+  <data name="subscription.updated" xml:space="preserve">
+    <value>服务器更新完毕</value>
+  </data>
+  <data name="subscription.updating" xml:space="preserve">
+    <value>正在更新服务器</value>
+  </data>
+  <data name="tray.exit" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="tray.show" xml:space="preserve">
+    <value>显示主窗口</value>
+  </data>
+  <data name="update.0FileUse" xml:space="preserve">
+    <value>{0} 文件被占用</value>
+  </data>
+  <data name="update.7zaExited" xml:space="preserve">
+    <value>7za 异常退出（{0}）</value>
+  </data>
+  <data name="update.downloadSourceDidNotProvide" xml:space="preserve">
+    <value>下载源未提供校验和，已取消更新</value>
+  </data>
+  <data name="update.fetchKernelReleaseFailed" xml:space="preserve">
+    <value>获取内核发行信息失败</value>
+  </data>
+  <data name="update.kernelChecksumMismatchUpdateCancelled" xml:space="preserve">
+    <value>内核校验和不匹配，已取消更新</value>
+  </data>
+  <data name="update.kernelFileNotFoundRelease" xml:space="preserve">
+    <value>发行包中未找到内核文件</value>
+  </data>
+  <data name="update.kernelSmokeCheckFailedRolled" xml:space="preserve">
+    <value>内核更新后自检失败，已回滚</value>
+  </data>
+  <data name="update.restartFailed0" xml:space="preserve">
+    <value>内核更新完成，但拉起失败</value>
+  </data>
+  <data name="update.stopProxyBeforeUpdatingKernel" xml:space="preserve">
+    <value>更新内核前请先停止代理</value>
+  </data>
+  <data name="update.updateFileMainProgramNot" xml:space="preserve">
+    <value>更新文件中主程序不存在</value>
+  </data>
+  <data name="update.updateFileTopLevelDirectory" xml:space="preserve">
+    <value>更新文件顶层目录不存在</value>
+  </data>
+  <data name="common.add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="settings.dns.policy" xml:space="preserve">
+    <value>DNS 策略</value>
+  </data>
+  <data name="settings.general.language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="settings.general.pingProtocol" xml:space="preserve">
+    <value>延迟测试协议</value>
+  </data>
+  <data name="settings.general.profileCount" xml:space="preserve">
+    <value>快捷配置数量</value>
+  </data>
+  <data name="settings.general.restoreSize" xml:space="preserve">
+    <value>恢复默认大小</value>
+  </data>
+  <data name="settings.general.restoreSizeHint" xml:space="preserve">
+    <value>窗口尺寸与连接观测页列宽一并恢复默认，并清除记忆</value>
+  </data>
+  <data name="settings.general.stun" xml:space="preserve">
+    <value>STUN 服务器</value>
+  </data>
+  <data name="settings.kernel.title" xml:space="preserve">
+    <value>内核</value>
+  </data>
+  <data name="settings.kernel.downloadUpdate" xml:space="preserve">
+    <value>下载更新</value>
+  </data>
+  <data name="settings.kernel.groupAutoSelect" xml:space="preserve">
+    <value>分组启动时自动选择最快节点（urltest）</value>
+  </data>
+  <data name="settings.kernel.openBin" xml:space="preserve">
+    <value>打开 bin 目录</value>
+  </data>
+  <data name="settings.kernel.selfManaged" xml:space="preserve">
+    <value>自备内核请直接放入 bin 目录管理</value>
+  </data>
+  <data name="settings.rulesets.title" xml:space="preserve">
+    <value>规则集</value>
+  </data>
+  <data name="settings.rulesets.builtinHint" xml:space="preserve">
+    <value>内置：geosite-cn、geoip-cn（无需配置）</value>
+  </data>
+  <data name="settings.reliability.title" xml:space="preserve">
+    <value>可靠性</value>
+  </data>
+  <data name="settings.reliability.autoRestore" xml:space="preserve">
+    <value>断网自动暂停内核，网络恢复后自动重连</value>
+  </data>
+  <data name="settings.reliability.kernelRestart" xml:space="preserve">
+    <value>内核意外退出时自动重启</value>
+  </data>
+  <data name="settings.reliability.debounce" xml:space="preserve">
+    <value>网络事件防抖（秒）</value>
+  </data>
+  <data name="settings.reliability.subscriptionProxy" xml:space="preserve">
+    <value>订阅更新走代理</value>
+  </data>
+  <data name="settings.process.tcp" xml:space="preserve">
+    <value>处理 TCP</value>
+  </data>
+  <data name="settings.process.udp" xml:space="preserve">
+    <value>处理 UDP</value>
+  </data>
+  <data name="settings.process.icmp" xml:space="preserve">
+    <value>处理 ICMP</value>
+  </data>
+  <data name="settings.process.dns" xml:space="preserve">
+    <value>经过代理处理 DNS</value>
+  </data>
+  <data name="settings.process.dnsProxy" xml:space="preserve">
+    <value>代理 DNS</value>
+  </data>
+  <data name="settings.process.verboseLog" xml:space="preserve">
+    <value>Redirector 详细日志（排查用）</value>
+  </data>
+  <data name="settings.tun.title" xml:space="preserve">
+    <value>TUN</value>
+  </data>
+  <data name="settings.tun.stack" xml:space="preserve">
+    <value>协议栈</value>
+  </data>
+  <data name="settings.tun.strictRoute" xml:space="preserve">
+    <value>严格路由（防 DNS 泄漏）</value>
+  </data>
+  <data name="settings.tun.bypassIps" xml:space="preserve">
+    <value>全局直连 IP</value>
+  </data>
+  <data name="settings.v2ray.xrayCone" xml:space="preserve">
+    <value>FullCone 支持（需服务端 Xray-core v1.3.0+）</value>
+  </data>
+  <data name="settings.v2ray.useMux" xml:space="preserve">
+    <value>Mux 多路复用</value>
+  </data>
+  <data name="settings.v2ray.tcpFastOpen" xml:space="preserve">
+    <value>TCP 快速打开</value>
+  </data>
+  <data name="settings.others.checkUpdateOpened" xml:space="preserve">
+    <value>打开软件时检查更新</value>
+  </data>
+  <data name="settings.tools.openDirectory" xml:space="preserve">
+    <value>打开数据目录</value>
+  </data>
+  <data name="settings.tools.cleanDns" xml:space="preserve">
+    <value>清理 DNS 缓存</value>
+  </data>
+  <data name="settings.tools.removeFirewall" xml:space="preserve">
+    <value>移除 Netch 防火墙规则</value>
+  </data>
+  <data name="settings.tools.backupSettings" xml:space="preserve">
+    <value>备份设置</value>
+  </data>
+  <data name="settings.tools.backupFull" xml:space="preserve">
+    <value>完整备份</value>
+  </data>
+  <data name="settings.tools.restoreBackup" xml:space="preserve">
+    <value>恢复备份</value>
+  </data>
+  <data name="settings.tools.backupTitle" xml:space="preserve">
+    <value>备份</value>
+  </data>
+  <data name="settings.tools.restoreTitle" xml:space="preserve">
+    <value>恢复</value>
+  </data>
+  <data name="settings.tools.backupDone" xml:space="preserve">
+    <value>已备份到 {0}</value>
+  </data>
+  <data name="settings.tools.backupFailed" xml:space="preserve">
+    <value>备份失败：{0}</value>
+  </data>
+  <data name="settings.tools.restoring" xml:space="preserve">
+    <value>正在恢复…</value>
+  </data>
+  <data name="settings.tools.restoreDone" xml:space="preserve">
+    <value>恢复完成，重启程序后完全生效。</value>
+  </data>
+  <data name="settings.tools.restoreFailed" xml:space="preserve">
+    <value>恢复失败：{0}</value>
+  </data>
+  <data name="settings.tools.restoreInvalidFile" xml:space="preserve">
+    <value>备份文件无效：{0}</value>
+  </data>
+  <data name="settings.tools.restoreConfirmSettings" xml:space="preserve">
+    <value>仅恢复设置？&#10;&#10;节点、订阅、自定义分流规则集与快捷配置保持现状，其余设置将被此备份（创建于 {0}）覆盖。&#10;程序运行中会先停止加速。</value>
+  </data>
+  <data name="settings.tools.restoreConfirmFull" xml:space="preserve">
+    <value>恢复完整备份？&#10;&#10;设置、节点、订阅与自建模式将被此备份（创建于 {0}）覆盖；自建模式同名文件覆盖，本地多余文件保留。&#10;程序运行中会先停止加速。</value>
+  </data>
+  <data name="modeEditor.globalHint" xml:space="preserve">
+    <value>空 = 跟随全局设置（当前全局：{0}）</value>
+  </data>
+  <data name="common.on" xml:space="preserve">
+    <value>开</value>
+  </data>
+  <data name="common.off" xml:space="preserve">
+    <value>关</value>
+  </data>
+  <data name="bypassIp.invalidCidr" xml:space="preserve">
+    <value>无效 IP/CIDR：</value>
+  </data>
+  <data name="external.title" xml:space="preserve">
+    <value>外部资源</value>
+  </data>
+  <data name="external.error.tooSmall" xml:space="preserve">
+    <value>下载产物过小（{0} 字节 &lt; 阈值 {1} 字节），已拒绝安装</value>
+  </data>
+  <data name="external.error.badKernel" xml:space="preserve">
+    <value>内核文件缺少 MZ 头，已拒绝安装</value>
+  </data>
+  <data name="external.error.badSrs" xml:space="preserve">
+    <value>规则集文件格式非法（缺少 SRS 魔数），已拒绝安装</value>
+  </data>
+  <data name="external.error.badTextList" xml:space="preserve">
+    <value>清单文件不是合法文本，已拒绝安装</value>
+  </data>
+  <data name="external.error.notInstalled" xml:space="preserve">
+    <value>资源未安装</value>
+  </data>
+  <data name="external.kernel.singbox" xml:space="preserve">
+    <value>sing-box 内核</value>
+  </data>
+  <data name="external.kernel.xray" xml:space="preserve">
+    <value>Xray 内核</value>
+  </data>
+  <data name="external.ruleset.geositeCn" xml:space="preserve">
+    <value>内置规则集 geosite-cn</value>
+  </data>
+  <data name="external.ruleset.geoipCn" xml:space="preserve">
+    <value>内置规则集 geoip-cn</value>
+  </data>
+  <data name="external.ruleset.custom" xml:space="preserve">
+    <value>自定义规则集</value>
+  </data>
+  <data name="external.geo.ip2region" xml:space="preserve">
+    <value>IP 归属地库（IPv4，国家/省市/运营商）</value>
+  </data>
+  <data name="external.geo.ip2regionV6" xml:space="preserve">
+    <value>IP 归属地库（IPv6，国家/省市/运营商）</value>
+  </data>
+  <data name="external.error.badXdb" xml:space="preserve">
+    <value>IP 归属地库无法解析（非合法 xdb 格式），已拒绝安装</value>
+  </data>
+  <data name="external.badge.upToDate" xml:space="preserve">
+    <value>最新</value>
+  </data>
+  <data name="external.badge.updatable" xml:space="preserve">
+    <value>可更新</value>
+  </data>
+  <data name="external.badge.disabled" xml:space="preserve">
+    <value>已禁用</value>
+  </data>
+  <data name="external.badge.notInstalled" xml:space="preserve">
+    <value>未安装</value>
+  </data>
+  <data name="external.badge.failedFormat" xml:space="preserve">
+    <value>失败：{0}</value>
+  </data>
+  <data name="external.badge.mirror" xml:space="preserve">
+    <value>经镜像更新</value>
+  </data>
+  <data name="external.autoUpdateGlobal" xml:space="preserve">
+    <value>资源自动更新</value>
+  </data>
+  <data name="external.autoUpdateInterval" xml:space="preserve">
+    <value>检查间隔（小时）</value>
+  </data>
+  <data name="external.checkMainUpdate" xml:space="preserve">
+    <value>检查主程序更新</value>
+  </data>
+  <data name="external.updateNow" xml:space="preserve">
+    <value>立即更新</value>
+  </data>
+  <data name="external.viaProxy" xml:space="preserve">
+    <value>外部资源经内置代理下载（内核运行时生效）</value>
+  </data>
+  <data name="external.updateAll" xml:space="preserve">
+    <value>立即全部更新</value>
+  </data>
+  <data name="external.confirmDelete" xml:space="preserve">
+    <value>确认删除 {0}？文件将移入 .trash 目录，下次启动后不可恢复。</value>
+  </data>
+  <data name="external.lastUpdateFormat" xml:space="preserve">
+    <value>上次更新：{0}</value>
+  </data>
+  <data name="external.neverUpdated" xml:space="preserve">
+    <value>从未更新</value>
+  </data>
+  <data name="external.updated" xml:space="preserve">
+    <value>资源已更新</value>
+  </data>
+  <data name="external.updateFailed" xml:space="preserve">
+    <value>资源更新失败</value>
+  </data>
+  <data name="external.checkFailed" xml:space="preserve">
+    <value>资源检查失败</value>
+  </data>
+  <data name="external.autoUpdateTip" xml:space="preserve">
+    <value>此资源独立自动更新开关</value>
+  </data>
+  <data name="external.kernelBlocked0" xml:space="preserve">
+    <value>{0} 内核已被禁用，请在外部资源页重新启用或更换核心</value>
+  </data>
+  <data name="external.disable" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="external.autoUpdate" xml:space="preserve">
+    <value>自动更新</value>
+  </data>
+  <data name="external.group.kernel" xml:space="preserve">
+    <value>内核</value>
+  </data>
+  <data name="external.group.ruleset" xml:space="preserve">
+    <value>规则集</value>
+  </data>
+  <data name="external.group.data" xml:space="preserve">
+    <value>数据文件</value>
+  </data>
+<data name="main.nav.rulesets" xml:space="preserve"><value>规则编辑</value></data>
+<data name="rulesets.title" xml:space="preserve"><value>规则集库</value></data>
+<data name="rulesets.builtin.group" xml:space="preserve"><value>内置规则集</value></data>
+<data name="rulesets.builtin.disabled" xml:space="preserve"><value>已禁用</value></data>
+<data name="rulesets.builtin.ok" xml:space="preserve"><value>正常</value></data>
+<data name="rulesets.custom.group" xml:space="preserve"><value>自定义规则集</value></data>
+<data name="rulesets.newLocal" xml:space="preserve"><value>新建本地规则集</value></data>
+<data name="rulesets.newRemote" xml:space="preserve"><value>新建远程规则集</value></data>
+<data name="rulesets.empty" xml:space="preserve"><value>还没有自定义规则集，点右上角新建</value></data>
+<data name="rulesets.type.local" xml:space="preserve"><value>本地</value></data>
+<data name="rulesets.type.remote" xml:space="preserve"><value>远程</value></data>
+<data name="rulesets.refs" xml:space="preserve"><value>{0} 个模式引用</value></data>
+<data name="rulesets.refs.none" xml:space="preserve"><value>未被引用</value></data>
+<data name="rulesets.local.summaryEntries" xml:space="preserve"><value>{0} 条</value></data>
+<data name="rulesets.local.title" xml:space="preserve"><value>编辑本地规则集</value></data>
+<data name="rulesets.local.tag" xml:space="preserve"><value>标识（模式以此引用）</value></data>
+<data name="rulesets.local.entries" xml:space="preserve"><value>条目</value></data>
+<data name="rulesets.local.addEntry" xml:space="preserve"><value>添加条目</value></data>
+<data name="rulesets.local.bulkImport" xml:space="preserve"><value>批量导入</value></data>
+<data name="rulesets.local.bulkHint" xml:space="preserve"><value>每行一条：DOMAIN-SUFFIX、*.x.com、裸域名、裸 IP 段</value></data>
+<data name="rulesets.local.bulkResult" xml:space="preserve"><value>已导入 {0} 条，跳过 {1} 行</value></data>
+<data name="rulesets.local.entryEmpty" xml:space="preserve"><value>第 {0} 条条目值为空</value></data>
+<data name="rulesets.deleteReferenced" xml:space="preserve"><value>规则集「{0}」正被以下模式引用：{1}。仍要删除吗？</value></data>
+<data name="rulesets.renameSynced" xml:space="preserve"><value>已重命名，同步更新 {0} 处引用</value></data>
+<data name="rulesets.duplicateTag" xml:space="preserve"><value>标识已存在</value></data>
+<data name="dim.DomainSuffix" xml:space="preserve"><value>域名后缀</value></data>
+<data name="dim.Domain" xml:space="preserve"><value>完整域名</value></data>
+<data name="dim.DomainKeyword" xml:space="preserve"><value>域名关键字</value></data>
+<data name="dim.DomainRegex" xml:space="preserve"><value>域名正则</value></data>
+<data name="dim.IpCidr" xml:space="preserve"><value>IP 段</value></data>
+<data name="dim.Port" xml:space="preserve"><value>端口</value></data>
+<data name="dim.Protocol" xml:space="preserve"><value>协议</value></data>
+<data name="modeEditor.rules.title" xml:space="preserve"><value>分流规则（自上而下匹配）</value></data>
+<data name="modeEditor.moveTop" xml:space="preserve"><value>置顶</value></data>
+<data name="modeEditor.moveBottom" xml:space="preserve"><value>置底</value></data>
+<data name="modeEditor.rule.editMode" xml:space="preserve"><value>规则方式</value></data>
+<data name="modeEditor.rule.byRef" xml:space="preserve"><value>引用规则集</value></data>
+<data name="modeEditor.rule.byInline" xml:space="preserve"><value>手写规则</value></data>
+<data name="modeEditor.rule.search" xml:space="preserve"><value>搜索规则集…</value></data>
+<data name="modeEditor.rule.group.customLocal" xml:space="preserve"><value>自定义 · 本地</value></data>
+<data name="modeEditor.rule.group.customRemote" xml:space="preserve"><value>自定义 · 远程</value></data>
+<data name="modeEditor.rule.group.builtin" xml:space="preserve"><value>内置</value></data>
+<data name="modeEditor.rule.addDimension" xml:space="preserve"><value>添加规则</value></data>
+<data name="modeEditor.rule.dimension" xml:space="preserve"><value>规则</value></data>
+<data name="modeEditor.rule.value" xml:space="preserve"><value>值</value></data>
+<data name="modeEditor.rule.emptyRule" xml:space="preserve"><value>第 {0} 条规则缺少匹配内容或规则集引用</value></data>
+<data name="modeEditor.rule.badValue" xml:space="preserve"><value>第 {0} 条规则：{1} 值「{2}」不合法</value></data>
+<data name="modeEditor.rule.deadRef" xml:space="preserve"><value>第 {0} 条规则引用了未知/禁用的规则集「{1}」</value></data>
+<data name="modeEditor.action.Proxy" xml:space="preserve"><value>代理</value></data>
+<data name="modeEditor.action.Direct" xml:space="preserve"><value>直连</value></data>
+<data name="modeEditor.action.Block" xml:space="preserve"><value>拦截</value></data>
+<data name="modeEditor.summary.emptyRule" xml:space="preserve"><value>（空）</value></data>
+<data name="modeEditor.summary.more" xml:space="preserve"><value>… 等 {0} 项</value></data>
+<data name="modeEditor.summary.ref" xml:space="preserve"><value>{0} 个规则集</value></data>
+<data name="kernel.ruleRefInlineExclusive" xml:space="preserve"><value>路由规则不能同时引用规则集和手写规则，请拆成两条</value></data>
+<data name="settings.rulesets.movedHint" xml:space="preserve"><value>规则集内容已移至「规则编辑」页管理</value></data>
+</root>

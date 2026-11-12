@@ -1,0 +1,11 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Google Drive Backup and Sync"
+  },
+  "handle": [
+    "googledrivesync.exe",
+    "nativeproxy.exe"
+  ],
+  "bypass": []
+}

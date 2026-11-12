@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>RedirectorTester</AssemblyName>
+    <RootNamespace>RedirectorTester</RootNamespace>
+  </PropertyGroup>
+
+  <Target Name="CopyRedirector" AfterTargets="Build">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\Redirector\bin\Release\nfapi.dll" DestinationFolder="$(OutDir)" Condition="Exists('$(MSBuildThisFileDirectory)..\Redirector\bin\Release\nfapi.dll')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\Redirector\bin\Release\Redirector.bin" DestinationFolder="$(OutDir)" Condition="Exists('$(MSBuildThisFileDirectory)..\Redirector\bin\Release\Redirector.bin')" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

@@ -1,0 +1,13 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "NodeJS With NVM"
+  },
+  "handle": [
+    "nvm.exe",
+    "unins000.exe",
+    "node64.exe",
+    "node.exe"
+  ],
+  "bypass": []
+}

@@ -1,0 +1,2011 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about.faq" xml:space="preserve">
+    <value>FAQ</value>
+  </data>
+  <data name="about.licenseBody" xml:space="preserve">
+    <value>Netch is open source under GPL-3.0. It bundles sing-box, Xray-core, Redirector (NF driver) and other components; see NOTICE.txt shipped with the program for details.</value>
+  </data>
+  <data name="about.licenseTitle" xml:space="preserve">
+    <value>Open Source License</value>
+  </data>
+  <data name="about.openRepo" xml:space="preserve">
+    <value>Open repository</value>
+  </data>
+  <data name="bypassIp.correctIpAddress" xml:space="preserve">
+    <value>Please enter a correct IP address</value>
+  </data>
+  <data name="bypassIp.invalid" xml:space="preserve">
+    <value>Invalid IP: </value>
+  </data>
+  <data name="bypassIp.ip" xml:space="preserve">
+    <value>Please enter an IP</value>
+  </data>
+  <data name="bypassIp.selectIp" xml:space="preserve">
+    <value>Please select an IP</value>
+  </data>
+  <data name="common.0WonTGetDevelopers" xml:space="preserve">
+    <value>{0} won't get developers' support, Please do not report any issues or seek help from developers.</value>
+  </data>
+  <data name="common.about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="common.action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="common.address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="common.aiodnsTunModeLegacy" xml:space="preserve">
+    <value>AioDNS (TUN mode legacy)</value>
+  </data>
+  <data name="common.allDirectCn" xml:space="preserve">
+    <value>All direct (CN)</value>
+  </data>
+  <data name="common.allViaProxy" xml:space="preserve">
+    <value>All via proxy</value>
+  </data>
+  <data name="common.alterId" xml:space="preserve">
+    <value>Alter ID</value>
+  </data>
+  <data name="common.assigningUnicastIp" xml:space="preserve">
+    <value>Assigning unicast IP</value>
+  </data>
+  <data name="common.auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="common.autoSelectFastestNodeGroup" xml:space="preserve">
+    <value>Auto select the fastest node in group on start (urltest)</value>
+  </data>
+  <data name="common.block" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="common.builtGeositeCnGeoipCn" xml:space="preserve">
+    <value>Built-in: geosite-cn, geoip-cn (no configuration needed)</value>
+  </data>
+  <data name="common.bypassRuleIps" xml:space="preserve">
+    <value>Bypass Rule IPs</value>
+  </data>
+  <data name="common.bypassRules" xml:space="preserve">
+    <value>Bypass rules</value>
+  </data>
+  <data name="common.cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="common.checkBetaUpdate" xml:space="preserve">
+    <value>Check Beta update</value>
+  </data>
+  <data name="common.checkUpdate" xml:space="preserve">
+    <value>Check for update</value>
+  </data>
+  <data name="common.checkUpdateBtn" xml:space="preserve">
+    <value>Check Update</value>
+  </data>
+  <data name="common.checkUpdateOpened" xml:space="preserve">
+    <value>Check update when opened</value>
+  </data>
+  <data name="common.chinaDnsServerIpPort" xml:space="preserve">
+    <value>China DNS server (IP[:port])</value>
+  </data>
+  <data name="common.cleanDnsCache" xml:space="preserve">
+    <value>Clean DNS Cache</value>
+  </data>
+  <data name="common.clearHistory" xml:space="preserve">
+    <value>Clear history</value>
+  </data>
+  <data name="common.colon" xml:space="preserve">
+    <value>: </value>
+  </data>
+  <data name="common.configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="common.confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="common.connections" xml:space="preserve">
+    <value>Connections</value>
+  </data>
+  <data name="common.copyLink" xml:space="preserve">
+    <value>Copy link</value>
+  </data>
+  <data name="common.copyRow" xml:space="preserve">
+    <value>Copy row</value>
+  </data>
+  <data name="common.createProcessMode" xml:space="preserve">
+    <value>Create Process Mode</value>
+  </data>
+  <data name="common.createRouteTableRule" xml:space="preserve">
+    <value>Create Route Table Rule</value>
+  </data>
+  <data name="common.currentNode" xml:space="preserve">
+    <value>Current Node</value>
+  </data>
+  <data name="common.custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="common.delayTestAfterStartSec" xml:space="preserve">
+    <value>Delay test after start(sec)</value>
+  </data>
+  <data name="common.delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="common.deleteServers" xml:space="preserve">
+    <value>Delete Servers</value>
+  </data>
+  <data name="common.detectionTickSec" xml:space="preserve">
+    <value>Detection Tick(sec)</value>
+  </data>
+  <data name="common.direct" xml:space="preserve">
+    <value>Direct</value>
+  </data>
+  <data name="common.disableSupportWarning" xml:space="preserve">
+    <value>Disable Support Warning</value>
+  </data>
+  <data name="common.disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="common.dnsPolicy" xml:space="preserve">
+    <value>DNS Policy</value>
+  </data>
+  <data name="common.domain" xml:space="preserve">
+    <value>Domain</value>
+  </data>
+  <data name="common.domainKeyword" xml:space="preserve">
+    <value>Domain keyword</value>
+  </data>
+  <data name="common.domainRegex" xml:space="preserve">
+    <value>Domain regex</value>
+  </data>
+  <data name="common.domainSuffix" xml:space="preserve">
+    <value>Domain suffix</value>
+  </data>
+  <data name="common.down" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="common.downloadInstall" xml:space="preserve">
+    <value>Download and install now?</value>
+  </data>
+  <data name="common.downloadRuleSetsViaProxy" xml:space="preserve">
+    <value>Download rule sets via proxy</value>
+  </data>
+  <data name="common.downloadUpdate" xml:space="preserve">
+    <value>Download and Update</value>
+  </data>
+  <data name="common.downloadUpdateFailed" xml:space="preserve">
+    <value>Download update failed</value>
+  </data>
+  <data name="common.edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="common.editProcessMode" xml:space="preserve">
+    <value>Edit Process Mode</value>
+  </data>
+  <data name="common.editRouteRule" xml:space="preserve">
+    <value>Edit Route Rule</value>
+  </data>
+  <data name="common.editRouteTableRule" xml:space="preserve">
+    <value>Edit Route Table Rule</value>
+  </data>
+  <data name="common.editRuleSet" xml:space="preserve">
+    <value>Edit Rule Set</value>
+  </data>
+  <data name="common.enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="common.encryptMethod" xml:space="preserve">
+    <value>Encrypt Method</value>
+  </data>
+  <data name="common.error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="common.exitClosed" xml:space="preserve">
+    <value>Exit when closed</value>
+  </data>
+  <data name="common.extractAllFilesThenRun" xml:space="preserve">
+    <value>Please extract all files then run the program!</value>
+  </data>
+  <data name="common.extractAllFirst" xml:space="preserve">
+    <value>Please extract all files then run the program!</value>
+  </data>
+  <data name="common.fakeType" xml:space="preserve">
+    <value>Fake Type</value>
+  </data>
+  <data name="common.faq" xml:space="preserve">
+    <value>FAQ</value>
+  </data>
+  <data name="common.fileAlreadyExistsChangeFilename" xml:space="preserve">
+    <value>File already exists.
+ Please Change the filename</value>
+  </data>
+  <data name="common.filename" xml:space="preserve">
+    <value>Filename</value>
+  </data>
+  <data name="common.filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="common.filterDomainIpRuleOutbound" xml:space="preserve">
+    <value>Filter (domain / IP / rule / outbound)</value>
+  </data>
+  <data name="common.fullconeSupportRequiredServerXray" xml:space="preserve">
+    <value>FullCone Support (Required Server Xray-core v1.3.0+)</value>
+  </data>
+  <data name="common.gateway" xml:space="preserve">
+    <value>Gateway</value>
+  </data>
+  <data name="common.globalBypassIps" xml:space="preserve">
+    <value>Global Bypass IPs</value>
+  </data>
+  <data name="common.grpcMode" xml:space="preserve">
+    <value>GRPC Mode</value>
+  </data>
+  <data name="common.grpcServicename" xml:space="preserve">
+    <value>GRPC ServiceName</value>
+  </data>
+  <data name="common.handleChildProcess" xml:space="preserve">
+    <value>Handle child process</value>
+  </data>
+  <data name="common.handleDnsDnsHijacking" xml:space="preserve">
+    <value>Handle DNS (DNS hijacking)</value>
+  </data>
+  <data name="common.handleDnsThroughProxy" xml:space="preserve">
+    <value>Handle DNS through proxy</value>
+  </data>
+  <data name="common.handleHandledProcessSDns" xml:space="preserve">
+    <value>Handle handled process's DNS</value>
+  </data>
+  <data name="common.handleIcmp" xml:space="preserve">
+    <value>Handle ICMP</value>
+  </data>
+  <data name="common.handleLan" xml:space="preserve">
+    <value>Handle LAN</value>
+  </data>
+  <data name="common.handleLocalLoopback" xml:space="preserve">
+    <value>Handle local loopback</value>
+  </data>
+  <data name="common.handleRules" xml:space="preserve">
+    <value>Handle rules</value>
+  </data>
+  <data name="common.handleTcp" xml:space="preserve">
+    <value>Handle TCP</value>
+  </data>
+  <data name="common.handleUdp" xml:space="preserve">
+    <value>Handle UDP</value>
+  </data>
+  <data name="common.help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="common.history" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="common.host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="common.icmpDelayMs" xml:space="preserve">
+    <value>ICMP delay(ms)</value>
+  </data>
+  <data name="common.importServersFromClipboard" xml:space="preserve">
+    <value>Import Servers From Clipboard</value>
+  </data>
+  <data name="common.info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="common.kernel" xml:space="preserve">
+    <value>Kernel</value>
+  </data>
+  <data name="common.kernelUpdate" xml:space="preserve">
+    <value>Kernel Update</value>
+  </data>
+  <data name="common.language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="common.link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="common.localAddresses" xml:space="preserve">
+    <value>Local Addresses</value>
+  </data>
+  <data name="common.manageSubscriptions" xml:space="preserve">
+    <value>Manage Subscriptions</value>
+  </data>
+  <data name="common.minimizeStarted" xml:space="preserve">
+    <value>Minimize when started</value>
+  </data>
+  <data name="common.mode" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="common.modeFilename" xml:space="preserve">
+    <value>Please enter a mode filename</value>
+  </data>
+  <data name="common.modeSpecificOptions" xml:space="preserve">
+    <value>Mode specific options</value>
+  </data>
+  <data name="common.netmask" xml:space="preserve">
+    <value>Netmask</value>
+  </data>
+  <data name="common.networkDebounceSeconds" xml:space="preserve">
+    <value>Network debounce (seconds)</value>
+  </data>
+  <data name="common.nfService" xml:space="preserve">
+    <value>NF Service</value>
+  </data>
+  <data name="common.noActiveConnections" xml:space="preserve">
+    <value>No active connections</value>
+  </data>
+  <data name="common.noSupport" xml:space="preserve">
+    <value>No Support</value>
+  </data>
+  <data name="common.notTested" xml:space="preserve">
+    <value>Not tested</value>
+  </data>
+  <data name="common.obfs" xml:space="preserve">
+    <value>OBFS</value>
+  </data>
+  <data name="common.obfsParam" xml:space="preserve">
+    <value>OBFS Param</value>
+  </data>
+  <data name="common.ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="common.openBinFolder" xml:space="preserve">
+    <value>Open bin folder</value>
+  </data>
+  <data name="common.openDirectory" xml:space="preserve">
+    <value>Open Directory</value>
+  </data>
+  <data name="common.options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="common.other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="common.outboundChain" xml:space="preserve">
+    <value>Outbound chain</value>
+  </data>
+  <data name="common.password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="common.path" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="common.pauseNetworkLoss" xml:space="preserve">
+    <value>Pause on network loss</value>
+  </data>
+  <data name="common.pauseRefresh" xml:space="preserve">
+    <value>Pause refresh</value>
+  </data>
+  <data name="common.pingProtocol" xml:space="preserve">
+    <value>Ping Protocol</value>
+  </data>
+  <data name="common.plugin" xml:space="preserve">
+    <value>Plugin</value>
+  </data>
+  <data name="common.pluginOptions" xml:space="preserve">
+    <value>Plugin Options</value>
+  </data>
+  <data name="common.port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="common.privateKey" xml:space="preserve">
+    <value>Private Key</value>
+  </data>
+  <data name="common.process" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="common.processModeDnsHijackedSing" xml:space="preserve">
+    <value>Process mode DNS is hijacked by sing-box kernel (port 53)</value>
+  </data>
+  <data name="common.processNameXxxExe" xml:space="preserve">
+    <value>Please enter an process name (xxx.exe)</value>
+  </data>
+  <data name="common.profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="common.profileCount" xml:space="preserve">
+    <value>Profile Count</value>
+  </data>
+  <data name="common.profileNameFirst" xml:space="preserve">
+    <value>Please enter a profile name first</value>
+  </data>
+  <data name="common.profiles" xml:space="preserve">
+    <value>Profiles</value>
+  </data>
+  <data name="common.protocol" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="common.protocolParam" xml:space="preserve">
+    <value>Protocol Param</value>
+  </data>
+  <data name="common.protocolStack" xml:space="preserve">
+    <value>Protocol stack</value>
+  </data>
+  <data name="common.proxy" xml:space="preserve">
+    <value>Proxy</value>
+  </data>
+  <data name="common.proxyDns" xml:space="preserve">
+    <value>Proxy DNS</value>
+  </data>
+  <data name="common.proxyRuleIps" xml:space="preserve">
+    <value>Proxy Rule IPs</value>
+  </data>
+  <data name="common.psk" xml:space="preserve">
+    <value>PSK</value>
+  </data>
+  <data name="common.publicKey" xml:space="preserve">
+    <value>Public Key</value>
+  </data>
+  <data name="common.quicSecret" xml:space="preserve">
+    <value>QUIC Secret</value>
+  </data>
+  <data name="common.quicSecurity" xml:space="preserve">
+    <value>QUIC Security</value>
+  </data>
+  <data name="common.reliability" xml:space="preserve">
+    <value>Reliability</value>
+  </data>
+  <data name="common.reloadModes" xml:space="preserve">
+    <value>Reload Modes</value>
+  </data>
+  <data name="common.remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="common.remoteAddress" xml:space="preserve">
+    <value>Remote Address</value>
+  </data>
+  <data name="common.remoteDnsDoh" xml:space="preserve">
+    <value>Remote DNS (DoH)</value>
+  </data>
+  <data name="common.remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="common.removeNetchFirewallRules" xml:space="preserve">
+    <value>Remove Netch Firewall Rules</value>
+  </data>
+  <data name="common.restartKernelCrash" xml:space="preserve">
+    <value>Restart kernel on crash</value>
+  </data>
+  <data name="common.restoreWindowSize" xml:space="preserve">
+    <value>Restore window size</value>
+  </data>
+  <data name="common.routingRules" xml:space="preserve">
+    <value>Routing rules</value>
+  </data>
+  <data name="common.rule" xml:space="preserve">
+    <value>Rule</value>
+  </data>
+  <data name="common.ruleDoesNotConformC" xml:space="preserve">
+    <value>Rule does not conform to C++ regular expression syntax</value>
+  </data>
+  <data name="common.ruleSet" xml:space="preserve">
+    <value>Rule Set</value>
+  </data>
+  <data name="common.ruleSetTag" xml:space="preserve">
+    <value>Rule set tag</value>
+  </data>
+  <data name="common.ruleSets" xml:space="preserve">
+    <value>Rule Sets</value>
+  </data>
+  <data name="common.runAtStartup" xml:space="preserve">
+    <value>Run at startup</value>
+  </data>
+  <data name="common.runNetchAsAdministratorMake" xml:space="preserve">
+    <value>Run Netch as administrator and make sure bin\wintun.dll exists</value>
+  </data>
+  <data name="common.save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="common.scan" xml:space="preserve">
+    <value>Scan</value>
+  </data>
+  <data name="common.scanCompleted" xml:space="preserve">
+    <value>Scan completed</value>
+  </data>
+  <data name="common.select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="common.selectFolder" xml:space="preserve">
+    <value>Select a folder</value>
+  </data>
+  <data name="common.selfManagedKernelPlaceOfficial" xml:space="preserve">
+    <value>Self-managed kernel: place official kernel executables in the bin directory</value>
+  </data>
+  <data name="common.server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="common.settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="common.setupRouteTableRule" xml:space="preserve">
+    <value>Setup Route Table Rule</value>
+  </data>
+  <data name="common.show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="common.showHideConsole" xml:space="preserve">
+    <value>Show/Hide Console</value>
+  </data>
+  <data name="common.sniffedHost" xml:space="preserve">
+    <value>Sniffed host</value>
+  </data>
+  <data name="common.sponsor" xml:space="preserve">
+    <value>Sponsor</value>
+  </data>
+  <data name="common.startOpened" xml:space="preserve">
+    <value>Start when opened</value>
+  </data>
+  <data name="common.status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="common.stopExited" xml:space="preserve">
+    <value>Stop when exited</value>
+  </data>
+  <data name="common.strictRoutePreventDnsLeak" xml:space="preserve">
+    <value>Strict route (prevent DNS leak)</value>
+  </data>
+  <data name="common.stunServer" xml:space="preserve">
+    <value>STUN Server</value>
+  </data>
+  <data name="common.subscription" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="common.target" xml:space="preserve">
+    <value>Target</value>
+  </data>
+  <data name="common.tcpFastopen" xml:space="preserve">
+    <value>TCP FastOpen</value>
+  </data>
+  <data name="common.telegramChannel" xml:space="preserve">
+    <value>Telegram Channel</value>
+  </data>
+  <data name="common.testing" xml:space="preserve">
+    <value>Testing</value>
+  </data>
+  <data name="common.timeout" xml:space="preserve">
+    <value>Timeout</value>
+  </data>
+  <data name="common.tlsSecure" xml:space="preserve">
+    <value>TLS Secure</value>
+  </data>
+  <data name="common.transferProtocol" xml:space="preserve">
+    <value>Transfer Protocol</value>
+  </data>
+  <data name="common.tun" xml:space="preserve">
+    <value>TUN</value>
+  </data>
+  <data name="common.tunTapDriver" xml:space="preserve">
+    <value>TUN/TAP driver</value>
+  </data>
+  <data name="common.unableAddEmptyRule" xml:space="preserve">
+    <value>Unable to add empty rule</value>
+  </data>
+  <data name="common.uninstall0" xml:space="preserve">
+    <value>Uninstall {0}</value>
+  </data>
+  <data name="common.unselect" xml:space="preserve">
+    <value>Unselect</value>
+  </data>
+  <data name="common.up" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="common.updateInterval" xml:space="preserve">
+    <value>Update interval</value>
+  </data>
+  <data name="common.updateServers" xml:space="preserve">
+    <value>Update Servers</value>
+  </data>
+  <data name="common.updateServersOpened" xml:space="preserve">
+    <value>Update Servers when opened</value>
+  </data>
+  <data name="common.updating0" xml:space="preserve">
+    <value>Updating {0}</value>
+  </data>
+  <data name="common.urlSrs" xml:space="preserve">
+    <value>URL (.srs)</value>
+  </data>
+  <data name="common.useCustomDns" xml:space="preserve">
+    <value>Use custom DNS</value>
+  </data>
+  <data name="common.useMux" xml:space="preserve">
+    <value>Use Mux</value>
+  </data>
+  <data name="common.useProxySubscriptionUpdates" xml:space="preserve">
+    <value>Use proxy for subscription updates</value>
+  </data>
+  <data name="common.used" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="common.user" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="common.userId" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="common.username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="common.validation" xml:space="preserve">
+    <value>Validation</value>
+  </data>
+  <data name="common.verboseRedirectorLogTroubleshooting" xml:space="preserve">
+    <value>Verbose redirector log (troubleshooting)</value>
+  </data>
+  <data name="common.version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="common.warn" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="connections.closedConnections" xml:space="preserve">
+    <value>Closed connections</value>
+  </data>
+  <data name="connections.col.chains" xml:space="preserve">
+    <value>Chains</value>
+  </data>
+  <data name="connections.col.closedAt" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="connections.col.down" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="connections.col.geo" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="connections.col.process" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="connections.col.remote" xml:space="preserve">
+    <value>Remote</value>
+  </data>
+  <data name="connections.col.rule" xml:space="preserve">
+    <value>Rule</value>
+  </data>
+  <data name="connections.col.start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="connections.col.target" xml:space="preserve">
+    <value>Domain / IP</value>
+  </data>
+  <data name="connections.col.up" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="connections.pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="connections.startNetchViewConnections" xml:space="preserve">
+    <value>Start Netch to view connections</value>
+  </data>
+  <data name="connections.summary" xml:space="preserve">
+    <value>Active {0} (proxy {1} / direct {2})</value>
+  </data>
+  <data name="connections.summary.history" xml:space="preserve">
+    <value>History {0}</value>
+  </data>
+  <data name="connections.summary.process" xml:space="preserve">
+    <value>Connections {0}</value>
+  </data>
+  <data name="connections.tab.history" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="connections.tab.kernel" xml:space="preserve">
+    <value>Kernel</value>
+  </data>
+  <data name="connections.tab.process" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="configuration.loadFailedExit" xml:space="preserve">
+    <value>Settings file and its backup are both damaged. Netch cannot start; see logging\netch.log for details</value>
+  </data>
+  <data name="controller.0PortReservedSystem" xml:space="preserve">
+    <value>The {0} port is reserved by system.</value>
+  </data>
+  <data name="controller.0PortUse" xml:space="preserve">
+    <value>The {0} port is in use.</value>
+  </data>
+  <data name="controller.0PortUsed1" xml:space="preserve">
+    <value>The {0} port is used by {1}.</value>
+  </data>
+  <data name="controller.aboveRulesDoesNotConform" xml:space="preserve">
+    <value>Above rules does not conform to C++ regular expression syntax</value>
+  </data>
+  <data name="controller.builtinDriverFilesMissingCan" xml:space="preserve">
+    <value>builtin driver files missing, can't install NF driver</value>
+  </data>
+  <data name="controller.failedRegisterNetfilter2Driver" xml:space="preserve">
+    <value>Failed to register netfilter2 driver</value>
+  </data>
+  <data name="controller.installingNetfilter2Driver" xml:space="preserve">
+    <value>Installing netfilter2 driver</value>
+  </data>
+  <data name="controller.kernelBinMissing" xml:space="preserve">
+    <value>bin\{0} file not found!</value>
+  </data>
+  <data name="controller.kernel0StartFailed" xml:space="preserve">
+    <value>{0} controller failed to start</value>
+  </data>
+  <data name="controller.kernel0StartTimeout" xml:space="preserve">
+    <value>{0} controller start timed out</value>
+  </data>
+  <data name="controller.lookupServerHostnameFailed" xml:space="preserve">
+    <value>Lookup Server hostname failed</value>
+  </data>
+  <data name="controller.missingFileRuntimeComponents" xml:space="preserve">
+    <value>Missing File or runtime components</value>
+  </data>
+  <data name="controller.runNetchAsAdministratorMake" xml:space="preserve">
+    <value>Run Netch as administrator and make sure bin\\wintun.dll exists</value>
+  </data>
+  <data name="controller.serverType0NotSupported" xml:space="preserve">
+    <value>Server type {0} is no longer supported</value>
+  </data>
+  <data name="controller.starting0" xml:space="preserve">
+    <value>Starting {0}</value>
+  </data>
+  <data name="controller.tunInterfaceWasNotCreated" xml:space="preserve">
+    <value>TUN interface was not created</value>
+  </data>
+  <data name="controller.tunModeOnlySupportedSing" xml:space="preserve">
+    <value>TUN mode is only supported by sing-box kernel, switch server or kernel</value>
+  </data>
+  <data name="controller.unhandledException" xml:space="preserve">
+    <value>Unhandled Exception</value>
+  </data>
+  <data name="controller.uninstallFailed" xml:space="preserve">
+    <value>Uninstall failed</value>
+  </data>
+  <data name="controller.youCanDownloadSettingsKernel" xml:space="preserve">
+    <value>You can download it on the settings Kernel page, or place the official kernel executable in the bin directory yourself</value>
+  </data>
+  <data name="home.addServerFormat" xml:space="preserve">
+    <value>Add [{0}] Server</value>
+  </data>
+  <data name="home.deleteMode0" xml:space="preserve">
+    <value>Delete mode {0}?</value>
+  </data>
+  <data name="home.deleteServer0" xml:space="preserve">
+    <value>Delete server {0}?</value>
+  </data>
+  <data name="home.importDone" xml:space="preserve">
+    <value>Import {0} server(s) form Clipboard</value>
+  </data>
+  <data name="home.mode.delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="home.mode.edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="home.mode.new" xml:space="preserve">
+    <value>New mode</value>
+  </data>
+  <data name="home.mode.newProcess" xml:space="preserve">
+    <value>New process mode</value>
+  </data>
+  <data name="home.mode.newRoute" xml:space="preserve">
+    <value>New route mode</value>
+  </data>
+  <data name="home.mode.reload" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="home.mode.title" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="home.noSavedProfileHereSave" xml:space="preserve">
+    <value>No saved profile here. Save a profile first by Ctrl+Click on the button</value>
+  </data>
+  <data name="home.selectModeFirst" xml:space="preserve">
+    <value>Please select a mode first</value>
+  </data>
+  <data name="home.selectServerFirst" xml:space="preserve">
+    <value>Please select a server first</value>
+  </data>
+  <data name="home.server.add" xml:space="preserve">
+    <value>Add server</value>
+  </data>
+  <data name="home.server.copyLink" xml:space="preserve">
+    <value>Copy link</value>
+  </data>
+  <data name="home.server.delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="home.server.edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="home.server.empty" xml:space="preserve">
+    <value>No server yet. Add one or import from clipboard.</value>
+  </data>
+  <data name="home.server.filterAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="home.server.import" xml:space="preserve">
+    <value>Import from clipboard</value>
+  </data>
+  <data name="home.server.lockedWhileRunning" xml:space="preserve">
+    <value>Server selection is locked while running. Stop first to switch.</value>
+  </data>
+  <data name="home.server.search" xml:space="preserve">
+    <value>Search remark / address</value>
+  </data>
+  <data name="home.server.test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="home.server.testAll" xml:space="preserve">
+    <value>Test all</value>
+  </data>
+  <data name="home.server.title" xml:space="preserve">
+    <value>Servers</value>
+  </data>
+  <data name="kernel.invalidDnsServer0" xml:space="preserve">
+    <value>Invalid DNS server "{0}"</value>
+  </data>
+  <data name="kernel.invalidDomainRegex0" xml:space="preserve">
+    <value>Invalid domain regex "{0}"</value>
+  </data>
+  <data name="kernel.invalidIpCidr0" xml:space="preserve">
+    <value>Invalid IP CIDR "{0}"</value>
+  </data>
+  <data name="kernel.invalidPortRange0Expected" xml:space="preserve">
+    <value>Invalid port or range "{0}" (expected 443 or 1000:2000)</value>
+  </data>
+  <data name="kernel.serverType0NotSupported" xml:space="preserve">
+    <value>Server type {0} is not supported by sing-box kernel</value>
+  </data>
+  <data name="kernel.shadowsocksrNotSupportedSingBox" xml:space="preserve">
+    <value>ShadowsocksR is not supported by sing-box</value>
+  </data>
+  <data name="kernel.unknownRuleSet0" xml:space="preserve">
+    <value>Unknown rule set "{0}"</value>
+  </data>
+  <data name="kernel.unknownSniffedProtocol0Supported" xml:space="preserve">
+    <value>Unknown sniffed protocol "{0}" (supported: {1})</value>
+  </data>
+  <data name="kernel.vlessRealityRequiresRealityPublickey" xml:space="preserve">
+    <value>VLESS reality requires Reality PublicKey (pbk)</value>
+  </data>
+  <data name="kernel.vmessVlessTcpHeaderObfuscation" xml:space="preserve">
+    <value>VMess/VLESS tcp header obfuscation is not supported by sing-box</value>
+  </data>
+  <data name="kernel.vmessVlessTransportNotSupported" xml:space="preserve">
+    <value>VMess/VLESS transport is not supported by sing-box</value>
+  </data>
+  <data name="main.0HasBeenUninstalled" xml:space="preserve">
+    <value>{0} has been uninstalled</value>
+  </data>
+  <data name="main.allowOtherDevicesConnect" xml:space="preserve">
+    <value>Allow other Devices to connect</value>
+  </data>
+  <data name="main.alreadyLatestVersion" xml:space="preserve">
+    <value>Already latest version</value>
+  </data>
+  <data name="main.autoRestoreFailedStopped" xml:space="preserve">
+    <value>Auto restore failed, stopped</value>
+  </data>
+  <data name="main.checkUpdateFailed" xml:space="preserve">
+    <value>Check for update failed</value>
+  </data>
+  <data name="main.dnsCacheCleanupSucceeded" xml:space="preserve">
+    <value>DNS cache cleanup succeeded</value>
+  </data>
+  <data name="main.downloadInstallNNUpdatechecker" xml:space="preserve">
+    <value>Download and install now?\n\n{UpdateChecker.GetLatestReleaseContent()}</value>
+  </data>
+  <data name="main.downloadedFileHasWrongHash" xml:space="preserve">
+    <value>The downloaded file has the wrong hash</value>
+  </data>
+  <data name="main.kernelExitedUnexpectedlyRestarting0" xml:space="preserve">
+    <value>Kernel exited unexpectedly, restarting ({0}/{1})</value>
+  </data>
+  <data name="main.kernelFatalStopped" xml:space="preserve">
+    <value>Kernel reported a fatal error and was stopped (no auto restart). Check the kernel log for details</value>
+  </data>
+  <data name="main.kernelKeepsExitingStopped" xml:space="preserve">
+    <value>Kernel keeps exiting, stopped</value>
+  </data>
+  <data name="main.localPort" xml:space="preserve">
+    <value>Local Port</value>
+  </data>
+  <data name="main.nat.failed" xml:space="preserve">
+    <value>Test failed</value>
+  </data>
+  <data name="main.nat.testing" xml:space="preserve">
+    <value>Testing NAT Type</value>
+  </data>
+  <data name="main.nav.about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="main.nav.connections" xml:space="preserve">
+    <value>Connections</value>
+  </data>
+  <data name="main.nav.home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="main.nav.log" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="main.nav.settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="main.nav.subscriptions" xml:space="preserve">
+    <value>Subscriptions</value>
+  </data>
+  <data name="main.netchMinimizedNotificationBarDouble" xml:space="preserve">
+    <value>Netch is now minimized to the notification bar, double click this icon to restore.</value>
+  </data>
+  <data name="main.networkRestoredConnectionRebuilt" xml:space="preserve">
+    <value>Network restored, connection rebuilt</value>
+  </data>
+  <data name="main.newVersion" xml:space="preserve">
+    <value>New version available</value>
+  </data>
+  <data name="main.newVersionCheckFailed" xml:space="preserve">
+    <value>Version check failed (network error)</value>
+  </data>
+  <data name="main.none" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="main.pressStopButtonFirst" xml:space="preserve">
+    <value>Please press Stop button first</value>
+  </data>
+  <data name="main.profile.add" xml:space="preserve">
+    <value>Add profile</value>
+  </data>
+  <data name="main.profile.delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="main.profile.moveDown" xml:space="preserve">
+    <value>Move down</value>
+  </data>
+  <data name="main.profile.moveUp" xml:space="preserve">
+    <value>Move up</value>
+  </data>
+  <data name="main.profile.namePrompt" xml:space="preserve">
+    <value>Profile name</value>
+  </data>
+  <data name="main.profile.newTitle" xml:space="preserve">
+    <value>New profile</value>
+  </data>
+  <data name="main.profile.none" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="main.profile.rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="main.profile.renameTitle" xml:space="preserve">
+    <value>Rename profile</value>
+  </data>
+  <data name="main.restoringNetwork" xml:space="preserve">
+    <value>Restoring network</value>
+  </data>
+  <data name="main.start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="main.startDownloadingNewVersion" xml:space="preserve">
+    <value>Start downloading new version</value>
+  </data>
+  <data name="main.startFailed" xml:space="preserve">
+    <value>Start failed</value>
+  </data>
+  <data name="main.starting" xml:space="preserve">
+    <value>Starting</value>
+  </data>
+  <data name="main.state.degraded" xml:space="preserve">
+    <value>Waiting for network</value>
+  </data>
+  <data name="main.state.started" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="main.state.starting" xml:space="preserve">
+    <value>Starting</value>
+  </data>
+  <data name="main.state.stopped" xml:space="preserve">
+    <value>Stopped</value>
+  </data>
+  <data name="main.state.stopping" xml:space="preserve">
+    <value>Stopping</value>
+  </data>
+  <data name="main.state.waiting" xml:space="preserve">
+    <value>Waiting for command</value>
+  </data>
+  <data name="main.stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="main.stopping" xml:space="preserve">
+    <value>Stopping</value>
+  </data>
+  <data name="main.title" xml:space="preserve">
+    <value>Netch</value>
+  </data>
+  <data name="main.unhandledUiErrorTip" xml:space="preserve">
+    <value>An unexpected UI error occurred</value>
+  </data>
+  <data name="main.unhandledUpdateServersError" xml:space="preserve">
+    <value>Unhandled update servers error</value>
+  </data>
+  <data name="main.uninstalling0" xml:space="preserve">
+    <value>Uninstalling {0}</value>
+  </data>
+  <data name="main.update.downloadConfirm" xml:space="preserve">
+    <value>Download and install now?
+
+{0}</value>
+  </data>
+  <data name="modeEditor.addRule" xml:space="preserve">
+    <value>Add rule</value>
+  </data>
+  <data name="modeEditor.checkedMatcherRequiresAtLeast" xml:space="preserve">
+    <value>Checked matcher requires at least one value</value>
+  </data>
+  <data name="modeEditor.clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="modeEditor.col.action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="modeEditor.col.ruleSet" xml:space="preserve">
+    <value>Rule Sets</value>
+  </data>
+  <data name="modeEditor.dnsProxy" xml:space="preserve">
+    <value>Handle DNS through proxy</value>
+  </data>
+  <data name="modeEditor.fileAlreadyExistsNChange" xml:space="preserve">
+    <value>File already exists.\n Please Change the filename</value>
+  </data>
+  <data name="modeEditor.fileExists" xml:space="preserve">
+    <value>File already exists, please change the remark</value>
+  </data>
+  <data name="modeEditor.handleChild" xml:space="preserve">
+    <value>Handle child process</value>
+  </data>
+  <data name="modeEditor.handleDNS" xml:space="preserve">
+    <value>Handle DNS</value>
+  </data>
+  <data name="modeEditor.handleICMP" xml:space="preserve">
+    <value>Handle ICMP</value>
+  </data>
+  <data name="modeEditor.handleProcDNS" xml:space="preserve">
+    <value>Handle handled process DNS</value>
+  </data>
+  <data name="modeEditor.handleTCP" xml:space="preserve">
+    <value>Handle TCP</value>
+  </data>
+  <data name="modeEditor.handleUDP" xml:space="preserve">
+    <value>Handle UDP</value>
+  </data>
+  <data name="modeEditor.icmpDelay" xml:space="preserve">
+    <value>ICMP delay (ms)</value>
+  </data>
+  <data name="modeEditor.modeAddedSuccessfully" xml:space="preserve">
+    <value>Mode added successfully</value>
+  </data>
+  <data name="modeEditor.modeRemark" xml:space="preserve">
+    <value>Please enter a mode remark</value>
+  </data>
+  <data name="modeEditor.modeUpdatedSuccessfully" xml:space="preserve">
+    <value>Mode updated successfully</value>
+  </data>
+  <data name="modeEditor.moveDown" xml:space="preserve">
+    <value>Move down</value>
+  </data>
+  <data name="modeEditor.moveUp" xml:space="preserve">
+    <value>Move up</value>
+  </data>
+  <data name="modeEditor.processList" xml:space="preserve">
+    <value>Process List</value>
+  </data>
+  <data name="modeEditor.processNameHint" xml:space="preserve">
+    <value>Process name, Enter to add</value>
+  </data>
+  <data name="modeEditor.processTitle" xml:space="preserve">
+    <value>Process Mode Editor</value>
+  </data>
+  <data name="modeEditor.remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="modeEditor.routeRuleRequiresAtLeast" xml:space="preserve">
+    <value>Route rule requires at least one matcher (domain/ip/port/protocol)</value>
+  </data>
+  <data name="modeEditor.routeTitle" xml:space="preserve">
+    <value>Route Mode Editor</value>
+  </data>
+  <data name="modeEditor.ruleEditorTitle" xml:space="preserve">
+    <value>Edit selected rule</value>
+  </data>
+  <data name="modeEditor.ruleList" xml:space="preserve">
+    <value>Route Rules</value>
+  </data>
+  <data name="modeEditor.ruleSetHint" xml:space="preserve">
+    <value>Comma separated rule set tags (letters, digits, dash)</value>
+  </data>
+  <data name="modeEditor.ruleSetRefs" xml:space="preserve">
+    <value>Rule set refs</value>
+  </data>
+  <data name="modeEditor.ruleTagInvalid" xml:space="preserve">
+    <value>Invalid rule set tag "{0}"</value>
+  </data>
+  <data name="modeEditor.saveClose" xml:space="preserve">
+    <value>Save and Close</value>
+  </data>
+  <data name="page.notBuilt" xml:space="preserve">
+    <value>This page is not built yet</value>
+  </data>
+  <data name="ruleSet.dialogTitle" xml:space="preserve">
+    <value>Rule Set</value>
+  </data>
+  <data name="ruleSet.error.conflict" xml:space="preserve">
+    <value>Tag "{0}" conflicts with a built-in rule set</value>
+  </data>
+  <data name="ruleSet.error.interval" xml:space="preserve">
+    <value>Invalid interval "{0}" (expected: 30m, 1d, ...)</value>
+  </data>
+  <data name="ruleSet.error.tag" xml:space="preserve">
+    <value>Invalid tag "{0}" (letters, digits, dash)</value>
+  </data>
+  <data name="ruleSet.error.url" xml:space="preserve">
+    <value>Invalid URL "{0}"</value>
+  </data>
+  <data name="ruleSet.intervalHint" xml:space="preserve">
+    <value>e.g. 30m, 1d; empty = default</value>
+  </data>
+  <data name="ruleSet.invalidRuleSetTag0" xml:space="preserve">
+    <value>Invalid rule set tag "{0}" (expected: letters, digits, dash)</value>
+  </data>
+  <data name="ruleSet.invalidRuleSetUrl0" xml:space="preserve">
+    <value>Invalid rule set URL "{0}"</value>
+  </data>
+  <data name="ruleSet.invalidUpdateInterval0Expected" xml:space="preserve">
+    <value>Invalid update interval "{0}" (expected: 30m, 1d, ...)</value>
+  </data>
+  <data name="ruleSet.tag0ConflictsBuiltRule" xml:space="preserve">
+    <value>Tag "{0}" conflicts with a built-in rule set</value>
+  </data>
+  <data name="ruleSet.updateInterval" xml:space="preserve">
+    <value>Update Interval</value>
+  </data>
+  <data name="serverForm.anytls.host" xml:space="preserve">
+    <value>TLS SNI</value>
+  </data>
+  <data name="serverForm.anytls.password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="serverForm.error.int" xml:space="preserve">
+    <value>Invalid number</value>
+  </data>
+  <data name="serverForm.error.port" xml:space="preserve">
+    <value>Invalid port (1-65535)</value>
+  </data>
+  <data name="serverForm.error.required" xml:space="preserve">
+    <value>Required</value>
+  </data>
+  <data name="serverForm.hostname" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="serverForm.hy2.downMbps" xml:space="preserve">
+    <value>Down Mbps</value>
+  </data>
+  <data name="serverForm.hy2.host" xml:space="preserve">
+    <value>TLS SNI</value>
+  </data>
+  <data name="serverForm.hy2.obfsPassword" xml:space="preserve">
+    <value>Obfs Password</value>
+  </data>
+  <data name="serverForm.hy2.password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="serverForm.hy2.upMbps" xml:space="preserve">
+    <value>Up Mbps</value>
+  </data>
+  <data name="serverForm.port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="serverForm.remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="serverForm.socks5.password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="serverForm.socks5.remoteHostname" xml:space="preserve">
+    <value>Remote Address</value>
+  </data>
+  <data name="serverForm.socks5.username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="serverForm.socks5.version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="serverForm.ss.encryptMethod" xml:space="preserve">
+    <value>Encrypt Method</value>
+  </data>
+  <data name="serverForm.ss.password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="serverForm.ss.plugin" xml:space="preserve">
+    <value>Plugin</value>
+  </data>
+  <data name="serverForm.ss.pluginOptions" xml:space="preserve">
+    <value>Plugin Options</value>
+  </data>
+  <data name="serverForm.ssh.password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="serverForm.ssh.privateKey" xml:space="preserve">
+    <value>Private Key</value>
+  </data>
+  <data name="serverForm.ssh.publicKey" xml:space="preserve">
+    <value>Public Key</value>
+  </data>
+  <data name="serverForm.ssh.user" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="serverForm.ssr.deprecation" xml:space="preserve">
+    <value>SSR protocol is no longer maintained and is no longer supported. Consider migrating to Shadowsocks / Trojan / VLESS.</value>
+  </data>
+  <data name="serverForm.ssr.encryptMethod" xml:space="preserve">
+    <value>Encrypt Method</value>
+  </data>
+  <data name="serverForm.ssr.obfs" xml:space="preserve">
+    <value>OBFS</value>
+  </data>
+  <data name="serverForm.ssr.obfsParam" xml:space="preserve">
+    <value>OBFS Param</value>
+  </data>
+  <data name="serverForm.ssr.password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="serverForm.ssr.protocol" xml:space="preserve">
+    <value>Protocol</value>
+  </data>
+  <data name="serverForm.ssr.protocolParam" xml:space="preserve">
+    <value>Protocol Param</value>
+  </data>
+  <data name="serverForm.title" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="serverForm.trojan.host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="serverForm.trojan.password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="serverForm.trojan.tlsSecure" xml:space="preserve">
+    <value>TLS Secure</value>
+  </data>
+  <data name="serverForm.tuic.alpn" xml:space="preserve">
+    <value>ALPN</value>
+  </data>
+  <data name="serverForm.tuic.congestionControl" xml:space="preserve">
+    <value>Congestion</value>
+  </data>
+  <data name="serverForm.tuic.host" xml:space="preserve">
+    <value>TLS SNI</value>
+  </data>
+  <data name="serverForm.tuic.password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="serverForm.tuic.udpRelayMode" xml:space="preserve">
+    <value>UDP Relay</value>
+  </data>
+  <data name="serverForm.tuic.uuid" xml:space="preserve">
+    <value>UUID</value>
+  </data>
+  <data name="serverForm.vless.encryptMethod" xml:space="preserve">
+    <value>Encrypt Method</value>
+  </data>
+  <data name="serverForm.vless.fakeType" xml:space="preserve">
+    <value>Fake Type</value>
+  </data>
+  <data name="serverForm.vless.fingerprint" xml:space="preserve">
+    <value>uTLS Fingerprint</value>
+  </data>
+  <data name="serverForm.vless.flow" xml:space="preserve">
+    <value>Flow</value>
+  </data>
+  <data name="serverForm.vless.host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="serverForm.vless.packetEncoding" xml:space="preserve">
+    <value>Packet Encoding</value>
+  </data>
+  <data name="serverForm.vless.path" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="serverForm.vless.quicSecret" xml:space="preserve">
+    <value>QUIC Secret</value>
+  </data>
+  <data name="serverForm.vless.quicSecurity" xml:space="preserve">
+    <value>QUIC Security</value>
+  </data>
+  <data name="serverForm.vless.realityPublicKey" xml:space="preserve">
+    <value>Reality PublicKey(pbk)</value>
+  </data>
+  <data name="serverForm.vless.realityShortId" xml:space="preserve">
+    <value>Reality ShortId(sid)</value>
+  </data>
+  <data name="serverForm.vless.sni" xml:space="preserve">
+    <value>ServerName(Sni)</value>
+  </data>
+  <data name="serverForm.vless.tlsSecure" xml:space="preserve">
+    <value>TLS Secure</value>
+  </data>
+  <data name="serverForm.vless.transferProtocol" xml:space="preserve">
+    <value>Transfer Protocol</value>
+  </data>
+  <data name="serverForm.vless.useMux" xml:space="preserve">
+    <value>Use Mux</value>
+  </data>
+  <data name="serverForm.vless.uuid" xml:space="preserve">
+    <value>UUID</value>
+  </data>
+  <data name="serverForm.vmess.alterId" xml:space="preserve">
+    <value>Alter ID</value>
+  </data>
+  <data name="serverForm.vmess.encryptMethod" xml:space="preserve">
+    <value>Encrypt Method</value>
+  </data>
+  <data name="serverForm.vmess.fakeType" xml:space="preserve">
+    <value>Fake Type</value>
+  </data>
+  <data name="serverForm.vmess.host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="serverForm.vmess.packetEncoding" xml:space="preserve">
+    <value>Packet Encoding</value>
+  </data>
+  <data name="serverForm.vmess.path" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="serverForm.vmess.quicSecret" xml:space="preserve">
+    <value>QUIC Secret</value>
+  </data>
+  <data name="serverForm.vmess.quicSecurity" xml:space="preserve">
+    <value>QUIC Security</value>
+  </data>
+  <data name="serverForm.vmess.sni" xml:space="preserve">
+    <value>ServerName(Sni)</value>
+  </data>
+  <data name="serverForm.vmess.tlsSecure" xml:space="preserve">
+    <value>TLS Secure</value>
+  </data>
+  <data name="serverForm.vmess.transferProtocol" xml:space="preserve">
+    <value>Transfer Protocol</value>
+  </data>
+  <data name="serverForm.vmess.useMux" xml:space="preserve">
+    <value>Use Mux</value>
+  </data>
+  <data name="serverForm.vmess.userId" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="serverForm.wg.localAddresses" xml:space="preserve">
+    <value>Local Addresses</value>
+  </data>
+  <data name="serverForm.wg.mtu" xml:space="preserve">
+    <value>MTU</value>
+  </data>
+  <data name="serverForm.wg.peerPublicKey" xml:space="preserve">
+    <value>Public Key</value>
+  </data>
+  <data name="serverForm.wg.preSharedKey" xml:space="preserve">
+    <value>PSK</value>
+  </data>
+  <data name="serverForm.wg.privateKey" xml:space="preserve">
+    <value>Private Key</value>
+  </data>
+  <data name="settings.0NotFoundBinDirectory" xml:space="preserve">
+    <value>{0} not found in bin directory</value>
+  </data>
+  <data name="settings.autosave.hint" xml:space="preserve">
+    <value>Settings are saved automatically and take effect immediately; changes involving the kernel or network apply after the core restarts.</value>
+  </data>
+  <data name="settings.checkKernelUpdateFailed" xml:space="preserve">
+    <value>Check kernel update failed</value>
+  </data>
+  <data name="settings.checkingKernelUpdates" xml:space="preserve">
+    <value>Checking for kernel updates</value>
+  </data>
+  <data name="settings.dns.china" xml:space="preserve">
+    <value>China DNS (IP[:port])</value>
+  </data>
+  <data name="settings.dns.hint" xml:space="preserve">
+    <value>Auto: geosite-cn direct, others via node DoH; Custom: edit upstreams below</value>
+  </data>
+  <data name="settings.dns.remote" xml:space="preserve">
+    <value>Remote DNS (DoH / https)</value>
+  </data>
+  <data name="settings.dns.title" xml:space="preserve">
+    <value>DNS</value>
+  </data>
+  <data name="settings.downloadingKernelUpdate" xml:space="preserve">
+    <value>Downloading kernel update</value>
+  </data>
+  <data name="settings.general.accent" xml:space="preserve">
+    <value>Accent</value>
+  </data>
+  <data name="settings.general.accentDefault" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="settings.general.accentHint" xml:space="preserve">
+    <value>Custom color #RRGGBB, empty = default</value>
+  </data>
+  <data name="settings.general.detectionTick" xml:space="preserve">
+    <value>Detection Tick (sec)</value>
+  </data>
+  <data name="settings.general.httpPort" xml:space="preserve">
+    <value>HTTP Port</value>
+  </data>
+  <data name="settings.general.shareLan" xml:space="preserve">
+    <value>Allow other devices to connect</value>
+  </data>
+  <data name="settings.general.socks5" xml:space="preserve">
+    <value>Socks5</value>
+  </data>
+  <data name="settings.general.socks5Port" xml:space="preserve">
+    <value>Socks5 Port</value>
+  </data>
+  <data name="settings.general.startedPing" xml:space="preserve">
+    <value>Delay test after start (sec)</value>
+  </data>
+  <data name="settings.general.theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="settings.general.title" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="settings.invalidValue" xml:space="preserve">
+    <value>Invalid value</value>
+  </data>
+  <data name="settings.kernelUpdateFailed" xml:space="preserve">
+    <value>Kernel update failed</value>
+  </data>
+  <data name="settings.kernelUpdated0" xml:space="preserve">
+    <value>Kernel updated to {0}</value>
+  </data>
+  <data name="settings.newKernelVersionFound0" xml:space="preserve">
+    <value>New kernel version found: {0}</value>
+  </data>
+  <data name="settings.noSuitableKernelPackageFound" xml:space="preserve">
+    <value>No suitable kernel package found in release</value>
+  </data>
+  <data name="settings.others.checkBetaUpdate" xml:space="preserve">
+    <value>Check Beta Update</value>
+  </data>
+  <data name="settings.others.exitWhenClose" xml:space="preserve">
+    <value>Exit when Close</value>
+  </data>
+  <data name="settings.others.minimizeWhenStarted" xml:space="preserve">
+    <value>Minimize when Started</value>
+  </data>
+  <data name="settings.others.noSupportDialog" xml:space="preserve">
+    <value>No support dialog</value>
+  </data>
+  <data name="settings.others.requestTimeout" xml:space="preserve">
+    <value>Request Timeout (ms)</value>
+  </data>
+  <data name="settings.others.runAtStartup" xml:space="preserve">
+    <value>Run at Startup</value>
+  </data>
+  <data name="settings.others.startWhenOpened" xml:space="preserve">
+    <value>Start when Opened</value>
+  </data>
+  <data name="settings.others.stopWhenExited" xml:space="preserve">
+    <value>Stop when Exited</value>
+  </data>
+  <data name="settings.others.title" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="settings.process.icmpDelay" xml:space="preserve">
+    <value>ICMP delay (ms)</value>
+  </data>
+  <data name="settings.process.procDns" xml:space="preserve">
+    <value>Handle handled process DNS</value>
+  </data>
+  <data name="settings.process.title" xml:space="preserve">
+    <value>Process Mode</value>
+  </data>
+  <data name="settings.rulesets.builtinEnable" xml:space="preserve">
+    <value>Enable built-in rule sets (geosite-cn, geoip-cn)</value>
+  </data>
+  <data name="settings.saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="settings.tag0AlreadyExists" xml:space="preserve">
+    <value>Tag "{0}" already exists</value>
+  </data>
+  <data name="settings.tools.firewallRemoved" xml:space="preserve">
+    <value>Netch firewall rules removed</value>
+  </data>
+  <data name="settings.tools.showHideConsole" xml:space="preserve">
+    <value>Show-Hide Console</value>
+  </data>
+  <data name="settings.tools.title" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="settings.tools.uninstallNf" xml:space="preserve">
+    <value>Uninstall NF Service</value>
+  </data>
+  <data name="settings.tun.bypassHint" xml:space="preserve">
+    <value>One IP/CIDR per line (e.g. 192.168.1.0/24)</value>
+  </data>
+  <data name="settings.v2ray.kcp" xml:space="preserve">
+    <value>KCP</value>
+  </data>
+  <data name="settings.v2ray.title" xml:space="preserve">
+    <value>V2Ray</value>
+  </data>
+  <data name="settings.v2ray.tlsAllowInsecure" xml:space="preserve">
+    <value>TLS AllowInsecure</value>
+  </data>
+  <data name="subscription.add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="subscription.col.link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="subscription.col.remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="subscription.col.userAgent" xml:space="preserve">
+    <value>User-Agent</value>
+  </data>
+  <data name="subscription.confirmDeletion" xml:space="preserve">
+    <value>Confirm deletion?</value>
+  </data>
+  <data name="subscription.copyLink" xml:space="preserve">
+    <value>Copy Link</value>
+  </data>
+  <data name="subscription.deleteNotWillCleanUp" xml:space="preserve">
+    <value>Delete or not ? Will clean up the corresponding group of items in the server list</value>
+  </data>
+  <data name="subscription.deleteServers" xml:space="preserve">
+    <value>Delete Servers</value>
+  </data>
+  <data name="subscription.deleteServersConfirm" xml:space="preserve">
+    <value>Delete servers of this subscription group?</value>
+  </data>
+  <data name="subscription.duplicateRemark" xml:space="preserve">
+    <value>A subscription with this name already exists. Nodes are tracked by subscription name, duplicate names would overwrite each other</value>
+  </data>
+  <data name="subscription.dialogTitle" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="subscription.error.linkRequired" xml:space="preserve">
+    <value>Link is required</value>
+  </data>
+  <data name="subscription.lastUpdate" xml:space="preserve">
+    <value>Last Update</value>
+  </data>
+  <data name="subscription.linkCanNotBeEmpty" xml:space="preserve">
+    <value>Link can not be empty</value>
+  </data>
+  <data name="subscription.linkMustStartHttpHttps" xml:space="preserve">
+    <value>Link must start with http:// or https://</value>
+  </data>
+  <data name="subscription.modify" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="subscription.none" xml:space="preserve">
+    <value>No subscription link</value>
+  </data>
+  <data name="subscription.remarkCanNotBeEmpty" xml:space="preserve">
+    <value>Remark can not be empty</value>
+  </data>
+  <data name="subscription.subscriptionSpecifiedRemarkAlreadyExists" xml:space="preserve">
+    <value>Subscription with the specified remark already exists</value>
+  </data>
+  <data name="subscription.update1ServerSFrom" xml:space="preserve">
+    <value>Update {1} server(s) from {0}</value>
+  </data>
+  <data name="subscription.updateAll" xml:space="preserve">
+    <value>Update All Subscriptions</value>
+  </data>
+  <data name="subscription.updateOne" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="subscription.updateServersFailedFrom0" xml:space="preserve">
+    <value>Update servers failed from {0}</value>
+  </data>
+  <data name="subscription.updated" xml:space="preserve">
+    <value>Servers updated</value>
+  </data>
+  <data name="subscription.updating" xml:space="preserve">
+    <value>Updating servers</value>
+  </data>
+  <data name="tray.exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="tray.show" xml:space="preserve">
+    <value>Show main window</value>
+  </data>
+  <data name="update.0FileUse" xml:space="preserve">
+    <value>The {0} file is in use</value>
+  </data>
+  <data name="update.7zaExited" xml:space="preserve">
+    <value>7za unexpectedly exited. ({0})</value>
+  </data>
+  <data name="update.downloadSourceDidNotProvide" xml:space="preserve">
+    <value>Download source did not provide a checksum, update cancelled</value>
+  </data>
+  <data name="update.fetchKernelReleaseFailed" xml:space="preserve">
+    <value>Fetch kernel release failed</value>
+  </data>
+  <data name="update.kernelChecksumMismatchUpdateCancelled" xml:space="preserve">
+    <value>Kernel checksum mismatch, update cancelled</value>
+  </data>
+  <data name="update.kernelFileNotFoundRelease" xml:space="preserve">
+    <value>Kernel file not found in release archive</value>
+  </data>
+  <data name="update.kernelSmokeCheckFailedRolled" xml:space="preserve">
+    <value>Kernel smoke check failed, rolled back</value>
+  </data>
+  <data name="update.restartFailed0" xml:space="preserve">
+    <value>Kernel update finished but restart failed</value>
+  </data>
+  <data name="update.stopProxyBeforeUpdatingKernel" xml:space="preserve">
+    <value>Stop the proxy before updating the kernel</value>
+  </data>
+  <data name="update.updateFileMainProgramNot" xml:space="preserve">
+    <value>Update file main program not exist</value>
+  </data>
+  <data name="update.updateFileTopLevelDirectory" xml:space="preserve">
+    <value>Update file top-level directory not exist</value>
+  </data>
+  <data name="common.add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="settings.dns.policy" xml:space="preserve">
+    <value>DNS Policy</value>
+  </data>
+  <data name="settings.general.language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="settings.general.pingProtocol" xml:space="preserve">
+    <value>Ping Protocol</value>
+  </data>
+  <data name="settings.general.profileCount" xml:space="preserve">
+    <value>Profile Count</value>
+  </data>
+  <data name="settings.general.restoreSize" xml:space="preserve">
+    <value>Restore default sizes</value>
+  </data>
+  <data name="settings.general.restoreSizeHint" xml:space="preserve">
+    <value>Restore window size and connection column widths to defaults, and clear the remembered values</value>
+  </data>
+  <data name="settings.general.stun" xml:space="preserve">
+    <value>STUN Server</value>
+  </data>
+  <data name="settings.kernel.title" xml:space="preserve">
+    <value>Kernel</value>
+  </data>
+  <data name="settings.kernel.downloadUpdate" xml:space="preserve">
+    <value>Download update</value>
+  </data>
+  <data name="settings.kernel.groupAutoSelect" xml:space="preserve">
+    <value>Auto select the fastest node in group on start (urltest)</value>
+  </data>
+  <data name="settings.kernel.openBin" xml:space="preserve">
+    <value>Open bin folder</value>
+  </data>
+  <data name="settings.kernel.selfManaged" xml:space="preserve">
+    <value>Put self-managed cores into the bin folder</value>
+  </data>
+  <data name="settings.rulesets.title" xml:space="preserve">
+    <value>Rule Sets</value>
+  </data>
+  <data name="settings.rulesets.builtinHint" xml:space="preserve">
+    <value>Built-in: geosite-cn, geoip-cn (no configuration needed)</value>
+  </data>
+  <data name="settings.reliability.title" xml:space="preserve">
+    <value>Reliability</value>
+  </data>
+  <data name="settings.reliability.autoRestore" xml:space="preserve">
+    <value>Pause kernel on network loss, resume on recovery</value>
+  </data>
+  <data name="settings.reliability.kernelRestart" xml:space="preserve">
+    <value>Restart kernel on crash</value>
+  </data>
+  <data name="settings.reliability.debounce" xml:space="preserve">
+    <value>Network event debounce (seconds)</value>
+  </data>
+  <data name="settings.reliability.subscriptionProxy" xml:space="preserve">
+    <value>Use proxy for subscription updates</value>
+  </data>
+  <data name="settings.process.tcp" xml:space="preserve">
+    <value>Handle TCP</value>
+  </data>
+  <data name="settings.process.udp" xml:space="preserve">
+    <value>Handle UDP</value>
+  </data>
+  <data name="settings.process.icmp" xml:space="preserve">
+    <value>Handle ICMP</value>
+  </data>
+  <data name="settings.process.dns" xml:space="preserve">
+    <value>Handle DNS through proxy</value>
+  </data>
+  <data name="settings.process.dnsProxy" xml:space="preserve">
+    <value>Proxy DNS</value>
+  </data>
+  <data name="settings.process.verboseLog" xml:space="preserve">
+    <value>Verbose redirector log (troubleshooting)</value>
+  </data>
+  <data name="settings.tun.title" xml:space="preserve">
+    <value>TUN</value>
+  </data>
+  <data name="settings.tun.stack" xml:space="preserve">
+    <value>Protocol stack</value>
+  </data>
+  <data name="settings.tun.strictRoute" xml:space="preserve">
+    <value>Strict route (prevent DNS leak)</value>
+  </data>
+  <data name="settings.tun.bypassIps" xml:space="preserve">
+    <value>Global Bypass IPs</value>
+  </data>
+  <data name="settings.v2ray.xrayCone" xml:space="preserve">
+    <value>FullCone Support (Required Server Xray-core v1.3.0+)</value>
+  </data>
+  <data name="settings.v2ray.useMux" xml:space="preserve">
+    <value>Use Mux</value>
+  </data>
+  <data name="settings.v2ray.tcpFastOpen" xml:space="preserve">
+    <value>TCP FastOpen</value>
+  </data>
+  <data name="settings.others.checkUpdateOpened" xml:space="preserve">
+    <value>Check update when opened</value>
+  </data>
+  <data name="settings.tools.openDirectory" xml:space="preserve">
+    <value>Open data directory</value>
+  </data>
+  <data name="settings.tools.cleanDns" xml:space="preserve">
+    <value>Clean DNS Cache</value>
+  </data>
+  <data name="settings.tools.removeFirewall" xml:space="preserve">
+    <value>Remove Netch Firewall Rules</value>
+  </data>
+  <data name="settings.tools.backupSettings" xml:space="preserve">
+    <value>Backup Settings</value>
+  </data>
+  <data name="settings.tools.backupFull" xml:space="preserve">
+    <value>Full Backup</value>
+  </data>
+  <data name="settings.tools.restoreBackup" xml:space="preserve">
+    <value>Restore Backup</value>
+  </data>
+  <data name="settings.tools.backupTitle" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="settings.tools.restoreTitle" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="settings.tools.backupDone" xml:space="preserve">
+    <value>Backup saved: {0}</value>
+  </data>
+  <data name="settings.tools.backupFailed" xml:space="preserve">
+    <value>Backup failed: {0}</value>
+  </data>
+  <data name="settings.tools.restoring" xml:space="preserve">
+    <value>Restoring...</value>
+  </data>
+  <data name="settings.tools.restoreDone" xml:space="preserve">
+    <value>Restore completed. Restart Netch to fully apply.</value>
+  </data>
+  <data name="settings.tools.restoreFailed" xml:space="preserve">
+    <value>Restore failed: {0}</value>
+  </data>
+  <data name="settings.tools.restoreInvalidFile" xml:space="preserve">
+    <value>Invalid backup file: {0}</value>
+  </data>
+  <data name="settings.tools.restoreConfirmSettings" xml:space="preserve">
+    <value>Restore settings only?&#10;&#10;Servers, subscriptions, custom rule sets and profiles stay as-is; all other settings will be overwritten by this backup (created {0}).&#10;Netch will stop first if running.</value>
+  </data>
+  <data name="settings.tools.restoreConfirmFull" xml:space="preserve">
+    <value>Restore full backup?&#10;&#10;Settings, servers, subscriptions and custom modes will be overwritten by this backup (created {0}); same-name mode files are overwritten, extra local files are kept.&#10;Netch will stop first if running.</value>
+  </data>
+  <data name="modeEditor.globalHint" xml:space="preserve">
+    <value>Null = follow global settings (global is currently: {0})</value>
+  </data>
+  <data name="common.on" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="common.off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="bypassIp.invalidCidr" xml:space="preserve">
+    <value>Invalid IP/CIDR: </value>
+  </data>
+  <data name="external.title" xml:space="preserve">
+    <value>External Resources</value>
+  </data>
+  <data name="external.error.tooSmall" xml:space="preserve">
+    <value>Downloaded file too small ({0} bytes &lt; threshold {1} bytes), rejected</value>
+  </data>
+  <data name="external.error.badKernel" xml:space="preserve">
+    <value>Kernel file is missing the MZ header, rejected</value>
+  </data>
+  <data name="external.error.badSrs" xml:space="preserve">
+    <value>Invalid rule-set file (missing SRS magic), rejected</value>
+  </data>
+  <data name="external.error.badTextList" xml:space="preserve">
+    <value>List file is not valid text, rejected</value>
+  </data>
+  <data name="external.error.notInstalled" xml:space="preserve">
+    <value>Resource is not installed</value>
+  </data>
+  <data name="external.kernel.singbox" xml:space="preserve">
+    <value>sing-box Kernel</value>
+  </data>
+  <data name="external.kernel.xray" xml:space="preserve">
+    <value>Xray Kernel</value>
+  </data>
+  <data name="external.ruleset.geositeCn" xml:space="preserve">
+    <value>Built-in rule-set geosite-cn</value>
+  </data>
+  <data name="external.ruleset.geoipCn" xml:space="preserve">
+    <value>Built-in rule-set geoip-cn</value>
+  </data>
+  <data name="external.ruleset.custom" xml:space="preserve">
+    <value>Custom rule-set</value>
+  </data>
+  <data name="external.geo.ip2region" xml:space="preserve">
+    <value>IP Geolocation Database (IPv4, country/city/ISP)</value>
+  </data>
+  <data name="external.geo.ip2regionV6" xml:space="preserve">
+    <value>IP Geolocation Database (IPv6, country/city/ISP)</value>
+  </data>
+  <data name="external.error.badXdb" xml:space="preserve">
+    <value>Failed to parse IP geolocation database (invalid xdb), rejected</value>
+  </data>
+  <data name="external.badge.upToDate" xml:space="preserve">
+    <value>Up to date</value>
+  </data>
+  <data name="external.badge.updatable" xml:space="preserve">
+    <value>Update available</value>
+  </data>
+  <data name="external.badge.disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="external.badge.notInstalled" xml:space="preserve">
+    <value>Not installed</value>
+  </data>
+  <data name="external.badge.failedFormat" xml:space="preserve">
+    <value>Failed: {0}</value>
+  </data>
+  <data name="external.badge.mirror" xml:space="preserve">
+    <value>Updated via mirror</value>
+  </data>
+  <data name="external.autoUpdateGlobal" xml:space="preserve">
+    <value>Auto-update resources</value>
+  </data>
+  <data name="external.autoUpdateInterval" xml:space="preserve">
+    <value>Check interval (hours)</value>
+  </data>
+  <data name="external.checkMainUpdate" xml:space="preserve">
+    <value>Check for Netch updates</value>
+  </data>
+  <data name="external.updateNow" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="external.viaProxy" xml:space="preserve">
+    <value>Download external resources via built-in proxy (while kernel is running)</value>
+  </data>
+  <data name="external.updateAll" xml:space="preserve">
+    <value>Update all now</value>
+  </data>
+  <data name="external.confirmDelete" xml:space="preserve">
+    <value>Delete {0}? The file will be moved to the .trash folder and purged on next launch.</value>
+  </data>
+  <data name="external.lastUpdateFormat" xml:space="preserve">
+    <value>Last updated: {0}</value>
+  </data>
+  <data name="external.neverUpdated" xml:space="preserve">
+    <value>Never updated</value>
+  </data>
+  <data name="external.updated" xml:space="preserve">
+    <value>Resource updated</value>
+  </data>
+  <data name="external.updateFailed" xml:space="preserve">
+    <value>Resource update failed</value>
+  </data>
+  <data name="external.checkFailed" xml:space="preserve">
+    <value>Resource check failed</value>
+  </data>
+  <data name="external.autoUpdateTip" xml:space="preserve">
+    <value>Per-resource auto-update</value>
+  </data>
+  <data name="external.kernelBlocked0" xml:space="preserve">
+    <value>{0} kernel is disabled, re-enable it in External Resources or switch core</value>
+  </data>
+  <data name="external.disable" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="external.autoUpdate" xml:space="preserve">
+    <value>Auto-update</value>
+  </data>
+  <data name="external.group.kernel" xml:space="preserve">
+    <value>Kernels</value>
+  </data>
+  <data name="external.group.ruleset" xml:space="preserve">
+    <value>Rule Sets</value>
+  </data>
+  <data name="external.group.data" xml:space="preserve">
+    <value>Data Files</value>
+  </data>
+<data name="main.nav.rulesets" xml:space="preserve"><value>Rule Sets</value></data>
+<data name="rulesets.title" xml:space="preserve"><value>Rule Set Library</value></data>
+<data name="rulesets.builtin.group" xml:space="preserve"><value>Built-in Rule Sets</value></data>
+<data name="rulesets.builtin.disabled" xml:space="preserve"><value>Disabled</value></data>
+<data name="rulesets.builtin.ok" xml:space="preserve"><value>Active</value></data>
+<data name="rulesets.custom.group" xml:space="preserve"><value>Custom Rule Sets</value></data>
+<data name="rulesets.newLocal" xml:space="preserve"><value>New Local Rule Set</value></data>
+<data name="rulesets.newRemote" xml:space="preserve"><value>New Remote Rule Set</value></data>
+<data name="rulesets.empty" xml:space="preserve"><value>No custom rule sets yet</value></data>
+<data name="rulesets.type.local" xml:space="preserve"><value>Local</value></data>
+<data name="rulesets.type.remote" xml:space="preserve"><value>Remote</value></data>
+<data name="rulesets.refs" xml:space="preserve"><value>{0} mode(s) referencing</value></data>
+<data name="rulesets.refs.none" xml:space="preserve"><value>Not referenced</value></data>
+<data name="rulesets.local.summaryEntries" xml:space="preserve"><value>{0} entries</value></data>
+<data name="rulesets.local.title" xml:space="preserve"><value>Edit Local Rule Set</value></data>
+<data name="rulesets.local.tag" xml:space="preserve"><value>Tag (used by modes)</value></data>
+<data name="rulesets.local.entries" xml:space="preserve"><value>Entries</value></data>
+<data name="rulesets.local.addEntry" xml:space="preserve"><value>Add Entry</value></data>
+<data name="rulesets.local.bulkImport" xml:space="preserve"><value>Bulk Import</value></data>
+<data name="rulesets.local.bulkHint" xml:space="preserve"><value>One per line: DOMAIN-SUFFIX,x.com / *.x.com / bare domain / bare IP-CIDR</value></data>
+<data name="rulesets.local.bulkResult" xml:space="preserve"><value>Imported {0} entries, skipped {1} lines</value></data>
+<data name="rulesets.local.entryEmpty" xml:space="preserve"><value>Entry #{0} has empty value</value></data>
+<data name="rulesets.deleteReferenced" xml:space="preserve"><value>Rule set "{0}" is referenced by: {1}. Delete anyway?</value></data>
+<data name="rulesets.renameSynced" xml:space="preserve"><value>Renamed; {0} reference(s) updated</value></data>
+<data name="rulesets.duplicateTag" xml:space="preserve"><value>Tag already exists</value></data>
+<data name="dim.DomainSuffix" xml:space="preserve"><value>Domain Suffix</value></data>
+<data name="dim.Domain" xml:space="preserve"><value>Domain</value></data>
+<data name="dim.DomainKeyword" xml:space="preserve"><value>Domain Keyword</value></data>
+<data name="dim.DomainRegex" xml:space="preserve"><value>Domain Regex</value></data>
+<data name="dim.IpCidr" xml:space="preserve"><value>IP CIDR</value></data>
+<data name="dim.Port" xml:space="preserve"><value>Port</value></data>
+<data name="dim.Protocol" xml:space="preserve"><value>Protocol</value></data>
+<data name="modeEditor.rules.title" xml:space="preserve"><value>Routing Rules (matched top-down)</value></data>
+<data name="modeEditor.moveTop" xml:space="preserve"><value>Move to Top</value></data>
+<data name="modeEditor.moveBottom" xml:space="preserve"><value>Move to Bottom</value></data>
+<data name="modeEditor.rule.editMode" xml:space="preserve"><value>Rule Style</value></data>
+<data name="modeEditor.rule.byRef" xml:space="preserve"><value>Reference rule sets</value></data>
+<data name="modeEditor.rule.byInline" xml:space="preserve"><value>Inline matchers</value></data>
+<data name="modeEditor.rule.search" xml:space="preserve"><value>Search rule sets…</value></data>
+<data name="modeEditor.rule.group.customLocal" xml:space="preserve"><value>Custom · Local</value></data>
+<data name="modeEditor.rule.group.customRemote" xml:space="preserve"><value>Custom · Remote</value></data>
+<data name="modeEditor.rule.group.builtin" xml:space="preserve"><value>Built-in</value></data>
+<data name="modeEditor.rule.addDimension" xml:space="preserve"><value>Add Matcher</value></data>
+<data name="modeEditor.rule.dimension" xml:space="preserve"><value>Matcher</value></data>
+<data name="modeEditor.rule.value" xml:space="preserve"><value>Value</value></data>
+<data name="modeEditor.rule.emptyRule" xml:space="preserve"><value>Rule #{0} has no matcher or rule set reference</value></data>
+<data name="modeEditor.rule.badValue" xml:space="preserve"><value>Rule #{0}: invalid {1} value "{2}"</value></data>
+<data name="modeEditor.rule.deadRef" xml:space="preserve"><value>Rule #{0} references unknown/disabled rule set "{1}"</value></data>
+<data name="modeEditor.action.Proxy" xml:space="preserve"><value>Proxy</value></data>
+<data name="modeEditor.action.Direct" xml:space="preserve"><value>Direct</value></data>
+<data name="modeEditor.action.Block" xml:space="preserve"><value>Block</value></data>
+<data name="modeEditor.summary.emptyRule" xml:space="preserve"><value>(empty)</value></data>
+<data name="modeEditor.summary.more" xml:space="preserve"><value>… +{0} more</value></data>
+<data name="modeEditor.summary.ref" xml:space="preserve"><value>{0} rule set(s)</value></data>
+<data name="kernel.ruleRefInlineExclusive" xml:space="preserve"><value>A route rule cannot mix rule set references and inline matchers; split it into two rules</value></data>
+<data name="settings.rulesets.movedHint" xml:space="preserve"><value>Rule set contents are now managed on the "Rule Sets" page</value></data>
+</root>

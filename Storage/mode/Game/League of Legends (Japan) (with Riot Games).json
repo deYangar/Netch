@@ -1,0 +1,21 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "League of Legends (Japan) (with Riot Games)"
+  },
+  "handle": [
+    "jpatch.exe",
+    "RiotClientCrashHandler.exe",
+    "RiotClientServices.exe",
+    "RiotClientUx.exe",
+    "RiotClientUxRender.exe",
+    "BsSndRpt.exe",
+    "LeagueClient.exe",
+    "LeagueClientUx.exe",
+    "LeagueClientUxRender.exe",
+    "Uninstall League of Legends.exe",
+    "League of Legends.exe",
+    "LeagueCrashHandler.exe"
+  ],
+  "bypass": []
+}

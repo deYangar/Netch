@@ -1,0 +1,604 @@
+<UserControl x:Class="Netch.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:Netch.Localization"
+             Focusable="False">
+    <!--
+        设置页（05§A1 / R 线 §5 方案 A）：左导航八类目（内核+规则集合并为「外部资源」，九→八）+ 右逐项绑定清单。
+        即时保存（VM 防抖 500ms SaveAsync）；语言/主题切换即时生效；八面板叠放按索引显隐（页面常驻）。
+    -->
+    <UserControl.Resources>
+        <Style x:Key="SettingRow" TargetType="Grid">
+            <Setter Property="Margin" Value="0,0,0,10" />
+        </Style>
+        <Style x:Key="SettingLabel" TargetType="TextBlock" BasedOn="{StaticResource TextBlock.Caption}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0,0,12,0" />
+        </Style>
+        <Style x:Key="SectionTitle" TargetType="TextBlock" BasedOn="{StaticResource TextBlock.H2}">
+            <Setter Property="Margin" Value="0,0,0,12" />
+        </Style>
+        <Style x:Key="GroupTitle" TargetType="TextBlock" BasedOn="{StaticResource TextBlock.H2}">
+            <Setter Property="Margin" Value="0,8,0,10" />
+        </Style>
+        <!-- 资源行容器 -->
+        <Style x:Key="ResourceCard" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource Brush.Card}" />
+            <Setter Property="CornerRadius" Value="{StaticResource Radius.Corner.M}" />
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+        </Style>
+        <!-- 徽章：按行 VM 的 BadgeBrushKey 四态切换配色（DynamicResource 随主题） -->
+        <Style x:Key="ResourceBadge" TargetType="Border">
+            <Setter Property="CornerRadius" Value="{StaticResource Radius.Corner.S}" />
+            <Setter Property="Padding" Value="8,2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="8,0,0,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding BadgeBrushKey}" Value="Brush.Success">
+                    <Setter Property="Background" Value="{DynamicResource Brush.Success.Soft}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding BadgeBrushKey}" Value="Brush.Warning">
+                    <Setter Property="Background" Value="{DynamicResource Brush.Warning.Soft}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding BadgeBrushKey}" Value="Brush.Danger">
+                    <Setter Property="Background" Value="{DynamicResource Brush.Danger.Soft}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding BadgeBrushKey}" Value="Brush.TextDisabled">
+                    <Setter Property="Background" Value="{DynamicResource Brush.Hover}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ResourceBadgeText" TargetType="TextBlock" BasedOn="{StaticResource TextBlock.Caption}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding BadgeBrushKey}" Value="Brush.Success">
+                    <Setter Property="Foreground" Value="{DynamicResource Brush.Success}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding BadgeBrushKey}" Value="Brush.Warning">
+                    <Setter Property="Foreground" Value="{DynamicResource Brush.Warning}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding BadgeBrushKey}" Value="Brush.Danger">
+                    <Setter Property="Foreground" Value="{DynamicResource Brush.Danger}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding BadgeBrushKey}" Value="Brush.TextDisabled">
+                    <Setter Property="Foreground" Value="{DynamicResource Brush.TextDisabled}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!-- 资源行统一模板：名称+详情 | 徽章 | 行操作 -->
+        <DataTemplate x:Key="ResourceRowTemplate">
+            <Border Style="{StaticResource ResourceCard}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding DetailText}" Style="{StaticResource TextBlock.Caption}" Foreground="{DynamicResource Brush.TextSecondary}"
+                                   TextWrapping="Wrap" Margin="0,2,0,0" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0,0,0">
+                        <TextBlock Text="{Binding BadgeText}" Style="{StaticResource ResourceBadgeText}"
+                                   ToolTip="{Binding BadgeToolTip}" />
+                        <Border Style="{StaticResource ResourceBadge}" Visibility="{Binding BadgeVis}">
+                            <TextBlock Text="{Binding BadgeText}" Style="{StaticResource ResourceBadgeText}"
+                                       ToolTip="{Binding BadgeToolTip}" />
+                        </Border>
+                        <TextBlock Text="{Binding BadgeText}" Visibility="Collapsed" />
+                        <ProgressBar Value="{Binding Progress}" Maximum="100" Width="90" Height="6"
+                                     Visibility="{Binding ProgressVis}" Margin="8,0,0,0" />
+                        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                            <CheckBox Content="{loc:I18N external.disable}" IsChecked="{Binding Disabled, Mode=OneWay}"
+                                      Command="{Binding ToggleDisabledCommand}" Visibility="{Binding DisableVis}"
+                                      Margin="0,0,10,0" />
+                            <CheckBox Content="{loc:I18N external.autoUpdate}" IsChecked="{Binding AutoUpdate, Mode=OneWay}"
+                                      Command="{Binding ToggleAutoUpdateCommand}" Visibility="{Binding AutoUpdateVis}"
+                                      Margin="0,0,10,0" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0,0,0">
+                        <Button Content="{loc:I18N external.updateNow}" Command="{Binding UpdateCommand}"
+                                Visibility="{Binding UpdateVis}" Margin="0,0,6,0" Padding="10,4" />
+                        <Button Content="{loc:I18N common.edit}" Command="{Binding EditCommand}"
+                                Visibility="{Binding EditVis}" Margin="0,0,6,0" Padding="6,4" Style="{StaticResource Btn.Ghost}" />
+                        <Button Content="{loc:I18N common.delete}" Command="{Binding DeleteCommand}"
+                                Visibility="{Binding DeleteVis}" Padding="6,4" Style="{StaticResource Btn.Danger}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- 左导航（八类目） -->
+        <Border Grid.Column="0" Background="{DynamicResource Brush.Card}" Margin="16,16,8,16"
+                CornerRadius="{StaticResource Radius.Corner.M}" Padding="4">
+            <ListBox SelectedIndex="{Binding CurrentCategoryIndex, Mode=TwoWay}"
+                     Background="Transparent" BorderThickness="0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Padding" Value="10,8" />
+                        <Setter Property="Margin" Value="0,1" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBoxItem Content="{loc:I18N settings.general.title}" />
+                <ListBoxItem Content="{loc:I18N external.title}" />
+                <ListBoxItem Content="{loc:I18N settings.reliability.title}" />
+                <ListBoxItem Content="{loc:I18N settings.process.title}" />
+                <ListBoxItem Content="{loc:I18N settings.tun.title}" />
+                <ListBoxItem Content="{loc:I18N settings.v2ray.title}" />
+                <ListBoxItem Content="{loc:I18N settings.dns.title}" />
+                <ListBoxItem Content="{loc:I18N settings.others.title}" />
+            </ListBox>
+        </Border>
+
+        <!-- 右：当前类目 -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Margin="8,16,16,16">
+            <StackPanel>
+                <!-- 页面标题（咩咩 2026-11-03：侧栏收起时点进任意页，右区要一眼知道这是哪） -->
+                <TextBlock Text="{loc:I18N main.nav.settings}" Style="{StaticResource TextBlock.H1}" Margin="0,0,0,12" />
+                <!-- B6 反馈⑥：保存机制显性化（VM 全量 setter 防抖 500ms 自动落盘，此前 UI 零提示） -->
+                <TextBlock Style="{StaticResource TextBlock.Caption}"
+                           Foreground="{DynamicResource Brush.TextSecondary}"
+                           Margin="0,0,0,12" TextWrapping="Wrap"
+                           Text="{loc:I18N settings.autosave.hint}" />
+                <Grid>
+                <!-- 0 常规（显隐与其余七块一致：缺这块 Style 会恒可见，与其它类目同格叠加——2026-10-28 实测重叠缺陷根因） -->
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentCategoryIndex}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="{loc:I18N settings.general.title}" />
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.socks5Port}" />
+                        <TextBox Grid.Column="1" Width="110" Text="{Binding Socks5LocalPort, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Grid.Column="2" Style="{StaticResource SettingLabel}" Margin="24,0,12,0" Text="{loc:I18N settings.general.httpPort}" />
+                        <TextBox Grid.Column="3" Width="110" Text="{Binding HTTPLocalPort, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.general.shareLan}" IsChecked="{Binding ShareLan}" />
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.pingProtocol}" />
+                        <ComboBox Grid.Column="1" Width="150" SelectedValuePath="Tag" SelectedValue="{Binding ServerTCPing}">
+                            <ComboBoxItem Content="ICMPing" Tag="False" />
+                            <ComboBoxItem Content="TCPing" Tag="True" />
+                        </ComboBox>
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.profileCount}" />
+                        <TextBox Grid.Column="1" Width="110" Text="{Binding ProfileCount, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.detectionTick}" />
+                        <TextBox Grid.Column="1" Width="110" Text="{Binding DetectionTick, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.startedPing}" />
+                        <TextBox Grid.Column="1" Width="110" Text="{Binding StartedPingInterval, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.stun}" />
+                        <!-- STUN 可编辑下拉：显示/写回走 code-behind（见 SettingsView.xaml.cs）；完整地址 host:port，无端口按 3478 -->
+                        <ComboBox x:Name="stunCombo" Grid.Column="1" Width="240"
+                                  IsEditable="True"
+                                  ItemsSource="{Binding StunServerOptions}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.language}" />
+                        <ComboBox Grid.Column="1" Width="150" ItemsSource="{Binding LanguageOptions}" SelectedItem="{Binding Language}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.theme}" />
+                        <ComboBox Grid.Column="1" Width="150" ItemsSource="{Binding ThemeOptions}" SelectedItem="{Binding Theme}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.accent}" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <!-- B6 反馈⑤：预设色板点选（首项斜杠=恢复默认），hex 框保留作自定义兜底 -->
+                            <ItemsControl ItemsSource="{Binding AccentSwatches}" VerticalAlignment="Center" Margin="0,0,12,0">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Width="22" Height="22" Margin="0,0,6,6"
+                                                Command="{Binding DataContext.ApplyAccentSwatchCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                CommandParameter="{Binding Hex}"
+                                                ToolTip="{Binding ToolTipText}"
+                                                FocusVisualStyle="{x:Null}">
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Grid Background="Transparent">
+                                                        <Ellipse x:Name="Dot" Fill="{Binding Hex}" Stroke="{DynamicResource Brush.Stroke}" StrokeThickness="1" />
+                                                        <Path x:Name="NoneMark" Data="M 6 16 L 16 6" Stroke="{DynamicResource Brush.TextSecondary}" StrokeThickness="1.5" Visibility="Collapsed" />
+                                                        <Ellipse x:Name="Ring" Stroke="{DynamicResource Brush.Accent}" StrokeThickness="2" Visibility="Collapsed" />
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <DataTrigger Binding="{Binding Hex}" Value="">
+                                                            <Setter TargetName="Dot" Property="Visibility" Value="Collapsed" />
+                                                            <Setter TargetName="NoneMark" Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsChecked}" Value="True">
+                                                            <Setter TargetName="Ring" Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <TextBox Width="110" VerticalAlignment="Center"
+                                     ToolTip="{loc:I18N settings.general.accentHint}"
+                                     Text="{Binding Accent, UpdateSourceTrigger=PropertyChanged, Delay=300}" />
+                        </StackPanel>
+                    </Grid>
+                    <Button Content="{loc:I18N settings.general.restoreSize}"
+                            ToolTip="{loc:I18N settings.general.restoreSizeHint}"
+                            HorizontalAlignment="Left" Command="{Binding RestoreWindowSizeCommand}" />
+                </StackPanel>
+
+                <!-- 1 外部资源（R 线方案 A：核心选择器 + 自动更新 + 内核区/规则集区/数据文件区 + 主程序更新入口） -->
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentCategoryIndex}" Value="1">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="{loc:I18N external.title}" />
+
+                    <!-- 顶部设置段（内核路由全自动，无内核选择项） -->
+                    <Border Background="{DynamicResource Brush.Card}" CornerRadius="{StaticResource Radius.Corner.M}" Padding="12" Margin="0,0,0,12">
+                        <StackPanel>
+                            <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.kernel.groupAutoSelect}" IsChecked="{Binding GroupAutoSelect}" />
+                            <Grid Style="{StaticResource SettingRow}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="190" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N external.autoUpdateGlobal}" />
+                                <CheckBox Grid.Column="1" VerticalAlignment="Center" Margin="0,0,16,0" IsChecked="{Binding ExternalAutoUpdate}" />
+                                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N external.autoUpdateInterval}" />
+                                    <TextBox Width="70" Text="{Binding ExternalAutoUpdateInterval, UpdateSourceTrigger=PropertyChanged}" />
+                                </StackPanel>
+                            </Grid>
+                            <CheckBox Margin="0,0,0,10" Content="{loc:I18N external.viaProxy}" IsChecked="{Binding ExternalResourcesViaProxy}" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Button Content="{loc:I18N external.checkMainUpdate}" Command="{Binding CheckMainUpdateCommand}" />
+                                <TextBlock Grid.Column="1" Style="{StaticResource TextBlock.Caption}" Margin="12,0,0,0"
+                                           VerticalAlignment="Center" Text="{Binding MainUpdateStatus}" TextWrapping="Wrap" />
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 内核区 -->
+                    <TextBlock Style="{StaticResource GroupTitle}" Text="{loc:I18N external.group.kernel}" />
+                    <ItemsControl ItemsSource="{Binding KernelRows}" ItemTemplate="{StaticResource ResourceRowTemplate}" />
+
+                    <!-- 规则集区 -->
+                    <TextBlock Style="{StaticResource GroupTitle}" Text="{loc:I18N external.group.ruleset}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.rulesets.builtinEnable}" IsChecked="{Binding UseBuiltInRuleSets}" />
+                    <ItemsControl ItemsSource="{Binding RuleSetRows}" ItemTemplate="{StaticResource ResourceRowTemplate}" />
+                    <TextBlock Style="{StaticResource TextBlock.Caption}" Text="{loc:I18N settings.rulesets.movedHint}" Margin="0,4,0,0" />
+
+                    <!-- 数据文件区 -->
+                    <TextBlock Style="{StaticResource GroupTitle}" Text="{loc:I18N external.group.data}" />
+                    <ItemsControl ItemsSource="{Binding DataRows}" ItemTemplate="{StaticResource ResourceRowTemplate}" />
+
+                    <!-- 底部 -->
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                        <Button Content="{loc:I18N external.updateAll}" Command="{Binding UpdateAllCommand}" Margin="0,0,8,0" />
+                        <Button Content="{loc:I18N settings.kernel.openBin}" Command="{Binding OpenBinFolderCommand}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- 2 可靠性 -->
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentCategoryIndex}" Value="2">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="{loc:I18N settings.reliability.title}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.reliability.autoRestore}" IsChecked="{Binding AutoRestore}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.reliability.kernelRestart}" IsChecked="{Binding KernelRestart}" />
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.reliability.debounce}" />
+                        <TextBox Grid.Column="1" Width="110" Text="{Binding DebounceSeconds, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.reliability.subscriptionProxy}" IsChecked="{Binding SubscriptionUseProxy}" />
+                </StackPanel>
+
+                <!-- 3 进程模式 -->
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentCategoryIndex}" Value="3">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="{loc:I18N settings.process.title}" />
+                    <WrapPanel>
+                        <CheckBox Margin="0,0,16,10" Content="{loc:I18N settings.process.tcp}" IsChecked="{Binding FilterTCP}" />
+                        <CheckBox Margin="0,0,16,10" Content="{loc:I18N settings.process.udp}" IsChecked="{Binding FilterUDP}" />
+                        <CheckBox Margin="0,0,16,10" Content="{loc:I18N settings.process.icmp}" IsChecked="{Binding FilterICMP}" />
+                    </WrapPanel>
+                    <WrapPanel>
+                        <CheckBox Margin="0,0,16,10" Content="{loc:I18N settings.process.dns}" IsChecked="{Binding FilterDNS}" />
+                        <CheckBox Margin="0,0,16,10" Content="{loc:I18N settings.process.procDns}" IsChecked="{Binding HandleProcDNS}" />
+                        <CheckBox Margin="0,0,16,10" Content="{loc:I18N settings.process.dnsProxy}" IsChecked="{Binding DNSProxy}" />
+                    </WrapPanel>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.process.icmpDelay}" />
+                        <TextBox Grid.Column="1" Width="110" Text="{Binding ICMPDelay, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.process.verboseLog}" IsChecked="{Binding VerboseLog}" />
+                </StackPanel>
+
+                <!-- 4 TUN -->
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentCategoryIndex}" Value="4">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="{loc:I18N settings.tun.title}" />
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.tun.stack}" />
+                        <ComboBox Grid.Column="1" Width="150" ItemsSource="{Binding StackOptions}" SelectedItem="{Binding TunStack}" />
+                    </Grid>
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.tun.strictRoute}" IsChecked="{Binding StrictRoute}" />
+                    <Button Content="{loc:I18N settings.tun.bypassIps}" HorizontalAlignment="Left" Command="{Binding EditBypassIpsCommand}" />
+                </StackPanel>
+
+                <!-- 5 V2Ray -->
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentCategoryIndex}" Value="5">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="{loc:I18N settings.v2ray.title}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.v2ray.xrayCone}" IsChecked="{Binding XrayCone}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.v2ray.tlsAllowInsecure}" IsChecked="{Binding TLSAllowInsecure}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.v2ray.useMux}" IsChecked="{Binding UseMux}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.v2ray.tcpFastOpen}" IsChecked="{Binding TCPFastOpen}" />
+
+                    <TextBlock Style="{StaticResource TextBlock.H2}" Margin="0,8,0,12" Text="{loc:I18N settings.v2ray.kcp}" />
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="mtu" />
+                        <TextBox Grid.Column="1" Width="100" Text="{Binding KcpMtu, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="tti" />
+                        <TextBox Grid.Column="1" Width="100" Text="{Binding KcpTti, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="uplinkCapacity" />
+                        <TextBox Grid.Column="1" Width="100" Text="{Binding KcpUplink, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="downlinkCapacity" />
+                        <TextBox Grid.Column="1" Width="100" Text="{Binding KcpDownlink, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="readBufferSize" />
+                        <TextBox Grid.Column="1" Width="100" Text="{Binding KcpRead, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="writeBufferSize" />
+                        <TextBox Grid.Column="1" Width="100" Text="{Binding KcpWrite, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <CheckBox Margin="0,0,0,10" Content="congestion" IsChecked="{Binding KcpCongestion}" />
+                </StackPanel>
+
+                <!-- 6 DNS -->
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentCategoryIndex}" Value="6">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="{loc:I18N settings.dns.title}" />
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.dns.policy}" />
+                        <ComboBox Grid.Column="1" Width="150" ItemsSource="{Binding DnsPolicyOptions}" SelectedItem="{Binding DnsPolicy}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.dns.china}" />
+                        <TextBox Grid.Column="1" Width="200" Text="{Binding DnsChina, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.dns.remote}" />
+                        <TextBox Grid.Column="1" Width="200" Text="{Binding DnsRemote, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <TextBlock Style="{StaticResource TextBlock.Caption}" Text="{loc:I18N settings.dns.hint}" TextWrapping="Wrap" />
+                </StackPanel>
+
+                <!-- 7 其他 + 工具区 -->
+                <StackPanel>
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentCategoryIndex}" Value="7">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Style="{StaticResource SectionTitle}" Text="{loc:I18N settings.others.title}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.others.exitWhenClose}" IsChecked="{Binding ExitWhenClosed}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.others.stopWhenExited}" IsChecked="{Binding StopWhenExited}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.others.startWhenOpened}" IsChecked="{Binding StartWhenOpened}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.others.minimizeWhenStarted}" IsChecked="{Binding MinimizeWhenStarted}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.others.runAtStartup}" IsChecked="{Binding RunAtStartup}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.others.checkUpdateOpened}" IsChecked="{Binding CheckUpdateWhenOpened}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.others.checkBetaUpdate}" IsChecked="{Binding CheckBetaUpdate}" />
+                    <CheckBox Margin="0,0,0,10" Content="{loc:I18N settings.others.noSupportDialog}" IsChecked="{Binding NoSupportDialog}" />
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.others.requestTimeout}" />
+                        <TextBox Grid.Column="1" Width="130" Text="{Binding RequestTimeout, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+
+                    <TextBlock Style="{StaticResource TextBlock.H2}" Margin="0,8,0,12" Text="{loc:I18N settings.tools.title}" />
+                    <WrapPanel>
+                        <Button Content="{loc:I18N settings.tools.openDirectory}" Command="{Binding OpenDirectoryCommand}" Margin="0,0,8,8" />
+                        <Button Content="{loc:I18N settings.tools.showHideConsole}" Command="{Binding ShowHideConsoleCommand}" Margin="0,0,8,8" />
+                        <Button Content="{loc:I18N settings.tools.cleanDns}" Command="{Binding CleanDnsCacheCommand}" Margin="0,0,8,8" />
+                        <Button Content="{loc:I18N settings.tools.uninstallNf}" Command="{Binding UninstallNfServiceCommand}" Margin="0,0,8,8" />
+                        <Button Content="{loc:I18N settings.tools.removeFirewall}" Command="{Binding RemoveFirewallRulesCommand}" Margin="0,0,8,8" />
+                        <Button Content="{loc:I18N settings.tools.backupSettings}" Command="{Binding BackupSettingsCommand}" Margin="0,0,8,8" />
+                        <Button Content="{loc:I18N settings.tools.backupFull}" Command="{Binding BackupFullCommand}" Margin="0,0,8,8" />
+                        <Button Content="{loc:I18N settings.tools.restoreBackup}" Command="{Binding RestoreBackupCommand}" Margin="0,0,8,8" />
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

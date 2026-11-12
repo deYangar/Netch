@@ -1,0 +1,16 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Xftp 6"
+  },
+  "handle": [
+    "CrashSender.exe",
+    "installanchorservice.exe",
+    "LiveUpdate.exe",
+    "nsregister.exe",
+    "Xagent.exe",
+    "Xftp.exe",
+    "Xtransport.exe"
+  ],
+  "bypass": []
+}

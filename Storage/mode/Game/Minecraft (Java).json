@@ -1,0 +1,12 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Minecraft (Java)"
+  },
+  "handle": [
+    "javaw.exe",
+    "java.exe",
+    "MinecraftLauncher.exe"
+  ],
+  "bypass": []
+}

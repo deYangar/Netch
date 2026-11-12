@@ -1,0 +1,103 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2801
+    },
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "netch",
+      "address": [
+        "172.19.0.1/30"
+      ],
+      "mtu": 9000,
+      "auto_route": true,
+      "strict_route": true,
+      "route_exclude_address": [
+        "::1/128"
+      ],
+      "endpoint_independent_nat": true,
+      "stack": "mixed"
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "socks",
+      "tag": "proxy",
+      "server": "::1",
+      "server_port": 1080,
+      "password": "pass",
+      "version": "5",
+      "username": "user"
+    }
+  ],
+  "http_clients": [
+    {
+      "tag": "rule-set-fetch"
+    }
+  ],
+  "dns": {
+    "servers": [
+      {
+        "type": "udp",
+        "tag": "dns-china",
+        "server": "223.5.5.5"
+      },
+      {
+        "type": "https",
+        "tag": "dns-remote",
+        "server": "1.1.1.1",
+        "detour": "proxy"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": [
+          "geosite-cn"
+        ],
+        "server": "dns-china"
+      }
+    ],
+    "final": "dns-remote",
+    "strategy": "prefer_ipv4"
+  },
+  "route": {
+    "rules": [
+      {
+        "action": "hijack-dns",
+        "port": [
+          53
+        ]
+      }
+    ],
+    "final": "proxy",
+    "default_domain_resolver": "dns-china",
+    "auto_detect_interface": true,
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://cdn.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-cn.srs",
+        "initial_path": "rule-set\\geosite-cn.srs",
+        "http_client": "rule-set-fetch",
+        "update_interval": "1d"
+      }
+    ]
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9099"
+    },
+    "cache_file": {
+      "enabled": true
+    }
+  }
+}

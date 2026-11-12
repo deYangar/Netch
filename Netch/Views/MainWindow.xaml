@@ -1,0 +1,192 @@
+<ui:FluentWindow x:Class="Netch.Views.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:Netch.Localization"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:views="clr-namespace:Netch.Views"
+                 Title="{loc:I18N main.title}"
+                 Width="1280" Height="800"
+                 MinWidth="720" MinHeight="360"
+                 WindowStartupLocation="CenterScreen"
+                 ExtendsContentIntoTitleBar="True"
+                 TextElement.Foreground="{DynamicResource Brush.TextPrimary}"
+                 Loaded="MainWindow_Loaded"
+                 Closing="MainWindow_Closing"
+                 Background="{DynamicResource Brush.Background}">
+    <!--
+        主窗口导航壳（04§3）：标题栏（ui:TitleBar，ExtendsContentIntoTitleBar=True + 显式 TitleBar——
+        False 模式下 WPF-UI 4.3 默认标题栏不渲染且无系统三键，窗口无法关闭，P0 同批修复）
+        + 顶栏48（Profile 切换 + 内核指示 + 启停主按钮）
+        + NavigationView（48 可展开 200：主页/连接/订阅 + 底部设置/日志/关于）
+        + 内容区 CurrentPage + 状态栏28（最后一项 Width=* 弹簧殿后）。
+        TextElement.Foreground 根部落字：未显式设前景的文本（状态栏/指示器）继承主文本色，防黑字压深底。
+        文案一律 {loc:I18N key}；尺寸记忆 Loaded 应用 / Closing 保存（code-behind）。
+    -->
+    <!-- 根面板不透明 Token 底：WPF-UI 主题切换会把 Window.Background 覆写为透明（backdrop 语义、
+         延迟派发，代码里重设抢不过它），NavigationView 面板默认透明，底下没有不透明层就露黑 HWND。
+         根面板铺死我方 Token 后，透明面板永远透出浅/深语义色（B2 实机黑块治本）。 -->
+    <DockPanel Background="{DynamicResource Brush.Background}">
+        <!-- 标题栏（WPF-UI 标准模式：FluentWindow 提供 WindowChrome 行为，TitleBar 元素提供三键与标题） -->
+        <ui:TitleBar DockPanel.Dock="Top"
+                     HorizontalAlignment="Stretch"
+                     Title="{loc:I18N main.title}"
+                     Background="{DynamicResource Brush.Surface}" />
+        <!-- 顶栏 -->
+        <Grid DockPanel.Dock="Top" Height="48" HorizontalAlignment="Stretch" Background="{DynamicResource Brush.Surface}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- 左：Profile 切换 + 新建 -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="12,0,0,0" VerticalAlignment="Center">
+                <ComboBox x:Name="profileCombo"
+                          Width="180"
+                          ItemsSource="{Binding Home.ProfileSlots}"
+                          SelectedItem="{Binding Home.ProfileComboSelection}"
+                          DisplayMemberPath="DisplayName" />
+                <Button Content="+"
+                        Margin="8,0,0,0"
+                        MinWidth="36"
+                        Command="{Binding Home.AddProfileCommand}"
+                        ToolTip="{loc:I18N main.profile.add}" />
+            </StackPanel>
+
+            <!-- 右：内核指示（运行中点亮）+ 主按钮（Start/Stop 状态机文本） -->
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,8,0">
+                <Ellipse Width="8" Height="8" VerticalAlignment="Center" Margin="0,0,6,0">
+                    <Ellipse.Style>
+                        <Style TargetType="Ellipse">
+                            <Setter Property="Fill" Value="{DynamicResource Brush.TextDisabled}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding KernelHealthy}" Value="True">
+                                    <Setter Property="Fill" Value="{DynamicResource Brush.Success}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+                <TextBlock Text="{Binding KernelIndicator}"
+                           Foreground="{DynamicResource Brush.TextSecondary}"
+                           VerticalAlignment="Center" Margin="0,0,4,0" />
+            </StackPanel>
+            <Button Grid.Column="3"
+                    Margin="0,0,12,0"
+                    MinWidth="96"
+                    Padding="16,6"
+                    Style="{StaticResource Btn.Primary}"
+                    Command="{Binding StartStopCommand}"
+                    Content="{Binding StartStopText}" />
+        </Grid>
+
+        <!-- 状态栏（04§4.4）：内容项 Auto 列 + 末列 Width=*（空弹簧）——空间不足永远压弹簧列，内容项物理不可能互挤 -->
+        <Border DockPanel.Dock="Bottom" Height="28" HorizontalAlignment="Stretch" Background="{DynamicResource Brush.Surface}"
+                BorderBrush="{DynamicResource Brush.Stroke}" BorderThickness="0,1,0,0">
+            <Grid VerticalAlignment="Center" Margin="8,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="{Binding StatusDisplay}" ToolTip="{Binding StatusPortTooltip}"
+                           Margin="0,0,16,0" TextTrimming="CharacterEllipsis" />
+                <TextBlock Grid.Column="1" Text="{Binding UsedBandwidth}" ToolTip="{Binding UsedBandwidthTooltip}"
+                           Margin="0,0,16,0" Visibility="{Binding TrafficVisible, Converter={StaticResource BoolToVis}}" />
+                <TextBlock Grid.Column="2" Text="{Binding ProxySpeed}"
+                           Margin="0,0,16,0" Visibility="{Binding TrafficVisible, Converter={StaticResource BoolToVis}}" />
+                <TextBlock Grid.Column="3" Text="{Binding DirectSpeed}"
+                           Margin="0,0,16,0" Visibility="{Binding DirectSpeedVisible, Converter={StaticResource BoolToVis}}" />
+                <TextBlock Grid.Column="4" Text="{Binding HttpDisplay}"
+                           Margin="0,0,16,0" Visibility="{Binding TrafficVisible, Converter={StaticResource BoolToVis}}" />
+                <TextBlock Grid.Column="5" Text="{Binding NatDisplay}"
+                           Visibility="{Binding TrafficVisible, Converter={StaticResource BoolToVis}}" />
+            </Grid>
+        </Border>
+
+        <!-- 导航壳：NavigationView 仅作侧栏（WPF-UI 4.3 该控件无 Content 属性，内容区独立 ContentControl 并排） -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ui:NavigationView x:Name="navView"
+                               Grid.Column="0"
+                               CompactPaneLength="48"
+                               OpenPaneLength="200"
+                               PaneDisplayMode="Left"
+                               IsBackButtonVisible="Collapsed"
+                               IsPaneToggleVisible="True"
+                               HorizontalAlignment="Left">
+                <ui:NavigationView.Style>
+                    <!-- BasedOn 必须继承 WPF-UI 隐式样式：不继承会顶掉其模板，控件整个不渲染（P0 同族坑）。
+                         Background 显式声明我方 Token：WPF-UI 面板刷子依赖 backdrop，主题热切换后不跟随
+                         （B2 实机黑块根因），不透明 Token 底治本。 -->
+                    <Style TargetType="ui:NavigationView"
+                           BasedOn="{StaticResource {x:Type ui:NavigationView}}">
+                        <Setter Property="Background" Value="{DynamicResource Brush.Surface}" />
+                        <Setter Property="Width" Value="200" />
+                        <Style.Triggers>
+                            <Trigger Property="IsPaneOpen" Value="False">
+                                <Setter Property="Width" Value="48" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ui:NavigationView.Style>
+            <!-- 导航项走 ButtonBase 标准 Click（WPF-UI 4.3 手工 XAML 无 PageService 时 TargetPageType 恒 null，
+                 其内部导航/SelectionChanged 整链静默不启动——P1 修复；选中态由 code-behind 自管） -->
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="{loc:I18N main.nav.home}" TargetPageTag="home" Click="NavItem_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Home24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="{loc:I18N main.nav.connections}" TargetPageTag="connections" Click="NavItem_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="PlugConnected24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="{loc:I18N main.nav.subscriptions}" TargetPageTag="subscriptions" Click="NavItem_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="CloudArrowDown24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="{loc:I18N main.nav.rulesets}" TargetPageTag="rulesets" Click="NavItem_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Document24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.MenuItems>
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="{loc:I18N main.nav.settings}" TargetPageTag="settings" Click="NavItem_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Settings24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="{loc:I18N main.nav.log}" TargetPageTag="log" Click="NavItem_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Document24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="{loc:I18N main.nav.about}" TargetPageTag="about" Click="NavItem_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Info24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.FooterMenuItems>
+            </ui:NavigationView>
+
+            <!-- 内容区不透明 Token 底：页面根若透明，露出的是 WPF-UI 透明壳层（热切换后黑），见 B2 修复注释 -->
+            <Border Grid.Column="1" Background="{DynamicResource Brush.Background}">
+                <ContentControl Content="{Binding CurrentPage}" Focusable="False" />
+            </Border>
+        </Grid>
+    </DockPanel>
+</ui:FluentWindow>

@@ -1,0 +1,36 @@
+<!--
+    浅色调色板（语义 Token 具体色值，02§2 表）。
+    两主题（本文件与 Tokens.Dark.xaml）使用同名语义 key，ThemeManager.Apply 整体替换本字典实例实现热切换；
+    结构性资源（字阶/间距/圆角/字体）在 Tokens.Base.xaml，控件样式在 Controls.xaml。
+    Soft 变体 = 30% 透明（徽章底），Hover = 通用 8% 覆层。
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="Brush.Background" Color="#FAFAFA" />
+    <SolidColorBrush x:Key="Brush.Surface" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.Card" Color="#F5F5F5" />
+    <SolidColorBrush x:Key="Brush.Stroke" Color="#E5E5E5" />
+
+    <SolidColorBrush x:Key="Brush.TextPrimary" Color="#1A1A1A" />
+    <SolidColorBrush x:Key="Brush.TextSecondary" Color="#5C5C5C" />
+    <SolidColorBrush x:Key="Brush.TextDisabled" Color="#A0A0A0" />
+
+    <SolidColorBrush x:Key="Brush.Primary" Color="#0067C0" />
+    <SolidColorBrush x:Key="Brush.Primary.Foreground" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.Accent" Color="#0078D4" />
+    <SolidColorBrush x:Key="Brush.Accent.Soft" Color="#1F0078D4" />
+
+    <SolidColorBrush x:Key="Brush.Success" Color="#0F7B0F" />
+    <SolidColorBrush x:Key="Brush.Warning" Color="#9D5D00" />
+    <SolidColorBrush x:Key="Brush.Danger" Color="#C42B1C" />
+    <SolidColorBrush x:Key="Brush.Success.Soft" Color="#4D0F7B0F" />
+    <SolidColorBrush x:Key="Brush.Warning.Soft" Color="#4D9D5D00" />
+    <SolidColorBrush x:Key="Brush.Danger.Soft" Color="#4DC42B1C" />
+
+    <SolidColorBrush x:Key="Brush.Input.Background" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Brush.Input.Stroke" Color="#D0D0D0" />
+
+    <SolidColorBrush x:Key="Brush.Hover" Color="#14000000" />
+
+</ResourceDictionary>

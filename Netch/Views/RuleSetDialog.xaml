@@ -1,0 +1,26 @@
+<ui:FluentWindow x:Class="Netch.Views.RuleSetDialog"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:loc="clr-namespace:Netch.Localization"
+                 Title="{loc:I18N ruleSet.dialogTitle}"
+                 Width="500" SizeToContent="Height"
+                 WindowStartupLocation="CenterOwner"
+                 ResizeMode="NoResize" ShowInTaskbar="False"
+                 Background="{DynamicResource Brush.Background}">
+    <!-- 规则集编辑（07§D）：Tag/URL/更新间隔；三条校验平移 RuleSetForm.cs:35-55 -->
+    <StackPanel Margin="20">
+        <TextBlock Text="Tag" Style="{StaticResource TextBlock.Caption}" Margin="0,0,0,4" />
+        <TextBox x:Name="tagBox" Margin="0,0,0,10" />
+        <TextBlock Text="URL" Style="{StaticResource TextBlock.Caption}" Margin="0,0,0,4" />
+        <TextBox x:Name="urlBox" Margin="0,0,0,10" />
+        <TextBlock Text="{loc:I18N ruleSet.updateInterval}" Style="{StaticResource TextBlock.Caption}" Margin="0,0,0,4" />
+        <TextBox x:Name="intervalBox" Margin="0,0,0,4" />
+        <TextBlock Style="{StaticResource TextBlock.Caption}" Text="{loc:I18N ruleSet.intervalHint}" Margin="0,0,0,10" />
+        <TextBlock x:Name="errorText" Foreground="{DynamicResource Brush.Danger}" Style="{StaticResource TextBlock.Caption}" Margin="0,0,0,8" TextWrapping="Wrap" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="saveButton" Style="{StaticResource Btn.Primary}" MinWidth="88" Content="{loc:I18N common.save}" />
+            <Button x:Name="cancelButton" MinWidth="88" Margin="8,0,0,0" Content="{loc:I18N common.cancel}" />
+        </StackPanel>
+    </StackPanel>
+</ui:FluentWindow>

@@ -1,0 +1,11 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Unity Hub"
+  },
+  "handle": [
+    "Unity Hub.exe",
+    "Unity.exe"
+  ],
+  "bypass": []
+}

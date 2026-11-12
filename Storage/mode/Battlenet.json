@@ -1,0 +1,26 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Battle"
+  },
+  "handle": [
+    "Battle.net Launcher.exe",
+    "BlizzardError.exe",
+    "Loader64.exe",
+    "SystemSurvey.exe",
+    "Battle.net.exe",
+    "Agent.exe"
+  ],
+  "bypass": [],
+  "rules": [
+    {
+      "domainSuffix": [
+        "blzddist1-a.akamaihd.net",
+        "cdn.blizzard.com",
+        "dist.blizzard.com",
+        "level3.blizzard.com"
+      ],
+      "action": 1
+    }
+  ]
+}

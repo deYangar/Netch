@@ -1,0 +1,13 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "VRChat"
+  },
+  "handle": [
+    "install.exe",
+    "VRChat.exe",
+    "UnityCrashHandler64.exe",
+    "yt-dlp.exe"
+  ],
+  "bypass": []
+}

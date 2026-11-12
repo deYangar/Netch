@@ -1,0 +1,171 @@
+name: Release CI
+
+# 重 workflow：push main 全链——单元测试 + 双内核配置校验 + 发版构建（build.ps1：
+# 单文件自包含 + 内核嵌入 exe）+ 条件发布。
+# 发布条件（FH6_Auto 模式）：docs/release-notes/v{版本}.md 存在且 frontmatter publish
+# 不为 false 才创建 GitHub Release；没有 note 就只构建出 artifact，不发布。
+# 版本号唯一来源 = UpdateChecker.cs 的 AssemblyVersion（程序内更新对比同一来源）。
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: 10.0.x
+  SINGBOX_VERSION: 1.14.4
+  SINGBOX_SHA256: 99185d75d314a07dbba4a130c8ad986cbeb629a07927975636b341ca61f991df
+  XRAY_VERSION: v26.10.21
+  XRAY_ZIP_SHA256: fc58c39ee2f2717b4c54d28d374362389e5319b20ae44aea76ea45a5243ec827
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Test, verify & release
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Read version & release note
+        id: meta
+        shell: pwsh
+        run: |
+          $src = Get-Content Netch/Controllers/UpdateChecker.cs -Raw
+          if ($src -notmatch 'AssemblyVersion\s*=\s*@"(?<ver>[^"]+)"') { throw 'AssemblyVersion not found in UpdateChecker.cs' }
+          $ver = $Matches['ver']
+          "version=$ver" >> $env:GITHUB_OUTPUT
+          Write-Host "Version: $ver"
+
+          $note = "docs/release-notes/v$ver.md"
+          if (-Not (Test-Path $note)) {
+            "publish=false" >> $env:GITHUB_OUTPUT
+            Write-Host "::notice::No release note at $note, build-only run."
+            exit 0
+          }
+
+          $content = Get-Content $note -Raw
+          $publish = 'true'
+          $prerelease = 'false'
+          $body = $content
+          if ($content.StartsWith('---')) {
+            $parts = $content -split '---', 3
+            if ($parts.Count -ge 3) {
+              $metaBlock = $parts[1]
+              $body = $parts[2].Trim()
+              if ($metaBlock -match '(?m)^\s*publish:\s*(\S+)') { $publish = $Matches[1] }
+              if ($metaBlock -match '(?m)^\s*prerelease:\s*(\S+)') { $prerelease = $Matches[1] }
+            }
+          }
+          "publish=$publish" >> $env:GITHUB_OUTPUT
+          "prerelease=$prerelease" >> $env:GITHUB_OUTPUT
+          $body | Set-Content -NoNewline release_body.md -Encoding utf8
+          Write-Host "Release note found: publish=$publish prerelease=$prerelease"
+
+      - name: Unit tests
+        run: dotnet test Tests/Tests.csproj -c Release --nologo
+
+      - name: Build verifiers
+        run: |
+          dotnet build SingboxConfigVerifier/SingboxConfigVerifier.csproj -c Release --nologo
+          dotnet build XrayConfigVerifier/XrayConfigVerifier.csproj -c Release --nologo
+
+      - name: Fetch kernels
+        shell: pwsh
+        run: |
+          $url = "https://github.com/SagerNet/sing-box/releases/download/v$env:SINGBOX_VERSION/sing-box-$env:SINGBOX_VERSION-windows-amd64.zip"
+          Invoke-WebRequest -Uri $url -OutFile sing-box.zip
+          $hash = (Get-FileHash sing-box.zip -Algorithm SHA256).Hash.ToLower()
+          if ($hash -ne $env:SINGBOX_SHA256) { throw "sing-box checksum mismatch: $hash" }
+          Expand-Archive sing-box.zip -DestinationPath tools -Force
+          New-Item -ItemType Directory -Force tools/bin | Out-Null
+          Copy-Item "tools/sing-box-$env:SINGBOX_VERSION-windows-amd64/sing-box.exe" tools/bin/sing-box.exe
+
+          $xrayUrl = "https://github.com/XTLS/Xray-core/releases/download/$env:XRAY_VERSION/Xray-windows-64.zip"
+          Invoke-WebRequest -Uri $xrayUrl -OutFile xray.zip
+          $xrayHash = (Get-FileHash xray.zip -Algorithm SHA256).Hash.ToLower()
+          if ($xrayHash -ne $env:XRAY_ZIP_SHA256) { throw "xray checksum mismatch: $xrayHash" }
+          Expand-Archive xray.zip -DestinationPath tools/xray -Force
+          Copy-Item tools/xray/xray.exe tools/bin/xray.exe
+
+      - name: sing-box config check
+        run: dotnet run --project SingboxConfigVerifier -c Release --no-build -- verify_out --check tools/bin/sing-box.exe
+
+      - name: Xray config check
+        run: dotnet run --project XrayConfigVerifier -c Release --no-build -- verify_out_xray tools/bin/xray.exe
+
+      # 内核预置进 release/bin = build.ps1 的用户区 stash 链路会收走并嵌入 exe，与本地发版同一路径
+      - name: Stage kernels for embedding
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force release/bin | Out-Null
+          Copy-Item tools/bin/sing-box.exe release/bin/
+          Copy-Item tools/bin/xray.exe release/bin/
+          # Other\release 空目录：让 build.ps1 跳过 Other\build.ps1（上游上古下载脚本）；
+          # 后续 cp 通配（*.bin 等）对空集是 no-op
+          New-Item -ItemType Directory -Force Other/release | Out-Null
+
+      - name: Build release
+        shell: pwsh
+        run: .\build.ps1
+
+      # 防假产物：本地曾有 455KB 普通编译 exe / 0MB 假压缩包两类事故
+      - name: Assert artifact & checksum
+        id: artifact
+        shell: pwsh
+        run: |
+          $exe = Get-Item release/Netch.exe
+          if ($exe.Length -lt 150MB) { throw "Netch.exe suspiciously small: $($exe.Length) bytes" }
+          $hash = (Get-FileHash release/Netch.exe -Algorithm SHA256).Hash.ToLower()
+          "$hash  Netch.exe" | Set-Content SHA256SUMS.txt -Encoding ascii
+          "sha256=$hash" >> $env:GITHUB_OUTPUT
+          Write-Host "Netch.exe $($exe.Length) bytes, SHA256 $hash"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Netch-win64
+          path: |
+            release/Netch.exe
+            SHA256SUMS.txt
+          retention-days: 14
+          if-no-files-found: error
+
+      # release body 契约：末尾「校验和」表格前两行是表头——程序内更新
+      # UpdateChecker.GetLatestUpdateFileNameAndHash 从数据行读文件名 + SHA256
+      - name: Create GitHub Release
+        if: steps.meta.outputs.publish == 'true'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.meta.outputs.version }}
+          PRERELEASE: ${{ steps.meta.outputs.prerelease }}
+          SHA256: ${{ steps.artifact.outputs.sha256 }}
+        run: |
+          # tag 为纯版本号（无 v 前缀）：程序内 SuffixVersion.Parse 不认 v 前缀
+          $tag = $env:VERSION
+          gh release view $tag *> $null
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host "::notice::Release $tag already exists, skip creating."
+            exit 0
+          }
+
+          $body = Get-Content release_body.md -Raw
+          $full = "# v$tag`r`n`r`n$body`r`n`r`n## 校验和`r`n`r`n| 文件名 | SHA256 |`r`n| :- | :- |`r`n| Netch.exe | $env:SHA256 |`r`n"
+          $full | Set-Content -NoNewline full_body.md -Encoding utf8
+
+          $ghArgs = @('release', 'create', $tag,
+            'release/Netch.exe', 'SHA256SUMS.txt',
+            '--title', "v$tag", '--notes-file', 'full_body.md',
+            '--target', $env:GITHUB_SHA)
+          if ($env:PRERELEASE -eq 'true') { $ghArgs += '--prerelease' }
+          & gh @ghArgs

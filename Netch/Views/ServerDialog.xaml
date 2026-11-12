@@ -1,0 +1,24 @@
+<ui:FluentWindow x:Class="Netch.Views.ServerDialog"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:df="clr-namespace:Netch.Controls.DataForm"
+                 xmlns:loc="clr-namespace:Netch.Localization"
+                 x:Name="dialog"
+                 Title="{Binding Title}"
+                 Width="560" SizeToContent="Height"
+                 MinWidth="520" MaxHeight="720"
+                 WindowStartupLocation="CenterOwner"
+                 ResizeMode="CanResize" ShowInTaskbar="False"
+                 Background="{DynamicResource Brush.Background}">
+    <!-- 服务器编辑器（06§A4）：DataForm 描述符驱动，可拉伸、MaxHeight 内滚动；保存即关窗（去掉旧「Saved」弹窗） -->
+    <DockPanel Margin="20">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,16,0,0">
+            <Button x:Name="saveButton" Style="{StaticResource Btn.Primary}" MinWidth="88" Content="{loc:I18N common.save}" />
+            <Button x:Name="cancelButton" MinWidth="88" Margin="8,0,0,0" Content="{loc:I18N common.cancel}" />
+        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <df:DataForm x:Name="form" />
+        </ScrollViewer>
+    </DockPanel>
+</ui:FluentWindow>

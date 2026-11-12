@@ -1,0 +1,16 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Ubisoft Connect"
+  },
+  "handle": [
+    "UbisoftConnect.exe",
+    "UbisoftGameLauncher.exe",
+    "UbisoftGameLauncher64.exe",
+    "upc.exe",
+    "UplayCrashReporter.exe",
+    "UplayService.exe",
+    "UplayWebCore.exe"
+  ],
+  "bypass": []
+}

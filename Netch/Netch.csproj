@@ -1,0 +1,152 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\common.props" />
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <Configurations>Debug;Release</Configurations>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <ApplicationManifest>App.manifest</ApplicationManifest>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <ApplicationIcon>Resources\Netch.ico</ApplicationIcon>
+    <IsPackable>false</IsPackable>
+    <!-- event handler async void Warning -->
+    <!-- CA1416: CsWin32 生成的 P/Invoke（ntohs/inet_pton 等 ws2_32 函数）OS 版本注解过保守，Win7 实际可用 -->
+    <NoWarn>VSTHRD100;CA1416</NoWarn>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisMode>Default</AnalysisMode>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <!-- WPF 入口（04）：防 CS0017 双 Main（Program.Main 已删，保险起见显式声明） -->
+    <StartupObject>Netch.App</StartupObject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="Serilog" />
+  </ItemGroup>
+
+  <!-- 托盘图标嵌入（App.LoadTrayIconSource 程序集流加载）：曾按 NetchDir 文件分发，release/ 目录被清后炸掉整个启动（2026-10-29 无窗口事故），图标必须跟随 exe -->
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Netch.ico" />
+    <!-- 内核随包（咩咩 2026-10-31 拍板）：发版 exe 自带内核，首启缺失/残缺时 KernelBootstrap 自动释放，
+         用户区有效内核（含自行升级版）永不回写。zip 由 build.ps1 发布时从用户区内核压缩生成到 Storage\kernel\，
+         开发构建目录缺失即不嵌入（Condition）→ 资源缺失时 EnsureKernel 静默跳过。zip 不进 git（.gitignore） -->
+    <EmbeddedResource Include="..\Storage\kernel\sing-box.zip" Link="KernelEmbed\sing-box.zip" Condition="Exists('..\Storage\kernel\sing-box.zip')" />
+    <EmbeddedResource Include="..\Storage\kernel\xray.zip" Link="KernelEmbed\xray.zip" Condition="Exists('..\Storage\kernel\xray.zip')" />
+  </ItemGroup>
+
+  <!-- 启用 WPF 后 SDK 不再隐式注入这两个命名空间（桌面负载移除规则），显式补回保持源码零改动 -->
+  <ItemGroup>
+    <Using Include="System.IO" />
+    <Using Include="System.Net.Http" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="2.0.1" />
+    <!-- 选型 spike（_tools/spike-wpfui）四条判定全过：net10 编译/主题切换/单文件增量 6.27MB≤15MB/SymbolIcon 渲染 -->
+    <PackageReference Include="WPF-UI" Version="4.3.0" />
+    <PackageReference Include="ConfigureAwait.Fody" Version="3.3.2">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Fody" Version="6.6.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="HMBSbige.SingleInstance" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="3.0.7" GeneratePathProperty="true" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.5.22" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.1.588-beta">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Nullable.Extended.Analyzer" Version="1.10.4539">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog" Version="2.12.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="5.0.1" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+    <PackageReference Include="Stun.Net" Version="6.2.0" />
+    <PackageReference Include="System.Management" Version="7.0.0" />
+    <PackageReference Include="TaskScheduler" Version="2.10.1" />
+    <PackageReference Include="WindowsFirewallHelper" Version="2.2.0.86" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="7.0.0" />
+    <PackageReference Include="WindowsJobAPI" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Forms\SyncGlobalCheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="NativeMethods.txt" />
+    <None Update="NOTICE.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- 托盘/窗口图标：按文件分发（pack Resource 嵌入在自包含 publish 下不可靠），代码从 NetchDir\Resources 加载 -->
+    <Content Include="Resources\Netch.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <!-- 7za（更新解压用，原 Properties/Resources.resx 嵌入字节随 WinForms 资源体系退役改文件分发）；
+         .exe 扩展名会被单文件 publish 归入 bundle 候选而漏拷，显式钉 CopyToPublishDirectory 修正 -->
+    <Content Include="Resources\7za.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+  </ItemGroup>
+
+  <!-- 内置规则集快照：分发到 bin\rule-set\（sing-box remote rule_set 的 initial_path 离线兜底；
+       内核 WorkingDirectory=NetchDir\bin，initial_path 按 rule-set\x.srs 相对 bin 解析） -->
+  <ItemGroup>
+    <Content Include="..\Other\rule-sets\*.srs">
+      <Link>bin\rule-set\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!-- wintun.dll：sing-box tun 依赖（内核 WorkingDirectory=NetchDir\bin，sing-box 按自身同目录查找），
+       Other\wintun\build.ps1 下载后分发，不再覆盖 System32 -->
+  <ItemGroup>
+    <Content Include="..\Other\wintun\wintun.dll" Condition="Exists('..\Other\wintun\wintun.dll')">
+      <Link>bin\wintun.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Condition="'$(PublishSingleFile)' == 'true'" AfterTargets="_ComputeFilesToBundle" Name="RemoveDupeAssemblies">
+    <ItemGroup>
+      <_FilesToBundle Remove="$(PkgMicrosoft_Diagnostics_Tracing_TraceEvent)\build\native\x86\**" />
+    </ItemGroup>
+  </Target>
+
+</Project>

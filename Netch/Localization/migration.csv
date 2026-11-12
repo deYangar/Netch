@@ -1,0 +1,653 @@
+﻿key,en,zh,source,interpolation
+common.colon,: ,：,: ,0
+common.info,Information,信息,Information,0
+common.error,Error,错误,Error,0
+controller.missingFileRuntimeComponents,Missing File or runtime components,缺少文件或运行库,Missing File or runtime components,0
+common.extractAllFilesThenRun,Please extract all files then run the program!,请先解压所有文件再执行程序！,Please extract all files then run the program!,0
+main.start,Start,启动,Start,0
+main.stop,Stop,停止,Stop,0
+main.state.waiting,Waiting for command,等待命令中,Waiting for command,0
+main.starting,Starting,正在启动中,Starting,0
+main.startFailed,Start failed,启动失败,Start failed,0
+main.state.started,Started,已启动,Started,0
+main.stopping,Stopping,正在停止中,Stopping,0
+main.state.stopped,Stopped,已停止,Stopped,0
+controller.starting0,Starting {0},正在启动 {0},Starting {0},0
+main.nat.testing,Testing NAT Type,正在测试 NAT 类型,Testing NAT Type,0
+common.setupRouteTableRule,Setup Route Table Rule,配置路由规则,Setup Route Table Rule,0
+main.nat.failed,Test failed,测试失败,Test failed,0
+subscription.updating,Updating servers,正在更新服务器,Updating servers,0
+subscription.updated,Servers updated,服务器更新完毕,Servers updated,0
+controller.installingNetfilter2Driver,Installing netfilter2 driver,正在安装 netfilter2 驱动,Installing netfilter2 driver,0
+common.assigningUnicastIp,Assigning unicast IP,正在分配单播 IP,Assigning unicast IP,0
+common.server,Server,服务器,Server,0
+common.importServersFromClipboard,Import Servers From Clipboard,从剪贴板导入服务器,Import Servers From Clipboard,0
+home.addServerFormat,Add [{0}] Server,添加 [{0}] 服务器,Add [{0}] Server,0
+main.netchMinimizedNotificationBarDouble,"Netch is now minimized to the notification bar, double click this icon to restore.",Netch 已最小化至通知栏，双击此图标恢复窗口,"Netch is now minimized to the notification bar, double click this icon to restore.",0
+main.newVersion,New version available,发现新版本,New version available,0
+main.newVersionCheckFailed,Version check failed (network error),检查新版本失败（网络错误）,,0
+main.alreadyLatestVersion,Already latest version,已经是最新版本,Already latest version,0
+main.checkUpdateFailed,Check for update failed,检查更新失败,Check for update failed,0
+common.mode,Mode,模式,Mode,0
+common.help,Help,帮助,Help,0
+common.checkUpdate,Check for update,检查更新,Check for update,0
+common.downloadInstall,Download and install now?,立即下载并安装？,Download and install now?,0
+main.startDownloadingNewVersion,Start downloading new version,开始下载新版本,Start downloading new version,0
+common.downloadUpdateFailed,Download update failed,下载更新错误,Download update failed,0
+common.createProcessMode,Create Process Mode,创建进程模式,Create Process Mode,0
+common.editProcessMode,Edit Process Mode,修改进程模式,Edit Process Mode,0
+common.createRouteTableRule,Create Route Table Rule,创建路由表规则,Create Route Table Rule,0
+common.editRouteTableRule,Edit Route Table Rule,修改路由表规则,Edit Route Table Rule,0
+common.reloadModes,Reload Modes,重新加载模式,Reload Modes,0
+common.handleRules,Handle rules,处理规则,Handle rules,0
+common.bypassRules,Bypass rules,分流规则,Bypass rules,0
+common.handleDnsThroughProxy,Handle DNS through proxy,经过代理处理 DNS,Handle DNS through proxy,0
+common.address,Address,地址,Address,0
+common.username,Username,用户名,Username,0
+common.user,User,用户,User,0
+common.password,Password,密码,Password,0
+common.version,Version,版本,Version,0
+common.userId,User ID,用户 ID,User ID,0
+common.alterId,Alter ID,额外 ID,Alter ID,0
+common.transferProtocol,Transfer Protocol,传输协议,Transfer Protocol,0
+common.fakeType,Fake Type,伪装类型,Fake Type,0
+common.host,Host,主机,Host,0
+common.path,Path,路径/服务名称,Path,0
+common.quicSecurity,QUIC Security,QUIC 加密方式,QUIC Security,0
+common.quicSecret,QUIC Secret,QUIC 加密密钥,QUIC Secret,0
+common.grpcMode,GRPC Mode,QUIC 模式,GRPC Mode,0
+common.grpcServicename,GRPC ServiceName,QUIC 服务名称,GRPC ServiceName,0
+common.tlsSecure,TLS Secure,TLS 底层传输安全,TLS Secure,0
+common.useMux,Use Mux,Mux 多路复用,Use Mux,0
+common.encryptMethod,Encrypt Method,加密方式,Encrypt Method,0
+common.protocol,Protocol,协议,Protocol,0
+common.protocolParam,Protocol Param,协议参数,Protocol Param,0
+common.obfs,OBFS,混淆,OBFS,0
+common.obfsParam,OBFS Param,混淆参数,OBFS Param,0
+settings.saved,Saved,保存成功,Saved,0
+common.plugin,Plugin,插件,Plugin,0
+common.pluginOptions,Plugin Options,插件参数,Plugin Options,0
+common.remoteAddress,Remote Address,远端地址,Remote Address,0
+common.localAddresses,Local Addresses,本地地址(可多个),Local Addresses,0
+common.publicKey,Public Key,公钥,Public Key,0
+common.privateKey,Private Key,私钥,Private Key,0
+common.psk,PSK,节点预共享密钥,PSK,0
+common.subscription,Subscription,订阅,Subscription,0
+common.manageSubscriptions,Manage Subscriptions,管理订阅,Manage Subscriptions,0
+common.updateServers,Update Servers,更新服务器,Update Servers,0
+subscription.none,No subscription link,没有任何一条订阅链接,No subscription link,0
+common.updating0,Updating {0},正在更新 {0},Updating {0},0
+subscription.update1ServerSFrom,Update {1} server(s) from {0},从 {0} 更新了 {1} 个服务器,Update {1} server(s) from {0},0
+subscription.updateServersFailedFrom0,Update servers failed from {0},从 {0} 更新服务器失败,Update servers failed from {0},0
+subscription.confirmDeletion,Confirm deletion?,确认删除？,Confirm deletion?,0
+common.deleteServers,Delete Servers,删除订阅节点,Delete Servers,0
+common.copyLink,Copy link,复制链接,Copy link,0
+common.status,Status,状态,Status,0
+common.link,Link,链接,Link,0
+common.unselect,Unselect,取消选择,Unselect,0
+common.options,Options,选项,Options,0
+common.nfService,NF Service,NF 服务,NF Service,0
+common.tunTapDriver,TUN/TAP driver,TUN/TAP 驱动,TUN/TAP driver,0
+common.uninstall0,Uninstall {0},卸载 {0},Uninstall {0},0
+main.uninstalling0,Uninstalling {0},正在卸载 {0} 中,Uninstalling {0},0
+main.0HasBeenUninstalled,{0} has been uninstalled,{0} 已卸载,{0} has been uninstalled,0
+common.cleanDnsCache,Clean DNS Cache,清理 DNS 缓存,Clean DNS Cache,0
+main.dnsCacheCleanupSucceeded,DNS cache cleanup succeeded,DNS 缓存清理成功,DNS cache cleanup succeeded,0
+common.removeNetchFirewallRules,Remove Netch Firewall Rules,移除 Netch 防火墙规则,Remove Netch Firewall Rules,0
+common.openDirectory,Open Directory,打开目录,Open Directory,0
+common.showHideConsole,Show/Hide Console,显示/隐藏控制台,Show/Hide Console,0
+common.about,About,关于,About,0
+common.faq,FAQ,常见问题,FAQ,0
+common.telegramChannel,Telegram Channel,Telegram 频道,Telegram Channel,0
+common.sponsor,Sponsor,赞助商,Sponsor,0
+common.configuration,Configuration,配置信息,Configuration,0
+main.pressStopButtonFirst,Please press Stop button first,请先点击停止按钮,Please press Stop button first,0
+home.selectServerFirst,Please select a server first,请先选择一个服务器,Please select a server first,0
+home.selectModeFirst,Please select a mode first,请先选择一个模式,Please select a mode first,0
+common.profileNameFirst,Please enter a profile name first,请先为该配置设置一个名称,Please enter a profile name first,0
+home.noSavedProfileHereSave,No saved profile here. Save a profile first by Ctrl+Click on the button,当前按钮下没有保存配置，请先使用 CTRL + 左键 点击该按钮保存一个配置,No saved profile here. Save a profile first by Ctrl+Click on the button,0
+controller.lookupServerHostnameFailed,Lookup Server hostname failed,解析服务器主机名失败,Lookup Server hostname failed,0
+common.used,Used,已使用,Used,0
+common.testing,Testing,测试中,Testing,0
+common.remark,Remark,备注,Remark,0
+common.filename,Filename,文件名,Filename,0
+subscription.add,Add,添加,Add,0
+common.scan,Scan,扫描,Scan,0
+common.save,Save,保存,Save,0
+subscription.modify,Modify,修改,Modify,0
+common.select,Select,选择,Select,0
+common.validation,Validation,验证,Validation,0
+common.action,Action,动作,Action,0
+common.selectFolder,Select a folder,选择一个目录,Select a folder,0
+common.processNameXxxExe,Please enter an process name (xxx.exe),请输入一个进程名（xxx.exe）,Please enter an process name (xxx.exe),0
+common.ruleDoesNotConformC,Rule does not conform to C++ regular expression syntax,规则不符合 C++ 正则表达式语法,Rule does not conform to C++ regular expression syntax,0
+common.scanCompleted,Scan completed,扫描完成,Scan completed,0
+modeEditor.modeAddedSuccessfully,Mode added successfully,模式添加成功,Mode added successfully,0
+modeEditor.modeUpdatedSuccessfully,Mode updated successfully,模式修改成功,Mode updated successfully,0
+common.unableAddEmptyRule,Unable to add empty rule,无法添加空规则,Unable to add empty rule,0
+modeEditor.modeRemark,Please enter a mode remark,请输入模式的备注,Please enter a mode remark,0
+common.modeFilename,Please enter a mode filename,请输入模式的文件名,Please enter a mode filename,0
+controller.aboveRulesDoesNotConform,Above rules does not conform to C++ regular expression syntax,以上规则不符合 C++ 正则表达式语法,Above rules does not conform to C++ regular expression syntax,0
+common.proxyRuleIps,Proxy Rule IPs,代理规则 IP,Proxy Rule IPs,0
+common.bypassRuleIps,Bypass Rule IPs,绕过规则 IP,Bypass Rule IPs,0
+common.delete,Delete,删除,Delete,0
+subscription.deleteNotWillCleanUp,Delete or not ? Will clean up the corresponding group of items in the server list,是否删除？将会清理服务器列表中对应组的项目,Delete or not ? Will clean up the corresponding group of items in the server list,0
+subscription.remarkCanNotBeEmpty,Remark can not be empty,备注不可为空,Remark can not be empty,0
+subscription.linkCanNotBeEmpty,Link can not be empty,链接不可为空,Link can not be empty,0
+subscription.subscriptionSpecifiedRemarkAlreadyExists,Subscription with the specified remark already exists,带有指定备注的订阅已存在,Subscription with the specified remark already exists,0
+subscription.linkMustStartHttpHttps,Link must start with http:// or https://,链接必须以 http:// 或 https:// 开头,Link must start with http:// or https://,0
+common.settings,Settings,设置,Settings,0
+common.startOpened,Start when opened,打开软件时启动加速,Start when opened,0
+common.minimizeStarted,Minimize when started,启动加速后隐藏,Minimize when started,0
+common.runAtStartup,Run at startup,开机自动启动,Run at startup,0
+main.localPort,Local Port,本地端口,Local Port,0
+main.allowOtherDevicesConnect,Allow other Devices to connect,允许其他设备连入,Allow other Devices to connect,0
+common.netmask,Netmask,子网掩码,Netmask,0
+common.gateway,Gateway,网关,Gateway,0
+common.useCustomDns,Use custom DNS,使用自定义 DNS,Use custom DNS,0
+common.proxyDns,Proxy DNS,代理 DNS,Proxy DNS,0
+common.exitClosed,Exit when closed,关闭时退出,Exit when closed,0
+common.stopExited,Stop when exited,退出时停止,Stop when exited,0
+common.globalBypassIps,Global Bypass IPs,全局直连 IP,Global Bypass IPs,0
+common.checkUpdateOpened,Check update when opened,打开软件时检查更新,Check update when opened,0
+common.checkBetaUpdate,Check Beta update,检查 Beta 更新,Check Beta update,0
+common.updateServersOpened,Update Servers when opened,打开软件时更新服务器,Update Servers when opened,0
+common.handleIcmp,Handle ICMP,处理 ICMP,Handle ICMP,0
+common.handleTcp,Handle TCP,处理 TCP,Handle TCP,0
+common.handleUdp,Handle UDP,处理 UDP,Handle UDP,0
+common.handleDnsDnsHijacking,Handle DNS (DNS hijacking),处理 DNS（DNS 劫持）,Handle DNS (DNS hijacking),0
+common.handleHandledProcessSDns,Handle handled process's DNS,处理被处理进程 DNS,Handle handled process's DNS,0
+common.handleLocalLoopback,Handle local loopback,处理本地回环,Handle local loopback,0
+common.handleLan,Handle LAN,处理局域网,Handle LAN,0
+common.handleChildProcess,Handle child process,处理子进程,Handle child process,0
+common.icmpDelayMs,ICMP delay(ms),ICMP 延迟（毫秒）,ICMP delay(ms),0
+common.modeSpecificOptions,Mode specific options,模式专用设置,Mode specific options,0
+common.profileCount,Profile Count,快捷配置数量,Profile Count,0
+common.delayTestAfterStartSec,Delay test after start(sec),启动后延迟测试（秒）,Delay test after start(sec),0
+common.pingProtocol,Ping Protocol,延迟测试协议,Ping Protocol,0
+common.detectionTickSec,Detection Tick(sec),检测心跳（秒）,Detection Tick(sec),0
+common.stunServer,STUN Server,STUN 服务器,STUN Server,0
+common.language,Language,语言,Language,0
+common.fullconeSupportRequiredServerXray,FullCone Support (Required Server Xray-core v1.3.0+),FullCone 支持（需服务端 Xray-core v1.3.0+）,FullCone Support (Required Server Xray-core v1.3.0+),0
+common.tcpFastopen,TCP FastOpen,TCP 快速打开,TCP FastOpen,0
+common.disableSupportWarning,Disable Support Warning,停用支持警告,Disable Support Warning,0
+common.profile,Profile,配置名,Profile,0
+common.profiles,Profiles,配置,Profiles,0
+main.none,None,无,None,0
+common.show,Show,显示,Show,0
+tray.exit,Exit,退出,Exit,0
+controller.0PortUse,The {0} port is in use.,{0} 端口已被占用,The {0} port is in use.,0
+controller.0PortReservedSystem,The {0} port is reserved by system.,{0} 端口是系统保留端口,The {0} port is reserved by system.,0
+common.0WonTGetDevelopers,"{0} won't get developers' support, Please do not report any issues or seek help from developers.",{0} 将不会得到开发者的支持，请不要报告任何问题或寻求开发人员的帮助。,"{0} won't get developers' support, Please do not report any issues or seek help from developers.",0
+common.noSupport,No Support,不受支持,No Support,0
+common.currentNode,Current Node,当前节点,Current Node,0
+common.autoSelectFastestNodeGroup,Auto select the fastest node in group on start (urltest),分组启动时自动选择最快节点（urltest）,Auto select the fastest node in group on start (urltest),0
+common.kernelUpdate,Kernel Update,内核更新,Kernel Update,0
+common.downloadUpdate,Download and Update,下载更新,Download and Update,0
+settings.0NotFoundBinDirectory,{0} not found in bin directory,bin 目录下未找到 {0},{0} not found in bin directory,0
+common.selfManagedKernelPlaceOfficial,Self-managed kernel: place official kernel executables in the bin directory,自备内核：将官方内核可执行文件放入 bin 目录即可,Self-managed kernel: place official kernel executables in the bin directory,0
+common.openBinFolder,Open bin folder,打开 bin 目录,Open bin folder,0
+controller.youCanDownloadSettingsKernel,"You can download it on the settings Kernel page, or place the official kernel executable in the bin directory yourself",可在设置「内核」页下载，或将官方内核可执行文件自行放入 bin 目录,"You can download it on the settings Kernel page, or place the official kernel executable in the bin directory yourself",0
+settings.checkingKernelUpdates,Checking for kernel updates,正在检查内核更新,Checking for kernel updates,0
+settings.newKernelVersionFound0,New kernel version found: {0},发现新内核版本：{0},New kernel version found: {0},0
+settings.checkKernelUpdateFailed,Check kernel update failed,检查内核更新失败,Check kernel update failed,0
+settings.downloadingKernelUpdate,Downloading kernel update,正在下载内核更新,Downloading kernel update,0
+settings.kernelUpdated0,Kernel updated to {0},内核已更新到 {0},Kernel updated to {0},0
+settings.kernelUpdateFailed,Kernel update failed,内核更新失败,Kernel update failed,0
+settings.noSuitableKernelPackageFound,No suitable kernel package found in release,发行版中没有适合的内核安装包,No suitable kernel package found in release,0
+update.fetchKernelReleaseFailed,Fetch kernel release failed,获取内核发行信息失败,Fetch kernel release failed,0
+update.stopProxyBeforeUpdatingKernel,Stop the proxy before updating the kernel,更新内核前请先停止代理,Stop the proxy before updating the kernel,0
+update.0FileUse,The {0} file is in use,{0} 文件被占用,The {0} file is in use,0
+update.downloadSourceDidNotProvide,"Download source did not provide a checksum, update cancelled",下载源未提供校验和，已取消更新,"Download source did not provide a checksum, update cancelled",0
+update.kernelChecksumMismatchUpdateCancelled,"Kernel checksum mismatch, update cancelled",内核校验和不匹配，已取消更新,"Kernel checksum mismatch, update cancelled",0
+update.kernelFileNotFoundRelease,Kernel file not found in release archive,发行包中未找到内核文件,Kernel file not found in release archive,0
+update.restartFailed0,Kernel update finished but restart failed,内核更新完成，但拉起失败,,0
+update.kernelSmokeCheckFailedRolled,"Kernel smoke check failed, rolled back",内核更新后自检失败，已回滚,"Kernel smoke check failed, rolled back",0
+common.routingRules,Routing rules,路由规则,Routing rules,0
+common.edit,Edit,编辑,Edit,0
+common.remove,Remove,删除,Remove,0
+common.up,Up,上移,Up,0
+common.down,Down,下移,Down,0
+common.domainSuffix,Domain suffix,域名后缀,Domain suffix,0
+common.domain,Domain,域名,Domain,0
+common.domainKeyword,Domain keyword,域名关键字,Domain keyword,0
+common.domainRegex,Domain regex,域名正则表达式,Domain regex,0
+common.port,Port,端口,Port,0
+common.confirm,Confirm,确认,Confirm,0
+common.cancel,Cancel,取消,Cancel,0
+common.proxy,Proxy,代理,Proxy,0
+common.direct,Direct,直连,Direct,0
+common.block,Block,阻止,Block,0
+common.editRouteRule,Edit Route Rule,编辑路由规则,Edit Route Rule,0
+modeEditor.checkedMatcherRequiresAtLeast,Checked matcher requires at least one value,勾选的匹配项至少需要填写一个值,Checked matcher requires at least one value,0
+modeEditor.routeRuleRequiresAtLeast,Route rule requires at least one matcher (domain/ip/port/protocol),路由规则至少需要一个匹配条件（域名/IP/端口/协议）,Route rule requires at least one matcher (domain/ip/port/protocol),0
+kernel.invalidPortRange0Expected,"Invalid port or range ""{0}"" (expected 443 or 1000:2000)","端口或端口范围 ""{0}"" 无效（应为 443 或 1000:2000）","Invalid port or range ""{0}"" (expected 443 or 1000:2000)",0
+kernel.unknownSniffedProtocol0Supported,"Unknown sniffed protocol ""{0}"" (supported: {1})","未知的嗅探协议 ""{0}""（支持：{1}）","Unknown sniffed protocol ""{0}"" (supported: {1})",0
+kernel.invalidDomainRegex0,"Invalid domain regex ""{0}""","域名正则表达式 ""{0}"" 无效","Invalid domain regex ""{0}""",0
+kernel.invalidIpCidr0,"Invalid IP CIDR ""{0}""","IP CIDR ""{0}"" 无效","Invalid IP CIDR ""{0}""",0
+common.ruleSet,Rule Set,规则集,Rule Set,0
+common.ruleSets,Rule Sets,规则集,Rule Sets,0
+common.editRuleSet,Edit Rule Set,编辑规则集,Edit Rule Set,0
+common.ruleSetTag,Rule set tag,规则集标识,Rule set tag,0
+common.urlSrs,URL (.srs),URL（.srs）,URL (.srs),0
+common.updateInterval,Update interval,更新间隔,Update interval,0
+common.builtGeositeCnGeoipCn,"Built-in: geosite-cn, geoip-cn (no configuration needed)",内置：geosite-cn、geoip-cn（无需配置）,"Built-in: geosite-cn, geoip-cn (no configuration needed)",0
+common.downloadRuleSetsViaProxy,Download rule sets via proxy,规则集经代理下载,Download rule sets via proxy,0
+kernel.unknownRuleSet0,"Unknown rule set ""{0}""","未知规则集 ""{0}""，请先在设置中添加","Unknown rule set ""{0}""",0
+ruleSet.invalidRuleSetTag0,"Invalid rule set tag ""{0}"" (expected: letters, digits, dash)","无效的规则集标识 ""{0}""（应为字母、数字、连字符）","Invalid rule set tag ""{0}"" (expected: letters, digits, dash)",0
+ruleSet.tag0ConflictsBuiltRule,"Tag ""{0}"" conflicts with a built-in rule set","标识 ""{0}"" 与内置规则集冲突","Tag ""{0}"" conflicts with a built-in rule set",0
+ruleSet.invalidRuleSetUrl0,"Invalid rule set URL ""{0}""","无效的规则集 URL ""{0}""","Invalid rule set URL ""{0}""",0
+ruleSet.invalidUpdateInterval0Expected,"Invalid update interval ""{0}"" (expected: 30m, 1d, ...)","无效的更新间隔 ""{0}""（应为 30m、1d 等）","Invalid update interval ""{0}"" (expected: 30m, 1d, ...)",0
+settings.tag0AlreadyExists,"Tag ""{0}"" already exists","标识 ""{0}"" 已存在","Tag ""{0}"" already exists",0
+common.dnsPolicy,DNS Policy,DNS 策略,DNS Policy,0
+common.chinaDnsServerIpPort,China DNS server (IP[:port]),国内 DNS（IP[:端口]）,China DNS server (IP[:port]),0
+common.remoteDnsDoh,Remote DNS (DoH),远程 DNS（DoH）,Remote DNS (DoH),0
+common.processModeDnsHijackedSing,Process mode DNS is hijacked by sing-box kernel (port 53),进程模式 DNS 由 sing-box 内核劫持（端口 53）,Process mode DNS is hijacked by sing-box kernel (port 53),0
+common.aiodnsTunModeLegacy,AioDNS (TUN mode legacy),AioDNS（TUN 模式专用）,AioDNS (TUN mode legacy),0
+kernel.invalidDnsServer0,"Invalid DNS server ""{0}""","无效的 DNS 服务器 ""{0}""","Invalid DNS server ""{0}""",0
+common.auto,Auto,自动（国内直连，其余经代理）,Auto,0
+common.allViaProxy,All via proxy,全部经代理,All via proxy,0
+common.allDirectCn,All direct (CN),全部国内直连,All direct (CN),0
+common.custom,Custom,自定义,Custom,0
+common.connections,Connections,连接,Connections,0
+common.process,Process,进程,Process,0
+common.kernel,Kernel,内核,Kernel,0
+common.target,Target,目标,Target,0
+common.rule,Rule,规则,Rule,0
+common.outboundChain,Outbound chain,出站链,Outbound chain,0
+common.sniffedHost,Sniffed host,嗅探域名,Sniffed host,0
+connections.startNetchViewConnections,Start Netch to view connections,启动 Netch 后可查看连接,Start Netch to view connections,0
+common.noActiveConnections,No active connections,暂无活动连接,No active connections,0
+common.history,History,历史,History,0
+common.pauseRefresh,Pause refresh,暂停刷新,Pause refresh,0
+common.filter,Filter,筛选,Filter,0
+common.filterDomainIpRuleOutbound,Filter (domain / IP / rule / outbound),筛选（域名 / IP / 规则 / 出站）,Filter (domain / IP / rule / outbound),0
+common.clearHistory,Clear history,清空历史,Clear history,0
+common.restoreWindowSize,Restore window size,恢复默认窗口大小,Restore window size,0
+common.copyRow,Copy row,复制整行,Copy row,0
+common.other,Other,其他,Other,0
+connections.closedConnections,Closed connections,已关闭连接,Closed connections,0
+common.verboseRedirectorLogTroubleshooting,Verbose redirector log (troubleshooting),Redirector 详细日志（排查用）,Verbose redirector log (troubleshooting),0
+common.reliability,Reliability,可靠性,Reliability,0
+common.pauseNetworkLoss,Pause on network loss,断网时自动暂停,Pause on network loss,0
+common.restartKernelCrash,Restart kernel on crash,内核意外退出时自动重启,Restart kernel on crash,0
+common.networkDebounceSeconds,Network debounce (seconds),网络事件防抖（秒）,Network debounce (seconds),0
+main.state.degraded,Waiting for network,等待网络…,Waiting for network,0
+main.restoringNetwork,Restoring network,正在恢复网络…,Restoring network,0
+main.networkRestoredConnectionRebuilt,"Network restored, connection rebuilt",网络已恢复，连接已重建,"Network restored, connection rebuilt",0
+main.autoRestoreFailedStopped,"Auto restore failed, stopped",自动恢复失败，已停止,"Auto restore failed, stopped",0
+main.kernelExitedUnexpectedlyRestarting0,"Kernel exited unexpectedly, restarting ({0}/{1})",内核意外退出，正在重启（{0}/{1}）,"Kernel exited unexpectedly, restarting ({0}/{1})",0
+main.kernelKeepsExitingStopped,"Kernel keeps exiting, stopped",内核反复退出，已停止,"Kernel keeps exiting, stopped",0
+main.kernelFatalStopped,"Kernel reported a fatal error and was stopped (no auto restart). Check the kernel log for details",内核报致命错误已停止（不再自动重启），详情见内核日志,,0
+controller.failedRegisterNetfilter2Driver,Failed to register netfilter2 driver,注册 netfilter2 驱动失败,Failed to register netfilter2 driver,0
+common.useProxySubscriptionUpdates,Use proxy for subscription updates,订阅更新走代理,Use proxy for subscription updates,0
+controller.tunModeOnlySupportedSing,"TUN mode is only supported by sing-box kernel, switch server or kernel",TUN 模式仅支持 sing-box 内核，请更换节点或内核,"TUN mode is only supported by sing-box kernel, switch server or kernel",0
+controller.tunInterfaceWasNotCreated,TUN interface was not created,TUN 接口创建失败,TUN interface was not created,0
+common.runNetchAsAdministratorMake,Run Netch as administrator and make sure bin\wintun.dll exists,请以管理员身份运行 Netch，并确认 bin\wintun.dll 存在,Run Netch as administrator and make sure bin\wintun.dll exists,0
+common.protocolStack,Protocol stack,协议栈,Protocol stack,0
+common.strictRoutePreventDnsLeak,Strict route (prevent DNS leak),严格路由（防 DNS 泄漏）,Strict route (prevent DNS leak),0
+common.tun,TUN,TUN,TUN,0
+tray.show,Show main window,显示主窗口,Show main window,0
+controller.binMainfileFileNotFound,bin\\{mainFile} file not found!,bin\{mainFile} 文件不存在！,bin\\{mainFile} file not found!,1
+controller.unhandledException,Unhandled Exception,未处理异常,Unhandled Exception,0
+controller.serverType0NotSupported,Server type {0} is no longer supported,{0} 协议不再支持,Server type {0} is no longer supported,0
+controller.0PortUsed1,The {0} port is used by {1}.,{0} 端口被 {1} 占用。,The {0} port is used by {1}.,0
+controller.builtinDriverFilesMissingCan,"builtin driver files missing, can't install NF driver",内置驱动文件缺失，无法安装 NF 驱动,"builtin driver files missing, can't install NF driver",0
+controller.runNetchAsAdministratorMake,Run Netch as administrator and make sure bin\\wintun.dll exists,请以管理员身份运行 Netch 并确认 bin\wintun.dll 存在,Run Netch as administrator and make sure bin\\wintun.dll exists,0
+common.ok,OK,确定,OK,0
+common.warn,Warning,警告,Warning,0
+bypassIp.correctIpAddress,Please enter a correct IP address,请输入正确的 IP 地址,Please enter a correct IP address,0
+bypassIp.ip,Please enter an IP,请输入 IP,Please enter an IP,0
+bypassIp.selectIp,Please select an IP,请选择 IP,Please select an IP,0
+home.importDone,Import {0} server(s) form Clipboard,已从剪贴板导入 {0} 个服务器,Import {0} server(s) form Clipboard,0
+main.unhandledUpdateServersError,Unhandled update servers error,更新服务器发生未处理错误,Unhandled update servers error,0
+main.unhandledUiErrorTip,An unexpected UI error occurred,界面发生未处理错误,,0
+configuration.loadFailedExit,"Settings file and its backup are both damaged. Netch cannot start; see logging\\netch.log for details",配置文件及其备份均损坏，Netch 无法启动；详情见 logging\netch.log,,0
+main.downloadedFileHasWrongHash,The downloaded file has the wrong hash,下载的文件哈希不正确,The downloaded file has the wrong hash,0
+settings.invalidValue,Invalid value,无效的值,Invalid value,0
+modeEditor.numberExecutableFilesPathDirectory,"The number of executable files in the ""{path}"" directory is greater than {maxCount}","""{path}"" 目录下的可执行文件数量超过 {maxCount}","The number of executable files in the ""{path}"" directory is greater than {maxCount}",1
+kernel.serverType0NotSupported,Server type {0} is not supported by sing-box kernel,sing-box 内核不支持 {0} 协议,Server type {0} is not supported by sing-box kernel,0
+kernel.shadowsocksrNotSupportedSingBox,ShadowsocksR is not supported by sing-box,sing-box 内核不支持 ShadowsocksR,ShadowsocksR is not supported by sing-box,0
+kernel.vlessRealityRequiresRealityPublickey,VLESS reality requires Reality PublicKey (pbk),VLESS Reality 需要 Reality 公钥（pbk）,VLESS reality requires Reality PublicKey (pbk),0
+kernel.vmessVlessTcpHeaderObfuscation,VMess/VLESS tcp header obfuscation is not supported by sing-box,sing-box 内核不支持 VMess/VLESS tcp 头部混淆,VMess/VLESS tcp header obfuscation is not supported by sing-box,0
+kernel.vmessVlessTransportNotSupported,VMess/VLESS transport is not supported by sing-box,sing-box 内核不支持 VMess/VLESS 传输层,VMess/VLESS transport is not supported by sing-box,0
+update.7zaUnexpectedlyExitedExitcode,7za unexpectedly exited. ({exitCode}),7za 异常退出（{exitCode}）,7za unexpectedly exited. ({exitCode}),1
+update.updateFileTopLevelDirectory,Update file top-level directory not exist,更新文件顶层目录不存在,Update file top-level directory not exist,0
+update.updateFileMainProgramNot,Update file main program not exist,更新文件中主程序不存在,Update file main program not exist,0
+home.deleteServer0,Delete server {0}?,删除服务器 {0}？,Delete server {0}?,0
+home.deleteMode0,Delete mode {0}?,删除模式 {0}？,Delete mode {0}?,0
+common.checkUpdateBtn,Check Update,检查更新,Check Update,0
+common.timeout,Timeout,超时,Timeout,0
+main.update.downloadConfirm,"Download and install now?
+
+{0}","立即下载并安装？
+
+{0}",$-interp,0
+controller.kernelBinMissing,bin\{0} file not found!,bin\{0} 文件不存在！,$-interp,0
+controller.kernel0StartFailed,{0} controller failed to start,{0} 控制器启动失败,,0
+controller.kernel0StartTimeout,{0} controller start timed out,{0} 控制器启动超时,,0
+update.7zaExited,7za unexpectedly exited. ({0}),7za 异常退出（{0}）,$-interp,0
+update.exeCountOver,The number of executable files in the {path} directory is greater than {maxCount},{path} 目录下的可执行文件数量超过 {maxCount},,1
+settings.general.socks5,Socks5,Socks5,,0
+settings.process.title,Process Mode,进程模式,,0
+settings.v2ray.title,V2Ray,V2Ray,,0
+settings.dns.title,DNS,DNS,,0
+settings.others.title,Others,其他,,0
+settings.general.title,General,常规,,0
+settings.rulesets.builtinEnable,"Enable built-in rule sets (geosite-cn, geoip-cn)",启用内置规则集（geosite-cn、geoip-cn）,,0
+settings.v2ray.tlsAllowInsecure,TLS AllowInsecure,TLS 允许不安全,,0
+settings.v2ray.kcp,KCP,KCP,,0
+settings.others.exitWhenClose,Exit when Close,关闭窗口时退出,,0
+settings.others.stopWhenExited,Stop when Exited,退出时停止,,0
+settings.others.startWhenOpened,Start when Opened,打开软件时启动,,0
+settings.others.minimizeWhenStarted,Minimize when Started,启动后最小化,,0
+settings.others.runAtStartup,Run at Startup,开机自启,,0
+settings.others.checkBetaUpdate,Check Beta Update,检查 Beta 更新,,0
+settings.others.requestTimeout,Request Timeout (ms),请求超时（毫秒）,,0
+settings.tools.firewallRemoved,Netch firewall rules removed,已移除 Netch 防火墙规则,,0
+settings.others.noSupportDialog,No support dialog,不再弹出不受支持提示,,0
+settings.general.socks5Port,Socks5 Port,Socks5 端口,,0
+settings.general.httpPort,HTTP Port,HTTP 端口,,0
+settings.general.shareLan,Allow other devices to connect,允许局域网设备连接,,0
+settings.general.detectionTick,Detection Tick (sec),检测间隔（秒）,,0
+settings.general.startedPing,Delay test after start (sec),启动后延迟测试间隔（秒）,,0
+settings.general.theme,Theme,主题,,0
+settings.general.accent,"Accent (e.g. #0078D4, empty = default)",强调色（如 #0078D4，留空默认）,,0
+settings.process.procDns,Handle handled process DNS,处理已接管进程的 DNS,,0
+settings.process.icmpDelay,ICMP delay (ms),ICMP 延迟（毫秒）,,0
+settings.dns.china,China DNS (IP[:port]),国内 DNS（IP[:端口]）,,0
+settings.dns.remote,Remote DNS (DoH / https),远程 DNS（DoH / https）,,0
+settings.dns.hint,"Auto: geosite-cn direct, others via node DoH; Custom: edit upstreams below",Auto：geosite-cn 直连，其余经节点 DoH；Custom：自定义下方上游,,0
+settings.tools.title,Tools,工具,,0
+settings.tools.showHideConsole,Show-Hide Console,显示/隐藏控制台,,0
+settings.tools.uninstallNf,Uninstall NF Service,卸载 NF 服务,,0
+settings.tun.bypassHint,One IP/CIDR per line (e.g. 192.168.1.0/24),一行一个 IP/CIDR（如 192.168.1.0/24）,,0
+bypassIp.invalid,Invalid IP: ,无效 IP：,,0
+page.notBuilt,This page is not built yet,此页面未施工,,0
+controller.uninstallFailed,Uninstall failed,卸载失败,,0
+serverForm.error.required,Required,必填,,0
+serverForm.error.port,Invalid port (1-65535),端口无效（1-65535）,,0
+serverForm.error.int,Invalid number,数字无效,,0
+serverForm.tuic.uuid,UUID,UUID,,0
+serverForm.tuic.host,TLS SNI,TLS SNI,,0
+serverForm.tuic.congestionControl,Congestion,拥塞控制,,0
+serverForm.tuic.udpRelayMode,UDP Relay,UDP 中继,,0
+serverForm.tuic.alpn,ALPN,ALPN,,0
+serverForm.vless.sni,ServerName(Sni),服务器名(SNI),,0
+serverForm.vless.flow,Flow,Flow 流控,,0
+serverForm.vless.fingerprint,uTLS Fingerprint,uTLS 指纹,,0
+serverForm.vless.realityPublicKey,Reality PublicKey(pbk),Reality 公钥(pbk),,0
+serverForm.vless.realityShortId,Reality ShortId(sid),Reality ShortId(sid),,0
+serverForm.vless.packetEncoding,Packet Encoding,分包编码,,0
+serverForm.wg.mtu,MTU,MTU,,0
+serverForm.hy2.upMbps,Up Mbps,上行 Mbps,,0
+serverForm.hy2.downMbps,Down Mbps,下行 Mbps,,0
+serverForm.hy2.obfsPassword,Obfs Password,混淆密码,,0
+subscription.updateAll,Update All Subscriptions,更新全部订阅,,0
+subscription.updateOne,Update,更新,,0
+subscription.copyLink,Copy Link,复制链接,,0
+subscription.deleteServersConfirm,Delete servers of this subscription group?,删除该订阅组的全部节点？,,0
+subscription.duplicateRemark,A subscription with this name already exists. Nodes are tracked by subscription name, duplicate names would overwrite each other,已存在同名订阅。节点按订阅名归属，重名订阅会互相覆盖对方的节点,,0
+subscription.error.linkRequired,Link is required,链接必填,,0
+subscription.col.userAgent,User-Agent,User-Agent,,0
+subscription.lastUpdate,Last Update,上次更新,,0
+common.enabled,Enabled,已启用,,0
+common.disabled,Disabled,已禁用,,0
+serverForm.title,Server,服务器,,0
+serverForm.remark,Remark,备注,,0
+serverForm.hostname,Address,地址,,0
+serverForm.port,Port,端口,,0
+serverForm.ss.password,Password,密码,,0
+serverForm.ss.encryptMethod,Encrypt Method,加密方式,,0
+serverForm.ss.plugin,Plugin,插件,,0
+serverForm.ss.pluginOptions,Plugin Options,插件选项,,0
+serverForm.ssr.deprecation,SSR protocol is no longer maintained and is no longer supported. Consider migrating to Shadowsocks / Trojan / VLESS.,SSR 协议已停止维护，新版内核不再支持。建议迁移到 Shadowsocks / Trojan / VLESS。,SSR protocol is no longer maintained and is no longer supported. Consider migrating to Shadowsocks / Trojan / VLESS.,0
+serverForm.ssr.encryptMethod,Encrypt Method,加密方式,,0
+serverForm.ssr.protocol,Protocol,协议,,0
+serverForm.ssr.protocolParam,Protocol Param,协议参数,,0
+serverForm.ssr.obfs,OBFS,OBFS 混淆,,0
+serverForm.ssr.obfsParam,OBFS Param,混淆参数,,0
+serverForm.socks5.username,Username,用户名,,0
+serverForm.socks5.password,Password,密码,,0
+serverForm.socks5.version,Version,版本,,0
+serverForm.socks5.remoteHostname,Remote Address,级联代理地址,,0
+serverForm.ssh.user,User,用户名,,0
+serverForm.ssh.password,Password,密码,,0
+serverForm.ssh.privateKey,Private Key,私钥,,0
+serverForm.ssh.publicKey,Public Key,公钥,,0
+serverForm.trojan.password,Password,密码,,0
+serverForm.trojan.host,Host,Host,,0
+serverForm.trojan.tlsSecure,TLS Secure,TLS 安全,,0
+serverForm.tuic.password,Password,密码,,0
+serverForm.vless.uuid,UUID,UUID,,0
+serverForm.vless.encryptMethod,Encrypt Method,加密方式,,0
+serverForm.vless.transferProtocol,Transfer Protocol,传输协议,,0
+serverForm.vless.fakeType,Fake Type,伪装类型,,0
+serverForm.vless.host,Host,Host,,0
+serverForm.vless.path,Path,路径,,0
+serverForm.vless.quicSecurity,QUIC Security,QUIC 加密,,0
+serverForm.vless.quicSecret,QUIC Secret,QUIC 密钥,,0
+serverForm.vless.useMux,Use Mux,使用 Mux,,0
+serverForm.vless.tlsSecure,TLS Secure,TLS 安全,,0
+serverForm.vmess.sni,ServerName(Sni),服务器名(SNI),,0
+serverForm.vmess.userId,User ID,用户 ID,,0
+serverForm.vmess.alterId,Alter ID,额外 ID,,0
+serverForm.vmess.encryptMethod,Encrypt Method,加密方式,,0
+serverForm.vmess.transferProtocol,Transfer Protocol,传输协议,,0
+serverForm.vmess.packetEncoding,Packet Encoding,分包编码,,0
+serverForm.vmess.fakeType,Fake Type,伪装类型,,0
+serverForm.vmess.host,Host,Host,,0
+serverForm.vmess.path,Path,路径,,0
+serverForm.vmess.quicSecurity,QUIC Security,QUIC 加密,,0
+serverForm.vmess.quicSecret,QUIC Secret,QUIC 密钥,,0
+serverForm.vmess.useMux,Use Mux,使用 Mux,,0
+serverForm.vmess.tlsSecure,TLS Secure,TLS 安全,,0
+serverForm.wg.localAddresses,Local Addresses,本机地址,,0
+serverForm.wg.peerPublicKey,Public Key,公钥,,0
+serverForm.wg.privateKey,Private Key,私钥,,0
+serverForm.wg.preSharedKey,PSK,预共享密钥,,0
+serverForm.anytls.password,Password,密码,,0
+serverForm.anytls.host,TLS SNI,TLS SNI,,0
+serverForm.hy2.password,Password,密码,,0
+serverForm.hy2.host,TLS SNI,TLS SNI,,0
+subscription.dialogTitle,Subscription,订阅,,0
+subscription.deleteServers,Delete Servers,删除订阅及节点,,0
+subscription.col.remark,Remark,备注,,0
+subscription.col.link,Link,链接,,0
+serverForm.ssr.password,Password,密码,,0
+modeEditor.processTitle,Process Mode Editor,进程模式编辑器,,0
+modeEditor.routeTitle,Route Mode Editor,路由模式编辑器,,0
+modeEditor.saveClose,Save and Close,保存并关闭,,0
+modeEditor.remark,Remark,备注,,0
+modeEditor.handleTCP,Handle TCP,处理 TCP,,0
+modeEditor.handleUDP,Handle UDP,处理 UDP,,0
+modeEditor.handleICMP,Handle ICMP,处理 ICMP,,0
+modeEditor.handleDNS,Handle DNS,处理 DNS（DNS 劫持）,,0
+modeEditor.handleProcDNS,Handle handled process DNS,处理已接管进程的 DNS,,0
+modeEditor.dnsProxy,Handle DNS through proxy,DNS 经代理,,0
+modeEditor.handleChild,Handle child process,处理子进程,,0
+modeEditor.icmpDelay,ICMP delay (ms),ICMP 延迟（毫秒）,,0
+modeEditor.processList,Process List,进程列表,,0
+modeEditor.processNameHint,"Process name, Enter to add",进程名，回车添加,,0
+modeEditor.moveUp,Move up,上移,,0
+modeEditor.moveDown,Move down,下移,,0
+modeEditor.clear,Clear,清空,,0
+modeEditor.fileExists,"File already exists, please change the remark",文件已存在，请更换备注,,0
+modeEditor.ruleList,Route Rules,路由规则,,0
+modeEditor.addRule,Add rule,添加规则,,0
+modeEditor.col.ruleSet,Rule Sets,规则集,,0
+modeEditor.col.action,Action,出站,,0
+modeEditor.ruleEditorTitle,Edit selected rule,编辑选中规则,,0
+modeEditor.ruleSetRefs,Rule set refs,规则集引用,,0
+modeEditor.ruleSetHint,"Comma separated rule set tags (letters, digits, dash)",逗号分隔的规则集 tag（字母/数字/中划线）,,0
+modeEditor.ruleTagInvalid,"Invalid rule set tag ""{0}""",无效的规则集 tag「{0}」,,0
+connections.tab.process,Process,进程,,0
+connections.tab.kernel,Kernel,内核,,0
+connections.tab.history,History,历史,,0
+connections.col.process,Process,进程,,0
+connections.col.target,Domain / IP,域名 / IP,,0
+connections.col.rule,Rule,命中规则,,0
+connections.col.chains,Chains,出站链,,0
+connections.col.up,Upload,上行流量,,0
+connections.col.down,Download,下行流量,,0
+connections.col.start,Start,连接时间,,0
+connections.col.closedAt,Closed,结束时间,,0
+connections.pause,Pause,暂停刷新,,0
+connections.summary,Active {0} (proxy {1} / direct {2}),连接 {0}（代理 {1} / 直连 {2}）,,0
+about.openRepo,Open repository,打开仓库,,0
+about.faq,FAQ,常见问题,,0
+about.licenseTitle,Open Source License,开源许可,,0
+about.licenseBody,"Netch is open source under GPL-3.0. It bundles sing-box, Xray-core, Redirector (NF driver) and other components; see NOTICE.txt shipped with the program for details.",Netch 以 GPL-3.0 开源。内置 sing-box、Xray-core、Redirector（NF 驱动）等组件，详见随程序分发的 NOTICE.txt。,,0
+main.nav.log,Log,日志,,0
+ruleSet.dialogTitle,Rule Set,规则集,,0
+ruleSet.updateInterval,Update Interval,更新间隔,,0
+ruleSet.intervalHint,"e.g. 30m, 1d; empty = default",如 30m、1d；留空用默认,,0
+ruleSet.error.tag,"Invalid tag ""{0}"" (letters, digits, dash)",无效 tag「{0}」（字母/数字/中划线）,,0
+ruleSet.error.conflict,"Tag ""{0}"" conflicts with a built-in rule set",tag「{0}」与内置规则集冲突,,0
+ruleSet.error.url,"Invalid URL ""{0}""",无效 URL「{0}」,,0
+ruleSet.error.interval,"Invalid interval ""{0}"" (expected: 30m, 1d, ...)",无效间隔「{0}」（如 30m、1d）,,0
+common.extractAllFirst,Please extract all files then run the program!,请先解压所有文件再执行程序！,Please extract all files then run the program!,0
+common.add,Add,添加,rescue-2026-10-28,0
+settings.dns.policy,DNS Policy,DNS 策略,rescue-2026-10-28,0
+settings.general.language,Language,语言,rescue-2026-10-28,0
+settings.general.pingProtocol,Ping Protocol,延迟测试协议,rescue-2026-10-28,0
+settings.general.profileCount,Profile Count,快捷配置数量,rescue-2026-10-28,0
+settings.general.restoreSize,Restore window size,恢复默认窗口大小,rescue-2026-10-28,0
+settings.general.stun,STUN Server,STUN 服务器,rescue-2026-10-28,0
+settings.kernel.title,Kernel,内核,rescue-2026-10-28,0
+settings.kernel.downloadUpdate,Download update,下载更新,rescue-2026-10-28,0
+settings.kernel.groupAutoSelect,Auto select the fastest node in group on start (urltest),分组启动时自动选择最快节点（urltest）,rescue-2026-10-28,0
+settings.kernel.openBin,Open bin folder,打开 bin 目录,rescue-2026-10-28,0
+settings.kernel.selfManaged,Put self-managed cores into the bin folder,自备内核请直接放入 bin 目录管理,rescue-2026-10-28,0
+settings.rulesets.title,Rule Sets,规则集,rescue-2026-10-28,0
+settings.rulesets.viaProxy,Download rule sets via proxy,规则集经代理下载,rescue-2026-10-28,0
+settings.rulesets.builtinHint,"Built-in: geosite-cn, geoip-cn (no configuration needed)",内置：geosite-cn、geoip-cn（无需配置）,rescue-2026-10-28,0
+settings.reliability.title,Reliability,可靠性,rescue-2026-10-28,0
+settings.reliability.autoRestore,Auto restore on failure,断线自动恢复,rescue-2026-10-28,0
+settings.reliability.kernelRestart,Restart kernel on crash,内核意外退出时自动重启,rescue-2026-10-28,0
+settings.reliability.debounce,Save debounce (seconds),保存防抖（秒）,rescue-2026-10-28,0
+settings.reliability.subscriptionProxy,Use proxy for subscription updates,订阅更新走代理,rescue-2026-10-28,0
+settings.process.tcp,Handle TCP,处理 TCP,rescue-2026-10-28,0
+settings.process.udp,Handle UDP,处理 UDP,rescue-2026-10-28,0
+settings.process.icmp,Handle ICMP,处理 ICMP,rescue-2026-10-28,0
+settings.process.dns,Handle DNS through proxy,经过代理处理 DNS,rescue-2026-10-28,0
+settings.process.dnsProxy,Proxy DNS,代理 DNS,rescue-2026-10-28,0
+settings.process.verboseLog,Verbose redirector log (troubleshooting),Redirector 详细日志（排查用）,rescue-2026-10-28,0
+settings.tun.title,TUN,TUN,rescue-2026-10-28,0
+settings.tun.stack,Protocol stack,协议栈,rescue-2026-10-28,0
+settings.tun.strictRoute,Strict route (prevent DNS leak),严格路由（防 DNS 泄漏）,rescue-2026-10-28,0
+settings.tun.bypassIps,Global Bypass IPs,全局直连 IP,rescue-2026-10-28,0
+settings.v2ray.xrayCone,FullCone Support (Required Server Xray-core v1.3.0+),FullCone 支持（需服务端 Xray-core v1.3.0+）,rescue-2026-10-28,0
+settings.v2ray.useMux,Use Mux,Mux 多路复用,rescue-2026-10-28,0
+settings.v2ray.tcpFastOpen,TCP FastOpen,TCP 快速打开,rescue-2026-10-28,0
+settings.others.checkUpdateOpened,Check update when opened,打开软件时检查更新,rescue-2026-10-28,0
+settings.tools.openDirectory,Open data directory,打开数据目录,rescue-2026-10-28,0
+settings.tools.cleanDns,Clean DNS Cache,清理 DNS 缓存,rescue-2026-10-28,0
+settings.tools.removeFirewall,Remove Netch Firewall Rules,移除 Netch 防火墙规则,rescue-2026-10-28,0
+settings.tools.backupSettings,Backup Settings,备份设置,backup,0
+settings.tools.backupFull,Full Backup,完整备份,backup,0
+settings.tools.restoreBackup,Restore Backup,恢复备份,backup,0
+settings.tools.backupTitle,Backup,备份,backup,0
+settings.tools.restoreTitle,Restore,恢复,backup,0
+settings.tools.backupDone,"Backup saved: {0}",已备份到 {0},backup,1
+settings.tools.backupFailed,"Backup failed: {0}",备份失败：{0},backup,1
+settings.tools.restoring,Restoring...,正在恢复…,backup,0
+settings.tools.restoreDone,Restore completed. Restart Netch to fully apply.,恢复完成，重启程序后完全生效。,backup,0
+settings.tools.restoreFailed,"Restore failed: {0}",恢复失败：{0},backup,1
+settings.tools.restoreInvalidFile,"Invalid backup file: {0}",备份文件无效：{0},backup,1
+settings.tools.restoreConfirmSettings,"Restore settings only?&#10;&#10;Servers, subscriptions, custom rule sets and profiles stay as-is; all other settings will be overwritten by this backup (created {0}).&#10;Netch will stop first if running.","仅恢复设置？&#10;&#10;节点、订阅、自定义分流规则集与快捷配置保持现状，其余设置将被此备份（创建于 {0}）覆盖。&#10;程序运行中会先停止加速。",backup,1
+settings.tools.restoreConfirmFull,"Restore full backup?&#10;&#10;Settings, servers, subscriptions and custom modes will be overwritten by this backup (created {0}); same-name mode files are overwritten, extra local files are kept.&#10;Netch will stop first if running.","恢复完整备份？&#10;&#10;设置、节点、订阅与自建模式将被此备份（创建于 {0}）覆盖；自建模式同名文件覆盖，本地多余文件保留。&#10;程序运行中会先停止加速。",backup,1
+home.mode.new,New mode,新建模式,New mode,0
+external.title,External Resources,外部资源,External Resources,0
+external.error.tooSmall,"Downloaded file too small ({0} bytes < threshold {1} bytes), rejected",下载产物过小（{0} 字节 < 阈值 {1} 字节），已拒绝安装,"Downloaded file too small ({0} bytes < threshold {1} bytes), rejected",0
+external.error.badKernel,"Kernel file is missing the MZ header, rejected",内核文件缺少 MZ 头，已拒绝安装,"Kernel file is missing the MZ header, rejected",0
+external.error.badSrs,"Invalid rule-set file (missing SRS magic), rejected",规则集文件格式非法（缺少 SRS 魔数），已拒绝安装,"Invalid rule-set file (missing SRS magic), rejected",0
+external.error.badMmdb,"Failed to parse IP country database (invalid mmdb), rejected",IP 归属地库无法解析（非合法 mmdb 格式），已拒绝安装,"Failed to parse IP country database (invalid mmdb), rejected",0
+external.error.badTextList,"List file is not valid text, rejected",清单文件不是合法文本，已拒绝安装,"List file is not valid text, rejected",0
+external.error.notInstalled,Resource is not installed,资源未安装,Resource is not installed,0
+external.kernel.singbox,sing-box Kernel,sing-box 内核,sing-box Kernel,0
+external.kernel.xray,Xray Kernel,Xray 内核,Xray Kernel,0
+external.ruleset.geositeCn,Built-in rule-set geosite-cn,内置规则集 geosite-cn,Built-in rule-set geosite-cn,0
+external.ruleset.geoipCn,Built-in rule-set geoip-cn,内置规则集 geoip-cn,Built-in rule-set geoip-cn,0
+external.ruleset.custom,Custom rule-set,自定义规则集,Custom rule-set,0
+external.geo.country,IP Country Database (mmdb),IP 归属地库（mmdb）,IP Country Database (mmdb),0
+external.badge.upToDate,Up to date,最新,Up to date,0
+external.badge.updatable,Update available,可更新,Update available,0
+external.badge.disabled,Disabled,已禁用,Disabled,0
+external.badge.notInstalled,Not installed,未安装,Not installed,0
+external.badge.failedFormat,Failed: {0},失败：{0},Failed: {0},0
+external.badge.mirror,Updated via mirror,经镜像更新,Updated via mirror,0
+external.autoUpdateGlobal,Auto-update resources,资源自动更新,Auto-update resources,0
+external.autoUpdateInterval,Check interval (hours),检查间隔（小时）,Check interval (hours),0
+external.checkMainUpdate,Check for Netch updates,检查主程序更新,Check for Netch updates,0
+external.updateNow,Update,立即更新,Update,0
+external.updateAll,Update all now,立即全部更新,Update all now,0
+external.confirmDelete,Delete {0}? The file will be moved to the .trash folder and purged on next launch.,确认删除 {0}？文件将移入 .trash 目录，下次启动后不可恢复。,Delete {0}? The file will be moved to the .trash folder and purged on next launch.,0
+external.lastUpdateFormat,Last updated: {0},上次更新：{0},Last updated: {0},0
+external.neverUpdated,Never updated,从未更新,Never updated,0
+external.updated,Resource updated,资源已更新,Resource updated,0
+external.updateFailed,Resource update failed,资源更新失败,Resource update failed,0
+external.checkFailed,Resource check failed,资源检查失败,Resource check failed,0
+external.autoUpdateTip,Per-resource auto-update,此资源独立自动更新开关,Per-resource auto-update,0
+external.kernelBlocked0,"{0} kernel is disabled, re-enable it in External Resources or switch core",{0} 内核已被禁用，请在外部资源页重新启用或更换核心,"{0} kernel is disabled, re-enable it in External Resources or switch core",0
+external.disable,Disabled,禁用,Disabled,0
+external.autoUpdate,Auto-update,自动更新,Auto-update,0
+external.group.kernel,Kernels,内核,Kernels,0
+external.group.ruleset,Rule Sets,规则集,Rule Sets,0
+external.group.data,Data Files,数据文件,Data Files,0
+main.nav.rulesets,Rule Sets,规则编辑,Navigation,0
+rulesets.title,Rule Set Library,规则集库,RE,0
+rulesets.builtin.group,Built-in Rule Sets,内置规则集,RE,0
+rulesets.builtin.disabled,Disabled,已禁用,RE,0
+rulesets.builtin.ok,Active,正常,RE,0
+rulesets.custom.group,Custom Rule Sets,自定义规则集,RE,0
+rulesets.newLocal,New Local Rule Set,新建本地规则集,RE,0
+rulesets.newRemote,New Remote Rule Set,新建远程规则集,RE,0
+rulesets.empty,No custom rule sets yet,还没有自定义规则集，点右上角新建,RE,0
+rulesets.type.local,Local,本地,RE,0
+rulesets.type.remote,Remote,远程,RE,0
+rulesets.refs,{0} mode(s) referencing,{0} 个模式引用,RE,1
+rulesets.refs.none,Not referenced,未被引用,RE,0
+rulesets.local.summaryEntries,{0} entries,{0} 条,RE,1
+rulesets.local.title,Edit Local Rule Set,编辑本地规则集,RE,0
+rulesets.local.tag,Tag (used by modes),标识（模式以此引用）,RE,0
+rulesets.local.entries,Entries,条目,RE,0
+rulesets.local.addEntry,Add Entry,添加条目,RE,0
+rulesets.local.bulkImport,Bulk Import,批量导入,RE,0
+rulesets.local.bulkHint,"One per line: DOMAIN-SUFFIX,x.com / *.x.com / bare domain / bare IP-CIDR",每行一条：DOMAIN-SUFFIX、*.x.com、裸域名、裸 IP 段,RE,0
+rulesets.local.bulkResult,"Imported {0} entries, skipped {1} lines",已导入 {0} 条，跳过 {1} 行,RE,2
+rulesets.local.entryEmpty,Entry #{0} has empty value,第 {0} 条条目值为空,RE,1
+rulesets.deleteReferenced,"Rule set ""{0}"" is referenced by: {1}. Delete anyway?",规则集「{0}」正被以下模式引用：{1}。仍要删除吗？,RE,2
+rulesets.renameSynced,Renamed; {0} reference(s) updated,已重命名，同步更新 {0} 处引用,RE,1
+rulesets.duplicateTag,Tag already exists,标识已存在,RE,0
+dim.DomainSuffix,Domain Suffix,域名后缀,RE,0
+dim.Domain,Domain,完整域名,RE,0
+dim.DomainKeyword,Domain Keyword,域名关键字,RE,0
+dim.DomainRegex,Domain Regex,域名正则,RE,0
+dim.IpCidr,IP CIDR,IP 段,RE,0
+dim.Port,Port,端口,RE,0
+dim.Protocol,Protocol,协议,RE,0
+modeEditor.rules.title,Routing Rules (matched top-down),分流规则（自上而下匹配）,RE,0
+modeEditor.moveTop,Move to Top,置顶,RE,0
+modeEditor.moveBottom,Move to Bottom,置底,RE,0
+modeEditor.rule.editMode,Rule Style,规则方式,RE,0
+modeEditor.rule.byRef,Reference rule sets,引用规则集,RE,0
+modeEditor.rule.byInline,Inline matchers,手写规则,RE,0
+modeEditor.rule.search,Search rule sets…,搜索规则集…,RE,0
+modeEditor.rule.group.customLocal,Custom · Local,自定义 · 本地,RE,0
+modeEditor.rule.group.customRemote,Custom · Remote,自定义 · 远程,RE,0
+modeEditor.rule.group.builtin,Built-in,内置,RE,0
+modeEditor.rule.addDimension,Add Matcher,添加规则,RE,0
+modeEditor.rule.dimension,Matcher,规则,RE,0
+modeEditor.rule.value,Value,值,RE,0
+modeEditor.rule.emptyRule,Rule #{0} has no matcher or rule set reference,第 {0} 条规则缺少匹配内容或规则集引用,RE,1
+modeEditor.rule.badValue,"Rule #{0}: invalid {1} value ""{2}""",第 {0} 条规则：{1} 值「{2}」不合法,RE,3
+modeEditor.rule.deadRef,"Rule #{0} references unknown/disabled rule set ""{1}""",第 {0} 条规则引用了未知/禁用的规则集「{1}」,RE,2
+modeEditor.action.Proxy,Proxy,代理,RE,0
+modeEditor.action.Direct,Direct,直连,RE,0
+modeEditor.action.Block,Block,拦截,RE,0
+modeEditor.summary.emptyRule,(empty),（空）,RE,0
+modeEditor.summary.more,… +{0} more,… 等 {0} 项,RE,1
+modeEditor.summary.ref,{0} rule set(s),{0} 个规则集,RE,1
+kernel.ruleRefInlineExclusive,A route rule cannot mix rule set references and inline matchers; split it into two rules,路由规则不能同时引用规则集和手写规则，请拆成两条,RE,0
+settings.rulesets.movedHint,"Rule set contents are now managed on the ""Rule Sets"" page",规则集内容已移至「规则编辑」页管理,RE,0

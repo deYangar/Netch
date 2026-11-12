@@ -1,0 +1,10 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "osu!"
+  },
+  "handle": [
+    "osu!.exe"
+  ],
+  "bypass": []
+}

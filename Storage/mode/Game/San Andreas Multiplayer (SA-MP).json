@@ -1,0 +1,13 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "San Andreas Multiplayer (SA-MP)"
+  },
+  "handle": [
+    "gta_sa.exe",
+    "rcon.exe",
+    "samp.exe",
+    "samp_debug.exe"
+  ],
+  "bypass": []
+}

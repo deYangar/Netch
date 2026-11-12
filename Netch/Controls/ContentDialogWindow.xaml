@@ -1,0 +1,47 @@
+<Window x:Class="Netch.Controls.ContentDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        MinWidth="420"
+        MinHeight="150">
+    <Border Background="{DynamicResource Brush.Surface}"
+            BorderBrush="{DynamicResource Brush.Stroke}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource Radius.Corner.M}">
+        <Grid Margin="{StaticResource Padding.Card}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- 标题（拖拽句柄） -->
+            <Grid Grid.Row="0" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown" Background="Transparent">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="LevelIcon"
+                               FontSize="16"
+                               Margin="0,0,8,0"
+                               VerticalAlignment="Center" />
+                    <TextBlock x:Name="TitleText"
+                               FontSize="{StaticResource Text.H2}"
+                               FontWeight="{StaticResource Text.H2.Weight}"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+
+            <!-- 正文 -->
+            <ScrollViewer Grid.Row="2" Margin="0,12,0,0" VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="BodyText"
+                           TextWrapping="Wrap"
+                           FontSize="{StaticResource Text.Default}"
+                           Foreground="{DynamicResource Brush.TextPrimary}" />
+            </ScrollViewer>
+
+            <!-- 按钮行：主按钮 Primary 右侧，次按钮默认 -->
+            <StackPanel Grid.Row="3" Margin="0,16,0,0" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button x:Name="SecondaryButton" MinWidth="96" Margin="0,0,8,0" Content="Cancel" />
+                <Button x:Name="PrimaryButton" MinWidth="96" Content="OK" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

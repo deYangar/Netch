@@ -1,0 +1,24 @@
+<Application x:Class="Netch.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             ShutdownMode="OnExplicitShutdown">
+    <!--
+        WPF 入口（UI 重构 04）：StartupUri 不设，OnStartup 手动控制时序后 Show MainWindow；
+        ShutdownMode OnExplicitShutdown：最小化到托盘（窗口隐藏）不等于退出。
+        结构字典在此装配；调色板字典由 ThemeManager.Apply 按当前主题插入。
+        WPF-UI 字典必须先合并（ThemesDictionary+ControlsDictionary）：FluentWindow/NavigationView
+        等类型 DefaultStyleKey 指向自身类型，缺 ControlsDictionary 时模板解析不到 → 窗口客户区全白（P0 白屏根因）。
+        我方字典排其后（查找顺序后者优先），隐式样式由我方压制 WPF-UI。
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary Theme="Dark" />
+                <ui:ControlsDictionary />
+                <ResourceDictionary Source="Themes/Tokens.Base.xaml" />
+                <ResourceDictionary Source="Themes/Controls.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

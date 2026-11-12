@@ -1,0 +1,28 @@
+<ui:FluentWindow x:Class="Netch.Views.ModeEditor.RouteModeEditorView"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:loc="clr-namespace:Netch.Localization"
+                 xmlns:controls="clr-namespace:Netch.Controls"
+                 Title="{loc:I18N modeEditor.routeTitle}" Width="960" Height="720"
+                 MinWidth="950" MinHeight="700" WindowStartupLocation="CenterOwner"
+                 Background="{DynamicResource Brush.Background}">
+    <DockPanel Margin="16">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+            <Button x:Name="saveButton" Style="{StaticResource Btn.Primary}" MinWidth="110" Content="{loc:I18N modeEditor.saveClose}" Command="{Binding SaveCommand}" />
+            <Button x:Name="cancelButton" MinWidth="88" Margin="8,0,0,0" Content="{loc:I18N common.cancel}" />
+        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border Background="{DynamicResource Brush.Card}" CornerRadius="{StaticResource Radius.Corner.M}" Padding="16" Margin="0,0,0,12">
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="120" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <TextBlock Text="{loc:I18N modeEditor.remark}" VerticalAlignment="Center" Style="{StaticResource TextBlock.Caption}" />
+                        <TextBox Grid.Column="1" Text="{Binding Remark, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                </Border>
+                <controls:RulesEditorControl Rules="{Binding Rules}" Editor="{Binding RulesEditor}" RulesError="{Binding RuleError}" />
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</ui:FluentWindow>

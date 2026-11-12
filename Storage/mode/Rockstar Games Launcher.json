@@ -1,0 +1,10 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Rockstar Games Launcher"
+  },
+  "handle": [
+    "\\\\Rockstar Games\\\\Launcher\\\\"
+  ],
+  "bypass": []
+}

@@ -1,0 +1,20 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Steam Games"
+  },
+  "handle": [
+    "\\\\steamapps\\\\"
+  ],
+  "bypass": [],
+  "rules": [
+    {
+      "domainSuffix": ["steamcontent.com", "steamserver.net"],
+      "action": "Direct"
+    },
+    {
+      "domainSuffix": ["steampowered.com", "steamcommunity.com"],
+      "action": "Proxy"
+    }
+  ]
+}

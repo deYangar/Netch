@@ -1,0 +1,11 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Grand Theft Auto V"
+  },
+  "handle": [
+    "\\\\Rockstar Games\\\\",
+    "\\\\Grand Theft Auto V\\\\"
+  ],
+  "bypass": []
+}

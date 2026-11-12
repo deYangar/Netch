@@ -1,0 +1,12 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Escape From Tarkov"
+  },
+  "handle": [
+    "EscapeFromTarkov.exe",
+    "EscapeFromTarkov_BE.exe",
+    "BsgLauncher.exe"
+  ],
+  "bypass": []
+}

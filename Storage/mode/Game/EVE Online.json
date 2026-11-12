@@ -1,0 +1,17 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "EVE Online"
+  },
+  "handle": [
+    "eve.exe",
+    "exefile.exe",
+    "LogServer.exe",
+    "evelauncher.exe",
+    "fixpermissions.exe",
+    "LogLite.exe",
+    "QtWebEngineProcess.exe",
+    "updater.exe"
+  ],
+  "bypass": []
+}

@@ -1,0 +1,11 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "Faceit AC"
+  },
+  "handle": [
+    "faceitclient.exe",
+    "faceitservice.exe"
+  ],
+  "bypass": []
+}

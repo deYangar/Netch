@@ -1,0 +1,81 @@
+<UserControl x:Class="Netch.Views.SubscriptionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:Netch.Localization"
+             Focusable="False">
+    <!-- 订阅页（06§B1）：工具行 + DataGrid 虚拟化 + 底部添加。右键三项（Copy link/Delete/Delete Servers）
+         改为行内按钮（ContextMenu 不在视觉树，VM 命令链经 PlacementTarget 不可靠——语义等价，记录见施工记录） -->
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- 页面标题（咩咩 2026-11-03：侧栏收起时点进任意页，右区要一眼知道这是哪） -->
+        <TextBlock Grid.Row="0" Text="{loc:I18N main.nav.subscriptions}" Style="{StaticResource TextBlock.H1}" Margin="0,0,0,12" />
+
+        <DockPanel Grid.Row="1" Margin="0,0,0,12">
+            <Button DockPanel.Dock="Left" Style="{StaticResource Btn.Primary}" Command="{Binding UpdateAllCommand}"
+                    Content="{loc:I18N subscription.updateAll}" />
+            <TextBlock Text="{Binding StatusText}" Style="{StaticResource TextBlock.Caption}" VerticalAlignment="Center" Margin="12,0,0,0" />
+        </DockPanel>
+
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding Subscriptions}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  HeadersVisibility="Column"
+                  EnableRowVirtualization="True"
+                  VirtualizingPanel.VirtualizationMode="Recycling">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="72">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.ToggleCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                    CommandParameter="{Binding}"
+                                    Padding="4,2" Margin="2">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                        <Setter Property="Content" Value="{loc:I18N common.enabled}" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Enable}" Value="False">
+                                                <Setter Property="Content" Value="{loc:I18N common.disabled}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="{loc:I18N subscription.col.remark}" Binding="{Binding Remark}" Width="130" />
+                <DataGridTextColumn Header="{loc:I18N subscription.col.link}" Binding="{Binding Link}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="{loc:I18N subscription.col.userAgent}" Binding="{Binding UserAgent}" Width="140" />
+                <DataGridTemplateColumn Width="*  " MinWidth="420">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="{loc:I18N subscription.updateOne}" Margin="0,0,6,0" Padding="6,2" Style="{StaticResource Btn.Ghost}"
+                                        Command="{Binding DataContext.UpdateOneCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
+                                <Button Content="{loc:I18N common.edit}" Margin="0,0,6,0" Padding="6,2" Style="{StaticResource Btn.Ghost}"
+                                        Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
+                                <Button Content="{loc:I18N common.delete}" Margin="0,0,6,0" Padding="6,2" Style="{StaticResource Btn.Danger}"
+                                        Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
+                                <Button Content="{loc:I18N subscription.copyLink}" Margin="0,0,6,0" Padding="6,2" Style="{StaticResource Btn.Ghost}"
+                                        Command="{Binding DataContext.CopyLinkCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
+                                <Button Content="{loc:I18N subscription.deleteServers}" Padding="6,2" Style="{StaticResource Btn.Ghost}"
+                                        Command="{Binding DataContext.DeleteServersCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Row="3" HorizontalAlignment="Left" Margin="0,12,0,0" Command="{Binding AddCommand}"
+                Content="{loc:I18N subscription.add}" />
+    </Grid>
+</UserControl>

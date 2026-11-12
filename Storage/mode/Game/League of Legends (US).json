@@ -1,0 +1,21 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "League of Legends (US)"
+  },
+  "handle": [
+    "BsSndRpt.exe",
+    "jpatch.exe",
+    "LeagueClient.exe",
+    "LeagueClientUx.exe",
+    "LeagueClientUxRender.exe",
+    "Uninstall League of Legends.exe",
+    "League of Legends.exe",
+    "LeagueCrashHandler.exe",
+    "RiotClientServices.exe",
+    "RiotClientUx.exe",
+    "RiotClientUxRender.exe",
+    "RiotClientCrashHandler.exe"
+  ],
+  "bypass": []
+}

@@ -1,0 +1,37 @@
+<!--
+    语义 Token 结构层（不含具体色值，色值在 Tokens.Light/Dark.xaml）：
+    字体族、字阶、间距、圆角、最小点击区。全 app 的 View 不得出现硬编码颜色/字号，一律引用本层 key。
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- 含中文 fallback 的统一字体族（一处定义） -->
+    <FontFamily x:Key="FontFamily.Default">Segoe UI, Microsoft YaHei UI</FontFamily>
+
+    <!-- 字阶 -->
+    <sys:Double x:Key="Text.Default">14</sys:Double>
+    <sys:Double x:Key="Text.Secondary">13</sys:Double>
+    <sys:Double x:Key="Text.Caption">12</sys:Double>
+    <sys:Double x:Key="Text.H1">20</sys:Double>
+    <sys:Double x:Key="Text.H2">16</sys:Double>
+    <FontWeight x:Key="Text.H1.Weight">SemiBold</FontWeight>
+    <FontWeight x:Key="Text.H2.Weight">SemiBold</FontWeight>
+
+    <!-- 间距 -->
+    <sys:Double x:Key="Spacing.S">8</sys:Double>
+    <sys:Double x:Key="Spacing.M">12</sys:Double>
+    <sys:Double x:Key="Spacing.L">16</sys:Double>
+    <sys:Double x:Key="Spacing.XL">24</sys:Double>
+    <Thickness x:Key="Padding.Card">16</Thickness>
+
+    <!-- 圆角（CornerRadius 版供模板直接引用） -->
+    <sys:Double x:Key="Radius.S">4</sys:Double>
+    <sys:Double x:Key="Radius.M">8</sys:Double>
+    <CornerRadius x:Key="Radius.Corner.S">4</CornerRadius>
+    <CornerRadius x:Key="Radius.Corner.M">8</CornerRadius>
+
+    <!-- 可点击元素最小高度 -->
+    <sys:Double x:Key="HitTarget.Min">32</sys:Double>
+
+</ResourceDictionary>

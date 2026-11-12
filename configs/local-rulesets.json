@@ -1,0 +1,91 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2801
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "socks",
+      "tag": "proxy",
+      "server": "::1",
+      "server_port": 1080,
+      "password": "pass",
+      "version": "5",
+      "username": "user"
+    }
+  ],
+  "http_clients": [
+    {
+      "tag": "rule-set-fetch"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "action": "route",
+        "outbound": "direct",
+        "domain_suffix": [
+          "steamcontent.com",
+          "steamserver.net"
+        ]
+      },
+      {
+        "action": "route",
+        "outbound": "direct",
+        "ip_cidr": [
+          "192.0.2.0/24"
+        ]
+      },
+      {
+        "action": "route",
+        "outbound": "direct",
+        "rule_set": [
+          "geosite-cn"
+        ]
+      },
+      {
+        "action": "route",
+        "outbound": "direct",
+        "port": [
+          443
+        ]
+      }
+    ],
+    "final": "proxy",
+    "auto_detect_interface": true,
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://cdn.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-cn.srs",
+        "initial_path": "rule-set\\geosite-cn.srs",
+        "http_client": "rule-set-fetch",
+        "update_interval": "1d"
+      }
+    ]
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9102"
+    },
+    "cache_file": {
+      "enabled": true
+    }
+  }
+}

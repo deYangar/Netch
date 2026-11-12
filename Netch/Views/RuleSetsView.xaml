@@ -1,0 +1,77 @@
+<UserControl x:Class="Netch.Views.RuleSetsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:Netch.Localization"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             Focusable="False" Background="{DynamicResource Brush.Background}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="16">
+            <TextBlock Text="{loc:I18N rulesets.title}" Style="{StaticResource TextBlock.H1}" Margin="0,0,0,12" />
+            <Border Background="{DynamicResource Brush.Card}" CornerRadius="{StaticResource Radius.Corner.M}" Padding="16" Margin="0,0,0,12">
+                <StackPanel>
+                    <DockPanel Margin="0,0,0,10">
+                        <TextBlock Text="{loc:I18N rulesets.builtin.group}" Style="{StaticResource TextBlock.H2}" DockPanel.Dock="Left" VerticalAlignment="Center" />
+                        <CheckBox DockPanel.Dock="Right" Content="{loc:I18N settings.rulesets.builtinEnable}" IsChecked="{Binding UseBuiltInRuleSets}" />
+                    </DockPanel>
+                    <ItemsControl ItemsSource="{Binding BuiltinRows}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,6" ToolTip="{Binding RefText}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24" /><ColumnDefinition Width="180" /><ColumnDefinition Width="100" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ui:SymbolIcon Symbol="Document24" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Tag}" FontFamily="Consolas" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="2" Text="{Binding StatusText}" Style="{StaticResource TextBlock.Caption}" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="3" Text="{Binding RefText}" Style="{StaticResource TextBlock.Caption}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                                    <ui:ToggleSwitch Grid.Column="4" IsChecked="{Binding IsEnabled}" IsEnabled="{Binding CanToggle}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+            <Border Background="{DynamicResource Brush.Card}" CornerRadius="{StaticResource Radius.Corner.M}" Padding="16">
+                <StackPanel>
+                    <DockPanel Margin="0,0,0,10">
+                        <TextBlock Text="{loc:I18N rulesets.custom.group}" Style="{StaticResource TextBlock.H2}" DockPanel.Dock="Left" VerticalAlignment="Center" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="newLocalButton" Content="{loc:I18N rulesets.newLocal}" Command="{Binding NewLocalCommand}" Margin="0,0,8,0" />
+                            <Button x:Name="newRemoteButton" Content="{loc:I18N rulesets.newRemote}" Command="{Binding NewRemoteCommand}" />
+                        </StackPanel>
+                    </DockPanel>
+                    <ItemsControl ItemsSource="{Binding CustomRows}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,8" ToolTip="{Binding RefText}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="64" /><ColumnDefinition Width="180" /><ColumnDefinition Width="*" /><ColumnDefinition Width="190" /><ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Background="{DynamicResource Brush.Accent.Soft}" CornerRadius="{StaticResource Radius.Corner.S}" Padding="6,2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding TypeText}" FontSize="11" />
+                                    </Border>
+                                    <TextBlock Grid.Column="1" Text="{Binding Tag}" FontFamily="Consolas" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="2" Text="{Binding SummaryText}" Style="{StaticResource TextBlock.Caption}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Grid.Column="3" Text="{Binding RefText}" Style="{StaticResource TextBlock.Caption}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                                    <StackPanel Grid.Column="4" Orientation="Horizontal">
+                                        <Button Content="{loc:I18N common.edit}" Command="{Binding EditCommand}" Style="{StaticResource Btn.Ghost}" Margin="0,0,6,0" />
+                                        <Button Content="{loc:I18N common.delete}" Command="{Binding DeleteCommand}" Style="{StaticResource Btn.Danger}" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Text="{loc:I18N rulesets.empty}" HorizontalAlignment="Center" Margin="0,20">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlock.Caption}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers><DataTrigger Binding="{Binding HasCustomRows}" Value="False"><Setter Property="Visibility" Value="Visible" /></DataTrigger></Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
+

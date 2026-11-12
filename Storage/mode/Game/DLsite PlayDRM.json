@@ -1,0 +1,10 @@
+{
+  "type": "ProcessMode",
+  "remark": {
+    "en": "DLsite PlayDRM"
+  },
+  "handle": [
+    "startup.exe"
+  ],
+  "bypass": []
+}
