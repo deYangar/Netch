@@ -29,8 +29,9 @@ public class Subscription
     public List<string> NodeDns { get; set; } = new();
 
     /// <summary>
-    ///     Host 映射：源域名 → 目标域名（可填 IP）。键支持精确域名与 "+.suffix" 泛域名（域名自身及任意子域）；
-    ///     命中后连接地址换目标解析结果，TLS SNI / HTTP Host 保持原域名（mihomo hosts 语义）
+    ///     Host 映射：源域名 → 目标域名（可填 IP）。键支持精确域名与 "+.suffix" 泛域名（域名自身及任意子域）。
+    ///     订阅更新时命中节点的连接目标域名直接替换为目标（连接地址与 TLS SNI 一并跟随）——
+    ///     Sparkle js 覆写改 proxies[].server 的等价语义；修改映射后需更新订阅生效
     /// </summary>
     public Dictionary<string, string> Hosts { get; set; } = new();
 }

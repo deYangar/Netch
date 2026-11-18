@@ -35,6 +35,9 @@ public static class SubscriptionUtil
             foreach (var server in servers)
                 server.Group = item.Remark;
 
+            // 订阅级 Hosts 映射（Sparkle js 覆写等价语义）：命中改写连接目标域名，落库前应用
+            ServerDnsResolver.ApplyHostsToServers(item, servers);
+
             lock (ServerLock)
             {
                 Global.Settings.Server.RemoveAll(server => server.Group.Equals(item.Remark));

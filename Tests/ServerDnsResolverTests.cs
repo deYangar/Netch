@@ -221,18 +221,45 @@ public class ServerDnsResolverTests
     }
 
     [TestMethod]
-    public async Task ResolveAsync_HostsMappingToIpLiteral_ShortCircuits()
+    public void ApplyHostsToServers_RewritesHostname()
     {
-        Netch.Global.Settings.Subscription.Add(new Subscription
+        // TAG js 覆写等价语义：命中改写连接目标域名（连接地址与 TLS SNI 一并跟随），未命中不动
+        var subscription = new Subscription
         {
-            Remark = "tag",
+            Remark = "TAG",
             Link = "https://tag.example.com/sub",
-            Hosts = new Dictionary<string, string> { ["+.afdiancdn.org"] = "203.0.113.7" }
-        });
+            Hosts = new Dictionary<string, string>
+            {
+                ["055c165d-3142-401f-a43e-6a2681e72517.afdiancdn.org"] = "03bc4a78-642b-4efa-9f56-911bc5cf94e0.portail-offres.top",
+                ["+.aixifan7498.com"] = "5c32a47c-ee3d-4061-8207-796ae470ec3c.sfr-bouygues.cloud",
+            }
+        };
 
-        var server = new TestServer { Group = "tag", Hostname = "055c165d.afdiancdn.org" };
-        var ip = await ServerDnsResolver.ResolveAsync(server);
-        Assert.AreEqual(IPAddress.Parse("203.0.113.7"), ip, "映射值为 IP 字面量时直接返回，不发起任何解析");
+        var hit = new TestServer { Hostname = "055c165d-3142-401f-a43e-6a2681e72517.afdiancdn.org" };
+        var wild = new TestServer { Hostname = "2cf48aa5-ae3d-48b8-a500-e0b24c21c9a8.aixifan7498.com" };
+        var miss = new TestServer { Hostname = "other.example.com" };
+
+        ServerDnsResolver.ApplyHostsToServers(subscription, new[] { hit, wild, miss });
+
+        Assert.AreEqual("03bc4a78-642b-4efa-9f56-911bc5cf94e0.portail-offres.top", hit.Hostname, "精确命中改写");
+        Assert.AreEqual("5c32a47c-ee3d-4061-8207-796ae470ec3c.sfr-bouygues.cloud", wild.Hostname, "泛域名命中改写");
+        Assert.AreEqual("other.example.com", miss.Hostname, "未命中不动");
+    }
+
+    [TestMethod]
+    public void ApplyHostsToServers_NoHosts_NoOp()
+    {
+        var subscription = new Subscription { Remark = "x", Link = "https://x.example.com/sub" };
+        var server = new TestServer { Hostname = "a.example.com" };
+        ServerDnsResolver.ApplyHostsToServers(subscription, new[] { server });
+        Assert.AreEqual("a.example.com", server.Hostname);
+    }
+
+    [TestMethod]
+    public async Task ResolveAsync_IpLiteralHostname_ShortCircuits()
+    {
+        var server = new TestServer { Group = Constants.DefaultGroup, Hostname = "203.0.113.7" };
+        Assert.AreEqual(IPAddress.Parse("203.0.113.7"), await ServerDnsResolver.ResolveAsync(server), "IP 字面量不发起任何解析");
     }
 
     [TestMethod]
