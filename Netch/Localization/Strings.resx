@@ -1578,13 +1578,13 @@
     <value>Node DNS (DoH, one URL per line)</value>
   </data>
   <data name="subscription.col.nodeDnsHint" xml:space="preserve">
-    <value>Used only to resolve this subscription&#39;s node domains. Leave empty to use system DNS.</value>
+    <value>Used only to resolve this subscription&#39;s node domains. Empty = system DNS (direct query).</value>
   </data>
   <data name="subscription.col.hosts" xml:space="preserve">
     <value>Host mappings (source=target, one per line)</value>
   </data>
   <data name="subscription.col.hostsHint" xml:space="preserve">
-    <value>Matching node domains are replaced by the target (connect address and TLS SNI follow it, same as override scripts). Restart to apply, no subscription update needed. Supports +.suffix wildcards and # comments.</value>
+    <value>Matching node domains are replaced by the target (connect address and TLS SNI follow it, same as override scripts). Empty = no mapping. Restart to apply, no subscription update needed. Supports +.suffix wildcards and # comments.</value>
   </data>
   <data name="subscription.confirmDeletion" xml:space="preserve">
     <value>Confirm deletion?</value>

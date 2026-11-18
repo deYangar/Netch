@@ -1577,13 +1577,13 @@
     <value>节点解析 DNS（DoH，每行一个）</value>
   </data>
   <data name="subscription.col.nodeDnsHint" xml:space="preserve">
-    <value>仅用于解析该订阅节点的域名，留空使用系统 DNS</value>
+    <value>仅用于解析该订阅节点的域名；留空 = 系统 DNS（直连查询）</value>
   </data>
   <data name="subscription.col.hosts" xml:space="preserve">
     <value>Host 映射（源域名=目标，每行一条）</value>
   </data>
   <data name="subscription.col.hostsHint" xml:space="preserve">
-    <value>命中节点的域名替换为目标（连接地址与 TLS SNI 均跟随，同覆写脚本效果）；修改后停→启生效，无需更新订阅；支持 +.后缀 泛域名与 # 注释</value>
+    <value>命中节点的域名替换为目标（连接地址与 TLS SNI 均跟随，同覆写脚本效果）；留空 = 不做映射；修改后停→启生效，无需更新订阅；支持 +.后缀 泛域名与 # 注释</value>
   </data>
   <data name="subscription.confirmDeletion" xml:space="preserve">
     <value>确认删除？</value>
