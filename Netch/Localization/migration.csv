@@ -112,6 +112,7 @@ common.testing,Testing,测试中,Testing,0
 common.remark,Remark,备注,Remark,0
 common.filename,Filename,文件名,Filename,0
 subscription.add,Add,添加,Add,0
+subscription.clashDnsHostsApplied,{0} DNS/Hosts mapping updated from subscription (DoH {1}, Hosts {2}),{0} 已按订阅更新 DNS/Hosts 映射（DoH {1} 条 / Hosts {2} 条）,{0} DNS/Hosts mapping updated from subscription (DoH {1}, Hosts {2}),0
 common.scan,Scan,扫描,Scan,0
 common.save,Save,保存,Save,0
 subscription.modify,Modify,修改,Modify,0

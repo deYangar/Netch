@@ -41,6 +41,13 @@ public static class ShareLink
         }
         catch (JsonException)
         {
+            // Clash/mihomo YAML 订阅（顶层 proxies: 键）：全类型节点映射，dns/hosts 由 SubscriptionUtil 侧接管
+            if (ClashConfigParser.TryParse(text, out var clash))
+            {
+                list.AddRange(clash.Servers);
+                return list;
+            }
+
             foreach (var line in text.GetLines())
             {
                 try

@@ -1565,6 +1565,9 @@
   <data name="subscription.add" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="subscription.clashDnsHostsApplied" xml:space="preserve">
+    <value>{0} DNS/Hosts mapping updated from subscription (DoH {1}, Hosts {2})</value>
+  </data>
   <data name="subscription.col.link" xml:space="preserve">
     <value>Link</value>
   </data>

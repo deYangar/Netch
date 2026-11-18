@@ -28,7 +28,17 @@ public static class SubscriptionUtil
 
             var (code, result) = await FetchAsync(item, proxyServer);
             if (code == HttpStatusCode.OK)
-                servers = ShareLink.ParseText(result);
+            {
+                if (ClashConfigParser.TryParse(result, out var clash))
+                {
+                    servers = clash.Servers;
+                    ApplyClashDnsHosts(item, clash);
+                }
+                else
+                {
+                    servers = ShareLink.ParseText(result);
+                }
+            }
             else
                 throw new Exception($"{item.Remark} Response Status Code: {code}");
 
@@ -48,6 +58,23 @@ public static class SubscriptionUtil
             Global.UIHub.NotifyTip($"{I18N.TF("subscription.updateServersFailedFrom0", item.Remark)}\n{e.Message}", info: false);
             Log.Warning(e, "Update servers failed");
         }
+    }
+
+    /// <summary>
+    ///     Clash 订阅自带 dns/hosts 整体接管（咩咩 2026-11-18 拍板覆盖语义：订阅是事实源，有则覆盖、无则清空——
+    ///     机场换域名映射后跟随，手填值对 Clash 订阅不保留）。变化才提示，避免每次更新都弹；
+    ///     字段随外层 UpdateServersAsync 之后的 Configuration.SaveAsync 一并持久化
+    /// </summary>
+    private static void ApplyClashDnsHosts(Subscription item, ClashConfigParser.Result clash)
+    {
+        var dnsChanged = !item.NodeDns.SequenceEqual(clash.NodeDns);
+        var hostsChanged = !item.Hosts.Keys.SequenceEqual(clash.Hosts.Keys) || item.Hosts.Any(kv => clash.Hosts.GetValueOrDefault(kv.Key) != kv.Value);
+        if (!dnsChanged && !hostsChanged)
+            return;
+
+        item.NodeDns = clash.NodeDns.ToList();
+        item.Hosts = clash.Hosts.ToDictionary(kv => kv.Key, kv => kv.Value);
+        Global.UIHub.NotifyTip(I18N.TF("subscription.clashDnsHostsApplied", item.Remark, clash.NodeDns.Count, clash.Hosts.Count));
     }
 
     /// <summary>

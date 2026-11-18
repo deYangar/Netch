@@ -3,6 +3,7 @@
 /release
 /packages
 /TestResults
+Tests/TestResults/
 bin/
 obj/
 Storage/kernel/*.zip

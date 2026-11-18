@@ -1564,6 +1564,9 @@
   <data name="subscription.add" xml:space="preserve">
     <value>添加</value>
   </data>
+  <data name="subscription.clashDnsHostsApplied" xml:space="preserve">
+    <value>{0} 已按订阅更新 DNS/Hosts 映射（DoH {1} 条 / Hosts {2} 条）</value>
+  </data>
   <data name="subscription.col.link" xml:space="preserve">
     <value>链接</value>
   </data>
