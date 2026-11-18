@@ -9,6 +9,9 @@ public static class V2rayConfigUtils
 {
     public static async Task<V2rayConfig> GenerateClientConfigAsync(Server server)
     {
+        // 订阅 Hosts 映射（js 覆写语义）在配置生成时应用：克隆体改写连接目标（SNI 跟随），原件保留原始域名
+        server = ServerDnsResolver.CloneWithHosts(server);
+
         var v2rayConfig = new V2rayConfig
         {
             inbounds = new object[]

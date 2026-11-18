@@ -48,10 +48,13 @@ public static class SingboxConfigUtils
         // primary 必须能生成（单节点模式唯一节点；多节点模式 selector 默认选中项），失败上抛
         foreach (var s in ordered)
         {
+            // 订阅 Hosts 映射（js 覆写语义）在配置生成时应用：克隆体改写连接目标（SNI 跟随），
+            // 原件保留原始域名——改映射停→启即生效；tagMap/delay 回填仍持原件
+            var node = ServerDnsResolver.CloneWithHosts(s);
             object outbound;
             try
             {
-                outbound = await BuildServerOutboundAsync(s);
+                outbound = await BuildServerOutboundAsync(node);
             }
             catch (Exception e)
             {
@@ -221,7 +224,7 @@ public static class SingboxConfigUtils
                 // 同步配置构建器内的有界 DNS 解析（LookupAsync 自带 3s 超时，无死等风险）；
                 // 全链路 async 化属结构性改造，此处按仓库惯例语句级豁免
 #pragma warning disable VSTHRD002
-                var remote = DnsUtils.LookupAsync(remoteHostname).GetAwaiter().GetResult()?.ToString();
+                var remote = ServerDnsResolver.ResolveHostnameAsync(primary.Group, remoteHostname).GetAwaiter().GetResult()?.ToString();
 #pragma warning restore VSTHRD002
                 if (remote != null && !exclude.Contains($"{remote}/32"))
                     exclude.Add($"{remote}/32");

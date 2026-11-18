@@ -221,10 +221,10 @@ public class ServerDnsResolverTests
     }
 
     [TestMethod]
-    public void ApplyHostsToServers_RewritesHostname()
+    public void CloneWithHosts_RewritesCloneOnly()
     {
-        // TAG js 覆写等价语义：命中改写连接目标域名（连接地址与 TLS SNI 一并跟随），未命中不动
-        var subscription = new Subscription
+        // js 覆写等价语义（配置生成时应用）：命中改写克隆体连接目标（SNI 跟随），原件保留原始域名——改映射停→启即生效
+        Netch.Global.Settings.Subscription.Add(new Subscription
         {
             Remark = "TAG",
             Link = "https://tag.example.com/sub",
@@ -233,26 +233,43 @@ public class ServerDnsResolverTests
                 ["055c165d-3142-401f-a43e-6a2681e72517.afdiancdn.org"] = "03bc4a78-642b-4efa-9f56-911bc5cf94e0.portail-offres.top",
                 ["+.aixifan7498.com"] = "5c32a47c-ee3d-4061-8207-796ae470ec3c.sfr-bouygues.cloud",
             }
-        };
+        });
 
-        var hit = new TestServer { Hostname = "055c165d-3142-401f-a43e-6a2681e72517.afdiancdn.org" };
-        var wild = new TestServer { Hostname = "2cf48aa5-ae3d-48b8-a500-e0b24c21c9a8.aixifan7498.com" };
-        var miss = new TestServer { Hostname = "other.example.com" };
+        var original = new TestServer { Group = "TAG", Hostname = "055c165d-3142-401f-a43e-6a2681e72517.afdiancdn.org" };
+        var clone = (TestServer)ServerDnsResolver.CloneWithHosts(original);
 
-        ServerDnsResolver.ApplyHostsToServers(subscription, new[] { hit, wild, miss });
+        Assert.AreEqual("03bc4a78-642b-4efa-9f56-911bc5cf94e0.portail-offres.top", clone.Hostname, "克隆体命中改写");
+        Assert.AreEqual("055c165d-3142-401f-a43e-6a2681e72517.afdiancdn.org", original.Hostname, "原件保留原始域名");
+        Assert.AreNotSame(original, clone);
 
-        Assert.AreEqual("03bc4a78-642b-4efa-9f56-911bc5cf94e0.portail-offres.top", hit.Hostname, "精确命中改写");
+        var wild = (TestServer)ServerDnsResolver.CloneWithHosts(new TestServer { Group = "TAG", Hostname = "2cf48aa5-ae3d-48b8-a500-e0b24c21c9a8.aixifan7498.com" });
         Assert.AreEqual("5c32a47c-ee3d-4061-8207-796ae470ec3c.sfr-bouygues.cloud", wild.Hostname, "泛域名命中改写");
+
+        var miss = (TestServer)ServerDnsResolver.CloneWithHosts(new TestServer { Group = "TAG", Hostname = "other.example.com" });
         Assert.AreEqual("other.example.com", miss.Hostname, "未命中不动");
     }
 
     [TestMethod]
-    public void ApplyHostsToServers_NoHosts_NoOp()
+    public void CloneWithHosts_NoSubscription_NoOp()
     {
-        var subscription = new Subscription { Remark = "x", Link = "https://x.example.com/sub" };
-        var server = new TestServer { Hostname = "a.example.com" };
-        ServerDnsResolver.ApplyHostsToServers(subscription, new[] { server });
-        Assert.AreEqual("a.example.com", server.Hostname);
+        var original = new TestServer { Group = Constants.DefaultGroup, Hostname = "a.example.com" };
+        var clone = (TestServer)ServerDnsResolver.CloneWithHosts(original);
+        Assert.AreEqual("a.example.com", clone.Hostname);
+    }
+
+    [TestMethod]
+    public async Task ResolveAsync_HostsMapping_ResolvesTarget()
+    {
+        // 测速/预检链路：解析按映射后的目标进行（与实际连接一致）
+        Netch.Global.Settings.Subscription.Add(new Subscription
+        {
+            Remark = "tag",
+            Link = "https://tag.example.com/sub",
+            Hosts = new Dictionary<string, string> { ["+.afdiancdn.org"] = "203.0.113.7" }
+        });
+
+        var server = new TestServer { Group = "tag", Hostname = "055c165d.afdiancdn.org" };
+        Assert.AreEqual(IPAddress.Parse("203.0.113.7"), await ServerDnsResolver.ResolveAsync(server), "映射值为 IP 字面量时直接返回");
     }
 
     [TestMethod]
