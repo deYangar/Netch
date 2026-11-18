@@ -34,7 +34,7 @@ public static class MainController
 
         EnsureSocks5PortAvailable();
 
-        if (await DnsUtils.LookupAsync(server.Hostname) == null)
+        if (await ServerDnsResolver.ResolveAsync(server) == null)
             throw new MessageException(I18N.T("controller.lookupServerHostnameFailed"));
 
         // TODO Disable NAT Type Test setting
@@ -247,9 +247,11 @@ public static class MainController
             ServerController = null;
         }
 
-        // 节点域名可能已解析到新 IP：显式清缓存强制重新解析（TTL 内的旧记录也不许短路自愈链路，2026-11-04 审查 F-1）
+        // 节点域名可能已解析到新 IP：显式清缓存强制重新解析（TTL 内的旧记录也不许短路自愈链路，2026-11-04 审查 F-1；
+        // 订阅级 DoH 解析缓存同步清，语义一致）
         DnsUtils.ClearCache();
-        await DnsUtils.LookupAsync(Server.Hostname);
+        DoHDnsClient.ClearCache();
+        await ServerDnsResolver.ResolveAsync(Server);
 
         if (!(Server is Socks5Server socks5 && (!socks5.Auth() || ModeController?.Features.HasFlag(ModeFeature.SupportSocks5Auth) == true)))
         {

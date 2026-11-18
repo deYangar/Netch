@@ -770,6 +770,7 @@ public partial class SettingsViewModel : ObservableObject
         {
             NativeMethods.RefreshDNSCache();
             DnsUtils.ClearCache();
+            DoHDnsClient.ClearCache();
         });
     }
 

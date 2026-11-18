@@ -19,7 +19,7 @@ public static class Socks5ServerTestUtils
 
         var socks5Option = new Socks5CreateOption
         {
-            Address = await DnsUtils.LookupAsync(socks5.Hostname),
+            Address = await ServerDnsResolver.ResolveAsync(socks5),
             Port = socks5.Port,
             UsernamePassword = new UsernamePassword
             {
@@ -83,7 +83,7 @@ public static class Socks5ServerTestUtils
     {
         var socks5Option = new Socks5CreateOption
         {
-            Address = await DnsUtils.LookupAsync(socks5.Hostname),
+            Address = await ServerDnsResolver.ResolveAsync(socks5),
             Port = socks5.Port,
             UsernamePassword = new UsernamePassword
             {

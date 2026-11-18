@@ -17,6 +17,14 @@
         <TextBlock x:Name="linkError" Foreground="{DynamicResource Brush.Danger}" Style="{StaticResource TextBlock.Caption}" Margin="0,0,0,8" />
         <TextBlock Text="{loc:I18N subscription.col.userAgent}" Style="{StaticResource TextBlock.Caption}" Margin="0,0,0,4" />
         <TextBox x:Name="userAgentBox" Margin="0,0,0,14" />
+        <TextBlock Text="{loc:I18N subscription.col.nodeDns}" Style="{StaticResource TextBlock.Caption}" Margin="0,0,0,4" />
+        <TextBox x:Name="nodeDnsBox" Margin="0,0,0,4" Height="64" AcceptsReturn="True" TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" FontSize="12" />
+        <TextBlock Text="{loc:I18N subscription.col.nodeDnsHint}" Style="{StaticResource TextBlock.Caption}" Opacity="0.6" Margin="0,0,0,14" TextWrapping="Wrap" />
+        <TextBlock Text="{loc:I18N subscription.col.hosts}" Style="{StaticResource TextBlock.Caption}" Margin="0,0,0,4" />
+        <TextBox x:Name="hostsBox" Margin="0,0,0,4" Height="88" AcceptsReturn="True" TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" FontSize="12" />
+        <TextBlock Text="{loc:I18N subscription.col.hostsHint}" Style="{StaticResource TextBlock.Caption}" Opacity="0.6" Margin="0,0,0,14" TextWrapping="Wrap" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="saveButton" Style="{StaticResource Btn.Primary}" MinWidth="88" Content="{loc:I18N common.save}" Click="SaveButton_Click" />
             <Button x:Name="cancelButton" MinWidth="88" Margin="8,0,0,0" Content="{loc:I18N common.cancel}" Click="CancelButton_Click" />

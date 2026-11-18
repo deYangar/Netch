@@ -1,6 +1,7 @@
 ﻿using System.Net.Sockets;
 using System.Text.Json.Serialization;
 using Netch.Enums;
+using Netch.Localization;
 using Netch.Utils;
 
 namespace Netch.Models;
@@ -87,7 +88,7 @@ public abstract class Server : ICloneable
     {
         try
         {
-            var destination = await DnsUtils.LookupAsync(Hostname);
+            var destination = await ServerDnsResolver.ResolveAsync(this);
             if (destination == null)
                 return RecordTcpingDelay(-2);
 
@@ -129,10 +130,17 @@ public abstract class Server : ICloneable
 
 public static class ServerExtension
 {
+    /// <summary>
+    ///     解析节点连接地址（订阅级 Hosts 映射/DoH 在此生效，见 ServerDnsResolver）；
+    ///     全链路失败显式报错（旧实现对 null 直接 ! 解引用 NRE，无从排查）
+    /// </summary>
     public static async Task<string> AutoResolveHostnameAsync(this Server server, AddressFamily inet = AddressFamily.Unspecified)
     {
-        // ! MainController cached
-        return (await DnsUtils.LookupAsync(server.Hostname, inet))!.ToString();
+        var address = await ServerDnsResolver.ResolveAsync(server, inet);
+        if (address == null)
+            throw new MessageException(I18N.TF("kernel.serverHostnameResolveFailed0", server.Hostname));
+
+        return address.ToString();
     }
 
     public static bool IsInGroup(this Server server)

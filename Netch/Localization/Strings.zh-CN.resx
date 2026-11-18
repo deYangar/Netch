@@ -863,6 +863,9 @@
   <data name="kernel.invalidDnsServer0" xml:space="preserve">
     <value>无效的 DNS 服务器 "{0}"</value>
   </data>
+  <data name="kernel.serverHostnameResolveFailed0" xml:space="preserve">
+    <value>解析节点域名 {0} 失败</value>
+  </data>
   <data name="kernel.invalidDomainRegex0" xml:space="preserve">
     <value>域名正则表达式 "{0}" 无效</value>
   </data>
@@ -1569,6 +1572,18 @@
   </data>
   <data name="subscription.col.userAgent" xml:space="preserve">
     <value>User-Agent</value>
+  </data>
+  <data name="subscription.col.nodeDns" xml:space="preserve">
+    <value>节点解析 DNS（DoH，每行一个）</value>
+  </data>
+  <data name="subscription.col.nodeDnsHint" xml:space="preserve">
+    <value>仅用于解析该订阅节点的域名，留空使用系统 DNS</value>
+  </data>
+  <data name="subscription.col.hosts" xml:space="preserve">
+    <value>Host 映射（源域名=目标，每行一条）</value>
+  </data>
+  <data name="subscription.col.hostsHint" xml:space="preserve">
+    <value>改写命中节点域名的连接地址，TLS SNI 保持不变；支持 +.后缀 泛域名与 # 注释</value>
   </data>
   <data name="subscription.confirmDeletion" xml:space="preserve">
     <value>确认删除？</value>

@@ -864,6 +864,9 @@
   <data name="kernel.invalidDnsServer0" xml:space="preserve">
     <value>Invalid DNS server "{0}"</value>
   </data>
+  <data name="kernel.serverHostnameResolveFailed0" xml:space="preserve">
+    <value>Failed to resolve server hostname {0}</value>
+  </data>
   <data name="kernel.invalidDomainRegex0" xml:space="preserve">
     <value>Invalid domain regex "{0}"</value>
   </data>
@@ -1570,6 +1573,18 @@
   </data>
   <data name="subscription.col.userAgent" xml:space="preserve">
     <value>User-Agent</value>
+  </data>
+  <data name="subscription.col.nodeDns" xml:space="preserve">
+    <value>Node DNS (DoH, one URL per line)</value>
+  </data>
+  <data name="subscription.col.nodeDnsHint" xml:space="preserve">
+    <value>Used only to resolve this subscription&#39;s node domains. Leave empty to use system DNS.</value>
+  </data>
+  <data name="subscription.col.hosts" xml:space="preserve">
+    <value>Host mappings (source=target, one per line)</value>
+  </data>
+  <data name="subscription.col.hostsHint" xml:space="preserve">
+    <value>Rewrites the connect address of matching node domains; TLS SNI stays unchanged. Supports +.suffix wildcards and # comments.</value>
   </data>
   <data name="subscription.confirmDeletion" xml:space="preserve">
     <value>Confirm deletion?</value>
