@@ -156,14 +156,14 @@ public class BackupServiceTests
         // 坏 zip（文本文件）
         var notZip = Path.Combine(_tempRoot, "fake.zip");
         File.WriteAllText(notZip, "this is not a zip");
-        Assert.ThrowsException<InvalidDataException>(() => ReadManifestFromZip(notZip));
+        Assert.ThrowsExactly<InvalidDataException>(() => ReadManifestFromZip(notZip));
 
         // 空 zip（缺 manifest）
         var emptyZip = Path.Combine(_tempRoot, "empty.zip");
         using (ZipFile.Open(emptyZip, ZipArchiveMode.Create))
         {
         }
-        Assert.ThrowsException<MessageException>(() => ReadManifestFromZip(emptyZip));
+        Assert.ThrowsExactly<MessageException>(() => ReadManifestFromZip(emptyZip));
 
         // 类型未知 / 版本超前
         var evilZip = Path.Combine(_tempRoot, "evil.zip");
@@ -173,7 +173,7 @@ public class BackupServiceTests
             using var stream = entry.Open();
             JsonSerializer.Serialize(stream, new BackupService.BackupManifest { Type = "Evil", Version = 1 });
         }
-        Assert.ThrowsException<MessageException>(() => ReadManifestFromZip(evilZip));
+        Assert.ThrowsExactly<MessageException>(() => ReadManifestFromZip(evilZip));
 
         var futureZip = Path.Combine(_tempRoot, "future.zip");
         using (var archive = ZipFile.Open(futureZip, ZipArchiveMode.Create))
@@ -182,7 +182,7 @@ public class BackupServiceTests
             using var stream = entry.Open();
             JsonSerializer.Serialize(stream, new BackupService.BackupManifest { Type = "Full", Version = 99 });
         }
-        Assert.ThrowsException<MessageException>(() => ReadManifestFromZip(futureZip));
+        Assert.ThrowsExactly<MessageException>(() => ReadManifestFromZip(futureZip));
     }
 
     [TestMethod]
@@ -220,7 +220,7 @@ public class BackupServiceTests
         }
 
         var tempExtract = Path.Combine(_tempRoot, "extract");
-        Assert.ThrowsException<MessageException>(() => BackupService.ExtractModeEntries(zip, tempExtract));
+        Assert.ThrowsExactly<MessageException>(() => BackupService.ExtractModeEntries(zip, tempExtract));
         Assert.IsFalse(File.Exists(Path.Combine(_tempRoot, "evil.txt")), "穿越文件绝不能落地");
 
         // 根相对路径（\evil → C:\evil）同样拒绝
@@ -229,7 +229,7 @@ public class BackupServiceTests
         {
             WriteEntry(archive, "mode/\\Windows\\evil.txt", "pwned");
         }
-        Assert.ThrowsException<MessageException>(() => BackupService.ExtractModeEntries(zip2, Path.Combine(_tempRoot, "extract2")));
+        Assert.ThrowsExactly<MessageException>(() => BackupService.ExtractModeEntries(zip2, Path.Combine(_tempRoot, "extract2")));
     }
 
     [TestMethod]

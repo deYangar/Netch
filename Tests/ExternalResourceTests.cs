@@ -61,11 +61,11 @@ public class ExternalResourceTests
 
         // 错魔数（HTML 错误体）
         File.WriteAllBytes(path, "<html>404 not found</html>"u8.ToArray());
-        Assert.ThrowsException<MessageException>(() => ValidateDownloaded(res, path));
+        Assert.ThrowsExactly<MessageException>(() => ValidateDownloaded(res, path));
 
         // 过小（1 字节 < 阈值 4）
         File.WriteAllBytes(path, "M"u8.ToArray());
-        Assert.ThrowsException<MessageException>(() => ValidateDownloaded(res, path));
+        Assert.ThrowsExactly<MessageException>(() => ValidateDownloaded(res, path));
         File.Delete(path);
     }
 
@@ -83,13 +83,13 @@ public class ExternalResourceTests
 
         // 错魔数（HTML 错误体）
         File.WriteAllBytes(path, "<html>502 bad gateway"u8.ToArray());
-        Assert.ThrowsException<MessageException>(() => ValidateDownloaded(res, path));
+        Assert.ThrowsExactly<MessageException>(() => ValidateDownloaded(res, path));
         // 截断体（不足 4 字节）
         File.WriteAllBytes(path, "SRS"u8.ToArray());
-        Assert.ThrowsException<MessageException>(() => ValidateDownloaded(res, path));
+        Assert.ThrowsExactly<MessageException>(() => ValidateDownloaded(res, path));
         // 非法版本字节
         File.WriteAllBytes(path, new byte[] { 0x53, 0x52, 0x53, 0x09 });
-        Assert.ThrowsException<MessageException>(() => ValidateDownloaded(res, path));
+        Assert.ThrowsExactly<MessageException>(() => ValidateDownloaded(res, path));
         File.Delete(path);
     }
 
@@ -113,12 +113,12 @@ public class ExternalResourceTests
         // Reader 会 memory-map 文件：每个坏例用独立临时文件，避免句柄释放时序干扰覆写
         var path1 = Path.GetTempFileName();
         File.WriteAllBytes(path1, "not a database at all"u8.ToArray());
-        Assert.ThrowsException<MessageException>(() => ValidateDownloaded(res, path1));
+        Assert.ThrowsExactly<MessageException>(() => ValidateDownloaded(res, path1));
         File.Delete(path1);
 
         var path2 = Path.GetTempFileName();
         File.WriteAllBytes(path2, "<html>maintenance page</html>"u8.ToArray());
-        Assert.ThrowsException<MessageException>(() => ValidateDownloaded(res, path2));
+        Assert.ThrowsExactly<MessageException>(() => ValidateDownloaded(res, path2));
         File.Delete(path2);
     }
 
@@ -128,7 +128,7 @@ public class ExternalResourceTests
         var res = Res(ExternalResourceKind.RuleSet, minBytes: 1024);
         var path = Path.GetTempFileName();
         File.WriteAllBytes(path, new byte[] { 0x53, 0x52, 0x53, 0x01 }); // 格式合法但 < 1KB 阈值
-        Assert.ThrowsException<MessageException>(() => ValidateDownloaded(res, path));
+        Assert.ThrowsExactly<MessageException>(() => ValidateDownloaded(res, path));
         File.Delete(path);
     }
 
@@ -218,7 +218,7 @@ public class ExternalResourceTests
         var old = new byte[] { 0x53, 0x52, 0x53, 0x01, 0xAA, 0xBB };
         var target = SeedTarget(res, old);
 
-        await Assert.ThrowsExceptionAsync<MessageException>(() => UpdateHttpFileAsync(res));
+        await Assert.ThrowsExactlyAsync<MessageException>(() => UpdateHttpFileAsync(res));
 
         // 旧文件逐字节不变
         CollectionAssert.AreEqual(old, File.ReadAllBytes(target));
@@ -234,7 +234,7 @@ public class ExternalResourceTests
         var old = new byte[] { 0x53, 0x52, 0x53, 0x01, 0xCC, 0xDD };
         var target = SeedTarget(res, old);
 
-        await Assert.ThrowsExceptionAsync<HttpRequestException>(() => UpdateHttpFileAsync(res));
+        await Assert.ThrowsExactlyAsync<HttpRequestException>(() => UpdateHttpFileAsync(res));
         CollectionAssert.AreEqual(old, File.ReadAllBytes(target));
     }
 
@@ -247,7 +247,7 @@ public class ExternalResourceTests
         var old = new byte[] { 0x53, 0x52, 0x53, 0x01, 0xEE, 0xFF };
         var target = SeedTarget(res, old);
 
-        await Assert.ThrowsExceptionAsync<MessageException>(() => UpdateHttpFileAsync(res));
+        await Assert.ThrowsExactlyAsync<MessageException>(() => UpdateHttpFileAsync(res));
         CollectionAssert.AreEqual(old, File.ReadAllBytes(target));
     }
 
@@ -299,7 +299,7 @@ public class ExternalResourceTests
             var old = new byte[] { 0x53, 0x52, 0x53, 0x01, 0x99 };
             var target = SeedTarget(res, old);
 
-            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => UpdateHttpFileAsync(res));
+            await Assert.ThrowsExactlyAsync<HttpRequestException>(() => UpdateHttpFileAsync(res));
             CollectionAssert.AreEqual(old, File.ReadAllBytes(target));
         }
         finally
@@ -362,7 +362,7 @@ public class ExternalResourceTests
     public void MoveToTrash_NotInstalled_Throws()
     {
         var res = Res(ExternalResourceKind.RuleSet, key: "test-absent", minBytes: 4);
-        Assert.ThrowsException<MessageException>(() => MoveToTrash(res));
+        Assert.ThrowsExactly<MessageException>(() => MoveToTrash(res));
     }
 
     #endregion

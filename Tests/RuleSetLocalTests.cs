@@ -122,7 +122,7 @@ public class RuleSetLocalTests
     {
         var rule = new RouteRule { RuleSet = new List<string> { "unknown" } };
         Assert.AreSame(rule, LocalRuleSetExpand.Expand(new[] { rule }).Single());
-        Assert.ThrowsException<MessageException>(() => RouteRuleValidator.Validate(rule));
+        Assert.ThrowsExactly<MessageException>(() => RouteRuleValidator.Validate(rule));
     }
 
     [TestMethod]
@@ -132,21 +132,21 @@ public class RuleSetLocalTests
         var result = LocalRuleSetExpand.Expand(new[] { new RouteRule { RuleSet = new List<string> { "a", "unknown" } } });
         Assert.AreEqual(2, result.Count);
         CollectionAssert.AreEqual(new[] { "unknown" }, result[1].RuleSet);
-        Assert.ThrowsException<MessageException>(() => RouteRuleValidator.Validate(result[1]));
+        Assert.ThrowsExactly<MessageException>(() => RouteRuleValidator.Validate(result[1]));
     }
 
     [TestMethod]
     public void Expand_EmptyLocalThrows()
     {
         Netch.Global.Settings.RuleSets.Add(Local("empty"));
-        Assert.ThrowsException<MessageException>(() => LocalRuleSetExpand.Expand(new[] { new RouteRule { RuleSet = new List<string> { "empty" } } }));
+        Assert.ThrowsExactly<MessageException>(() => LocalRuleSetExpand.Expand(new[] { new RouteRule { RuleSet = new List<string> { "empty" } } }));
     }
 
     [TestMethod]
     public void Exclusive_RefWithInlineThrows()
     {
         var rule = new RouteRule { RuleSet = new List<string> { "geosite-cn" }, DomainSuffix = new List<string> { "a.com" } };
-        var e = Assert.ThrowsException<MessageException>(() => RouteRuleValidator.Validate(rule));
+        var e = Assert.ThrowsExactly<MessageException>(() => RouteRuleValidator.Validate(rule));
         Assert.AreEqual(I18N.T("kernel.ruleRefInlineExclusive"), e.Message);
     }
 

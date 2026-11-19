@@ -166,7 +166,7 @@ public class ExternalResourceFinalTests
         var old = new byte[] { 0x53, 0x52, 0x53, 0x01, 0x42 };
         File.WriteAllBytes(target, old);
 
-        await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ExternalResourceService.UpdateHttpFileAsync(res));
+        await Assert.ThrowsExactlyAsync<HttpRequestException>(() => ExternalResourceService.UpdateHttpFileAsync(res));
         CollectionAssert.AreEqual(old, File.ReadAllBytes(target), "旧文件逐字节保留");
 
         File.Delete(target);

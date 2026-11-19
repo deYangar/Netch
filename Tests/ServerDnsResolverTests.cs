@@ -87,13 +87,13 @@ public class ServerDnsResolverTests
     public void ParseResponse_NonZeroRcode_Throws(ushort rcode)
     {
         var message = BuildResponse("x.com", answers: Array.Empty<(ushort, byte[])>(), rcode: rcode);
-        Assert.ThrowsException<InvalidDataException>(() => DoHDnsClient.ParseResponse(message, 1));
+        Assert.ThrowsExactly<InvalidDataException>(() => DoHDnsClient.ParseResponse(message, 1));
     }
 
     [TestMethod]
     public void ParseResponse_Truncated_Throws()
     {
-        Assert.ThrowsException<EndOfStreamException>(() => DoHDnsClient.ParseResponse(new byte[8], 1));
+        Assert.ThrowsExactly<EndOfStreamException>(() => DoHDnsClient.ParseResponse(new byte[8], 1));
     }
 
     [TestMethod]

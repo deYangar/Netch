@@ -177,7 +177,7 @@ public class I18NTests
     [TestMethod]
     public void MissingKeyThrows()
     {
-        Assert.ThrowsException<InvalidOperationException>(() => I18N.T("no.such.key.exists"));
+        Assert.ThrowsExactly<InvalidOperationException>(() => I18N.T("no.such.key.exists"));
     }
 
     private static Dictionary<string, string> LoadKeys(string path)

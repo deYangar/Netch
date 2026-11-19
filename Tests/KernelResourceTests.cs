@@ -115,7 +115,7 @@ public class KernelResourceTests
         {
             // sing-box 禁用：SS 节点（默认路由 sing-box）启动被拦（全自动路由，禁用即拦）
             ExternalResourceService.MutateStateAsync(singbox, s => s.Disabled = true).GetAwaiter().GetResult();
-            var ex = Assert.ThrowsException<MessageException>(
+            var ex = Assert.ThrowsExactly<MessageException>(
                 () => MainController.CreateServerController(new Netch.Servers.Socks5Server()));
             StringAssert.Contains(ex.Message, "sing-box");
 
@@ -128,7 +128,7 @@ public class KernelResourceTests
             // xhttp 节点在 Xray 禁用时被拦
             ExternalResourceService.MutateStateAsync(xray, s => s.Disabled = true).GetAwaiter().GetResult();
             var vless = new Netch.Servers.VLESSServer { TransferProtocol = "xhttp" };
-            Assert.ThrowsException<MessageException>(() => MainController.CreateServerController(vless));
+            Assert.ThrowsExactly<MessageException>(() => MainController.CreateServerController(vless));
 
             // 恢复后同一节点正常路由到 Xray
             ExternalResourceService.MutateStateAsync(xray, s => s.Disabled = false).GetAwaiter().GetResult();
@@ -164,13 +164,13 @@ public class KernelResourceTests
         var cleanup = EnsureFakeKernels("xray.exe");
         try
         {
-            Assert.ThrowsException<MessageException>(
+            Assert.ThrowsExactly<MessageException>(
                 () => MainController.CreateServerController(new Netch.Servers.ShadowsocksRServer()));
-            Assert.ThrowsException<MessageException>(
+            Assert.ThrowsExactly<MessageException>(
                 () => MainController.CreateServerController(new Netch.Servers.VLESSServer { TLSSecureType = "xtls" }));
-            Assert.ThrowsException<MessageException>(
+            Assert.ThrowsExactly<MessageException>(
                 () => MainController.CreateServerController(new Netch.Servers.TrojanServer { TLSSecureType = "xtls" }));
-            Assert.ThrowsException<MessageException>(
+            Assert.ThrowsExactly<MessageException>(
                 () => MainController.CreateServerController(new Netch.Servers.VMessServer { TransferProtocol = "quic" }));
             Assert.IsInstanceOfType(
                 MainController.CreateServerController(new Netch.Servers.TrojanServer { TLSSecureType = "none" }),
