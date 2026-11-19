@@ -40,16 +40,17 @@ public static class ExternalResourceService
         },
 
         // 内置规则集快照（SagerNet 主源 + MetaCubeX sing 备胎；R 线 §1.3/§4.2）
-        // 全部走 jsDelivr CDN（咩咩 2026-10-29 拍板）：raw.githubusercontent 直连不稳，CDN 国内可达；
-        // 备胎路径实测修正：方案模板 rule-set/{geosite,geoip}/xxx.srs 已 404，
-        // 实际仓库结构 sing 分支 geo/{geosite,geoip}/cn.srs（HTTP 200 验证）
+        // CDN 选型（2026-11-19 实测翻案）：cdn.jsdelivr.net 直连 RST 污染（主备同 CDN 时备胎形同虚设），
+        // fastly.jsdelivr.net 与 raw.githubusercontent.com 直连均 200——主备跨 CDN 故障域（jsDelivr 系 vs GitHub 前端），
+        // 网络阻断翻烙饼时无论哪边倒下都有活路。上游内容：SagerNet 快照主源 + MetaCubeX sing 备胎
+        //（备胎仓库结构 sing 分支 geo/{geosite,geoip}/cn.srs，HTTP 200 验证）
         new()
         {
             Key = "ruleset.geosite-cn", DisplayNameKey = "external.ruleset.geositeCn",
             Kind = ExternalResourceKind.RuleSet, Provider = ExternalResourceProviderKind.HttpFile,
             LocalPath = @"bin\rule-set\geosite-cn.srs",
-            Url = "https://cdn.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-cn.srs",
-            FallbackUrl = "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+            Url = "https://fastly.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-cn.srs",
+            FallbackUrl = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
             Caps = ExternalResourceCaps.CanDisable | ExternalResourceCaps.CanDelete | ExternalResourceCaps.CanUpdate | ExternalResourceCaps.CanAutoUpdate,
             AutoUpdateDefault = true, MinBytes = 1024
         },
@@ -58,8 +59,8 @@ public static class ExternalResourceService
             Key = "ruleset.geoip-cn", DisplayNameKey = "external.ruleset.geoipCn",
             Kind = ExternalResourceKind.RuleSet, Provider = ExternalResourceProviderKind.HttpFile,
             LocalPath = @"bin\rule-set\geoip-cn.srs",
-            Url = "https://cdn.jsdelivr.net/gh/SagerNet/sing-geoip@rule-set/geoip-cn.srs",
-            FallbackUrl = "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+            Url = "https://fastly.jsdelivr.net/gh/SagerNet/sing-geoip@rule-set/geoip-cn.srs",
+            FallbackUrl = "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
             Caps = ExternalResourceCaps.CanDisable | ExternalResourceCaps.CanDelete | ExternalResourceCaps.CanUpdate | ExternalResourceCaps.CanAutoUpdate,
             AutoUpdateDefault = true, MinBytes = 1024
         },
@@ -67,14 +68,15 @@ public static class ExternalResourceService
         // IP 归属地库（连接页归属地 + NAT 检测国家码消费；官方数据 v3 五段格式，
         // 探针实测 88.221.123.186 → Germany|Hamburg|Hamburg|Akamai|DE。
         // v6 库 37MB 超 jsDelivr 20MB 限制（咩咩 2026-10-30 拍板）：不走 CDN，
-        // GitHub raw 直链（用户网络能下就下），下不动在设置页勾选「外部资源经内置代理下载」）
+        // GitHub raw 直链（用户网络能下就下），下不动在设置页勾选「外部资源经内置代理下载」。
+        // v4 主备同样跨 CDN 故障域（2026-11-19，见规则集段注释；cdn.jsdelivr.net 直连 RST）
         new()
         {
             Key = "geo.ip2region", DisplayNameKey = "external.geo.ip2region",
             Kind = ExternalResourceKind.DataFile, Provider = ExternalResourceProviderKind.HttpFile,
             LocalPath = @"bin\ip2region.xdb",
-            Url = "https://cdn.jsdelivr.net/gh/lionsoul2014/ip2region@master/data/ip2region_v4.xdb",
-            FallbackUrl = "https://fastly.jsdelivr.net/gh/lionsoul2014/ip2region@master/data/ip2region_v4.xdb",
+            Url = "https://fastly.jsdelivr.net/gh/lionsoul2014/ip2region@master/data/ip2region_v4.xdb",
+            FallbackUrl = "https://raw.githubusercontent.com/lionsoul2014/ip2region/master/data/ip2region_v4.xdb",
             // 不提供禁用（归属地功能本体内建）；不提供 CanDisable
             Caps = ExternalResourceCaps.CanDelete | ExternalResourceCaps.CanUpdate | ExternalResourceCaps.CanAutoUpdate,
             AutoUpdateDefault = true, MinBytes = 1024 * 1024

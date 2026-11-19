@@ -22,10 +22,11 @@ public static class BuiltInRuleSets
     // 源选型 2026-10-26 实测：LoyalLogic release 分支 404；SagerNet 官方 sing-geosite/sing-geoip
     // 仓库 rule-set 分支直链可用（SRS v1 魔数校验通过），且为 sing-box 作者维护，选它写死。
     // 2026-10-29 换 jsDelivr CDN（外部资源更新通道同步换）：raw.githubusercontent 直连不稳，CDN 国内可达。
+    // 2026-11-19 实测翻案：cdn.jsdelivr.net 直连 RST 污染换 fastly.jsdelivr.net（与外部资源页同源同步换）。
     public static readonly Definition[] All =
     {
-        new() { Tag = "geosite-cn", Url = "https://cdn.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-cn.srs", InitialPath = @"rule-set\geosite-cn.srs" },
-        new() { Tag = "geoip-cn", Url = "https://cdn.jsdelivr.net/gh/SagerNet/sing-geoip@rule-set/geoip-cn.srs", InitialPath = @"rule-set\geoip-cn.srs" }
+        new() { Tag = "geosite-cn", Url = "https://fastly.jsdelivr.net/gh/SagerNet/sing-geosite@rule-set/geosite-cn.srs", InitialPath = @"rule-set\geosite-cn.srs" },
+        new() { Tag = "geoip-cn", Url = "https://fastly.jsdelivr.net/gh/SagerNet/sing-geoip@rule-set/geoip-cn.srs", InitialPath = @"rule-set\geoip-cn.srs" }
     };
 
     public static Definition? Find(string tag)
