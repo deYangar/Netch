@@ -207,7 +207,9 @@ public partial class App : Application
         }
         finally
         {
-            Current.Shutdown();
+            // 本方法跑在线程池（.Forget()），Application 是 UI 线程对象——直接 Shutdown 跨线程炸
+            // InvalidOperationException，进程僵死不退（13:35 实锤，曾误判为测速卡死）
+            Current.Dispatcher.Invoke(() => Current.Shutdown());
         }
     }
 

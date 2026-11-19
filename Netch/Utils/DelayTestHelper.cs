@@ -113,15 +113,29 @@ public static class DelayTestHelper
                 {
                     var taggedServers = controller.OutboundTagMap.Values.ToHashSet();
 
-                    var members = controller.OutboundTagMap.Select(async kv =>
+                    // 成员同样按入口 IP 分组限流（拥塞与临时实例同源——同入口机持续并发把 RTT 抬高一倍+）
+                    var resolved = await SpeedtestController.ResolveEndpointsAsync(controller.OutboundTagMap.Values);
+                    foreach (var s in controller.OutboundTagMap.Values.Where(s => !resolved.ContainsKey(s)))
+                        s.SetDelay(-2);
+
+                    var port = controller.ClashApiPort!.Value;
+                    var groups = controller.OutboundTagMap
+                        .Where(kv => resolved.ContainsKey(kv.Value))
+                        .GroupBy(kv => resolved[kv.Value].ToString())
+                        .Select(g => (g.Key, List: g.ToList()))
+                        .ToList();
+
+                    await Task.WhenAll(groups.Select(g =>
                     {
-                        using (await PoolLock.EnterAsync())
+                        // 组内一把信号量：同一入口机的节点压到 3 并发以内，跨组（跨入口机）并行
+                        var groupLock = new AsyncSemaphore(SpeedtestController.PerEndpointConcurrency);
+                        return Task.WhenAll(g.List.Select(async kv =>
                         {
-                            var delay = await ClashApiClient.GetProxyDelayAsync(controller.ClashApiPort!.Value, kv.Key);
+                            using var _group = await groupLock.EnterAsync();
+                            var delay = await ClashApiClient.GetProxyDelayAsync(port, kv.Key);
                             kv.Value.SetDelay(delay ?? -4);
-                        }
-                    });
-                    await Task.WhenAll(members);
+                        }));
+                    }));
 
                     var rest = Global.Settings.Server.Where(s => !taggedServers.Contains(s)).ToList();
                     await SpeedtestController.TestAsync(rest);
