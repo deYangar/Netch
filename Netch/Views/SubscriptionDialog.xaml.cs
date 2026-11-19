@@ -31,8 +31,9 @@ public partial class SubscriptionDialog
         else
         {
             // 咩咩 2026-10-31 反馈③：新建订阅给默认 UA（与实际请求发送的兜底 UA 同源，可手改；
-            // 留空语义不变——SendAsync 空值仍回落 WebUtil.DefaultUserAgent）
-            userAgentBox.Text = WebUtil.DefaultUserAgent;
+            // 2026-11-19 默认 UA 换 clash 系——浏览器 UA 只能拿 base64 节点列表，无 dns/hosts 可提取；
+            // 留空语义不变——SendAsync 空值仍回落 WebUtil.SubscriptionDefaultUserAgent）
+            userAgentBox.Text = WebUtil.SubscriptionDefaultUserAgent;
         }
 
         ValidateLink();

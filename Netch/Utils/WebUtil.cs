@@ -11,6 +11,15 @@ public static class WebUtil
     public const string DefaultUserAgent =
         @"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36 Edg/94.0.992.31";
 
+    /// <summary>
+    ///     订阅拉取专用默认 UA（clash 系，2026-11-19 咩咩拍板）。订阅后端普遍按 UA 分流内容：
+    ///     浏览器 UA 常只给 base64 节点列表（无 dns/hosts 段，每订阅「节点 DNS/Hosts」自动提取无从谈起），
+    ///     clash 系 UA 才给完整 YAML；且 Meta 系 UA 让后端下发新协议节点（anytls 等）。
+    ///     mihomo 内核原生 UA 即 clash.meta 形态，机场后端识别成熟。
+    ///     资源下载（规则集/geo 库/更新检查）仍走浏览器 DefaultUserAgent，两者语义不同不共用
+    /// </summary>
+    public const string SubscriptionDefaultUserAgent = "clash.meta";
+
     private static int DefaultGetTimeout => Global.Settings.RequestTimeout;
 
     /// <summary>

@@ -103,8 +103,9 @@ public static class SubscriptionUtil
     {
         var request = WebUtil.CreateRequest(item.Link, useProxy: useProxy);
 
-        if (!string.IsNullOrEmpty(item.UserAgent))
-            request.UserAgent = item.UserAgent;
+        // 订阅 UA 三级：显式自定义 > SubscriptionDefaultUserAgent（clash 系，换完整 YAML+新协议）；
+        // 不能落 CreateRequest 的浏览器默认——订阅后端按 UA 分流，浏览器 UA 只给 base64 节点列表
+        request.UserAgent = string.IsNullOrEmpty(item.UserAgent) ? WebUtil.SubscriptionDefaultUserAgent : item.UserAgent;
 
         if (!string.IsNullOrEmpty(proxyServer))
             request.ProxyUrl = proxyServer;

@@ -26,6 +26,8 @@
   <ItemGroup>
     <!-- Clash 订阅解析大样例（TAGMeta 真实订阅脱敏版：密码/机场域名/UUID 已替换，映射拓扑保留） -->
     <None Update="TestData\clash_tagmeta_sanitized.yaml" CopyToOutputDirectory="PreserveNewest" />
+    <!-- mesl 真实订阅脱敏版（2026-11-19）：anytls 节点形态 + dns 仅 nameserver 无 proxy-server-nameserver -->
+    <None Update="TestData\clash_mesl_sanitized.yaml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

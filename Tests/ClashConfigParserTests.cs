@@ -21,6 +21,43 @@ public class ClashConfigParserTests
         return File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "TestData", "clash_tagmeta_sanitized.yaml"));
     }
 
+    private static string ReadSanitizedMesl()
+    {
+        return File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "TestData", "clash_mesl_sanitized.yaml"));
+    }
+
+    [TestMethod]
+    public void Parse_MeslSanitized_AnytlsNodesAndDnsOnly()
+    {
+        // mesl 真实订阅脱敏版（2026-11-19，默认 UA 切 clash.meta 后拿到的完整 YAML 形态）：
+        // 172 个 anytls 节点；dns 段只有 nameserver（无 proxy-server-nameserver、无 hosts 段）——
+        // 「nameserver 即节点 DNS 来源」的形态正是该订阅想要的提取路径
+        var ok = ClashConfigParser.TryParse(ReadSanitizedMesl(), out var result);
+
+        Assert.IsTrue(ok, "mesl 应识别为 Clash 配置");
+        Assert.AreEqual(172, result.Servers.Count, "172 个 anytls 节点全部解析");
+        Assert.IsTrue(result.Servers.All(s => s.Type == "AnyTLS"), "全部节点为 AnyTLS");
+        Assert.IsTrue(result.Servers.All(s => s.Port > 0 && !string.IsNullOrWhiteSpace(s.Hostname)), "全部节点地址端口完整");
+
+        // 首节点锚点：server/sni 三地区域名、凭据、alpn 指纹
+        var first = (AnytlsServer)result.Servers[0];
+        Assert.AreEqual("hkg-server.example.test", first.Hostname);
+        Assert.AreEqual((ushort)8443, first.Port);
+        Assert.AreEqual("sanitized-pass", first.Password);
+        Assert.AreEqual("sni-zgdgs.example.test", first.Host);
+
+        // sni 每节点唯一（172 个互不相同）
+        Assert.AreEqual(172, result.Servers.Select(s => ((AnytlsServer)s).Host).Distinct().Count(), "sni 全局唯一");
+
+        // dns：无 proxy-server-nameserver，仅 nameserver 的 2 条 DoH 提取（带端口与路径形态）
+        CollectionAssert.AreEqual(
+            new[] { "https://doh-a.example.test:39933/api-query", "https://doh-b.example.test/api-query" },
+            result.NodeDns);
+
+        // 无 hosts 段
+        Assert.AreEqual(0, result.Hosts.Count);
+    }
+
     [TestMethod]
     public void Parse_TagMetaSanitized_AllNodesAndDnsHosts()
     {

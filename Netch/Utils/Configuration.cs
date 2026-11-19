@@ -100,6 +100,12 @@ public static class Configuration
         // 内核选择全自动化（2026-10-31 咩咩拍板）：存量 V2raySN（槽位引擎从未存在）/ SingBox（手选已移除）→ Auto
         if (settings.Kernel.Core != KernelGlobal.Auto)
             settings.Kernel.Core = KernelGlobal.Auto;
+
+        // 订阅默认 UA 浏览器 → clash 系（2026-11-19 咩咩拍板）：存量里存的旧浏览器默认全串是
+        // 「新建对话框预填后原样保存」的产物（=用户未自定义），清空回落新默认；其余自定义 UA 不动
+        foreach (var sub in settings.Subscription)
+            if (sub.UserAgent == WebUtil.DefaultUserAgent)
+                sub.UserAgent = string.Empty;
     }
 
     /// <summary>
