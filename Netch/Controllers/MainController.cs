@@ -32,6 +32,9 @@ public static class MainController
 
         Log.Information("Start MainController: {Server} {Mode}", $"{server.Type}", $"[{(int)mode.Type}]{mode.i18NRemark}");
 
+        // 真实测速临时实例让位：起正式实例前先停（配置/日志/端口三隔离下并存无害，收口释放进程）
+        await SpeedtestController.StopAsync();
+
         EnsureSocks5PortAvailable();
 
         if (await ServerDnsResolver.ResolveAsync(server) == null)
@@ -359,7 +362,9 @@ public static class MainController
     }
 
     /// <summary>
-    ///     单测一个节点的延迟：多节点实例成员经 Clash API 实测（全链路语义），其余走 TCPing/ICMP
+    ///     单测一个节点的延迟：多节点实例成员经 Clash API 实测（全链路语义），
+    ///     非成员（等待态/运行态他组）经临时测速实例实测（2026-11-19 咩咩拍板）——
+    ///     握手测速对同入口多落地架构只能测到入口；实例起失败如实标 -5，不回落握手测速遮掩
     /// </summary>
     public static async Task TestNodeDelayAsync(Server server)
     {
@@ -372,7 +377,8 @@ public static class MainController
         }
         else
         {
-            await server.PingAsync();
+            var delay = await SpeedtestController.TestSingleAsync(server);
+            server.SetDelay(delay ?? -5);
         }
     }
 

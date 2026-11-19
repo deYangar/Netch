@@ -162,8 +162,53 @@ public partial class App : Application
 
         BuildTrayIcon();
 
+        // 自测钩子（合成输入对提权 WPF 不可达，后台 GUI 验收走进程内触发）
+        if (e.Args.Contains(Constants.Parameter.SpeedtestAll))
+            RunSpeedtestAllHookAsync().Forget();
+
         // 外部资源自动更新调度（R 线 §4.5：启动延迟 30s 静默检查，仅 AutoUpdate=true 资源；内核只提醒不自动换）
         Services.ExternalResourceScheduler.Start();
+    }
+
+    /// <summary>
+    ///     -speedtestAll 自测钩子：主窗显示后自动触发「测速全部」真实测速（与手动点按钮同路径），
+    ///     完成后把全部节点延迟导出 data\speedtest-result.json（数字级验收，不依赖截图识图），随后退出
+    /// </summary>
+    private static async Task RunSpeedtestAllHookAsync()
+    {
+        try
+        {
+            Log.Information("Speedtest hook armed, waiting for UI ready...");
+            await Task.Delay(2000);
+
+            await DelayTestHelper.PerformRealTestAsync();
+
+            var result = Global.Settings.Server.Select(s => new
+            {
+                group = s.Group,
+                remark = s.Remark,
+                host = s.Hostname,
+                delay = s.Delay,
+                source = s.DelaySource.ToString()
+            });
+
+            var path = Path.Combine(Global.NetchDir, "data", "speedtest-result.json");
+            await File.WriteAllTextAsync(path, System.Text.Json.JsonSerializer.Serialize(result,
+                new System.Text.Json.JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                }));
+            Log.Information("Speedtest hook: {Count} nodes exported to {Path}", Global.Settings.Server.Count, path);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Speedtest hook failed");
+        }
+        finally
+        {
+            Current.Shutdown();
+        }
     }
 
     /// <summary>

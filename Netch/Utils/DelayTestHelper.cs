@@ -14,6 +14,9 @@ public static class DelayTestHelper
 
     private static readonly AsyncSemaphore PoolLock = new(16);
 
+    /// <summary>手动真实测速进行中/排队中标志（重复点击忽略）</summary>
+    private static int _realTestRunning;
+
     public static readonly NumberRange Range = new(0, int.MaxValue / 1000);
 
     private static bool _enabled = true;
@@ -86,23 +89,57 @@ public static class DelayTestHelper
     }
 
     /// <summary>
-    ///     运行态「测速全部」（C-5，2026-11-04 审查）：与等待态共用 16 并发池与防重入锁——
-    ///     此前运行态分支 331 节点无上限 Task.WhenAll，连接风暴互相争带宽导致结果失真、还可能触发服务端限速
+    ///     「测速全部」真实测速（2026-11-19 咩咩拍板，取代旧 PerformRunningTestAsync 的逐节点分发——
+    ///     非成员逐个起停临时实例不可用；C-5 2026-11-04 审查的 16 并发防连接风暴约束保留）：
+    ///     运行实例成员经主实例 Clash API、其余全部节点经临时实例出站实测；
+    ///     握手测速（TCPing/ICMP 只到入口）不再作为手动测速结果。
+    ///     两路串行（各自 16 并发不同时跑），防连接风暴互争带宽失真（C-5 同源约束）；
+    ///     定时测活仍走 <see cref="PerformTestAsync"/>（轻量，Soft 色徽章区分两种语义）。
+    ///     与定时测活共用防重入锁但语义不同：手动测速必须真正执行（排队等锁后跑），
+    ///     不复用 RunTestLoopAsync 的「等到上一轮即返回」；重复点击在跑/排队中直接忽略
     /// </summary>
-    public static Task PerformRunningTestAsync()
+    public static async Task PerformRealTestAsync()
     {
-        return RunTestLoopAsync(false, async () =>
-        {
-            var tasks = Global.Settings.Server.Select(async s =>
-            {
-                using (await PoolLock.EnterAsync())
-                {
-                    await MainController.TestNodeDelayAsync(s);
-                }
-            });
+        if (Interlocked.Exchange(ref _realTestRunning, 1) == 1)
+            return;
 
-            await Task.WhenAll(tasks);
-        });
+        try
+        {
+            using var _ = await Lock.EnterAsync();
+
+            try
+            {
+                if (MainController.ServerController is SingboxController { MultiNode: true, ClashApiPort: not null } controller)
+                {
+                    var taggedServers = controller.OutboundTagMap.Values.ToHashSet();
+
+                    var members = controller.OutboundTagMap.Select(async kv =>
+                    {
+                        using (await PoolLock.EnterAsync())
+                        {
+                            var delay = await ClashApiClient.GetProxyDelayAsync(controller.ClashApiPort!.Value, kv.Key);
+                            kv.Value.SetDelay(delay ?? -4);
+                        }
+                    });
+                    await Task.WhenAll(members);
+
+                    var rest = Global.Settings.Server.Where(s => !taggedServers.Contains(s)).ToList();
+                    await SpeedtestController.TestAsync(rest);
+                }
+                else
+                {
+                    await SpeedtestController.TestAsync(Global.Settings.Server);
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Warning(e, "Real delay test loop failed");
+            }
+        }
+        finally
+        {
+            Interlocked.Exchange(ref _realTestRunning, 0);
+        }
     }
 
     /// <summary>测试循环公共骨架：整体防重入（Lock）+ 执行体异常吞掉（与原语义一致）</summary>

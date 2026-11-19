@@ -1457,6 +1457,9 @@
   <data name="settings.general.detectionTick" xml:space="preserve">
     <value>Detection Tick (sec)</value>
   </data>
+  <data name="settings.general.delayTestUrl" xml:space="preserve">
+    <value>Real Delay Test URL</value>
+  </data>
   <data name="settings.general.httpPort" xml:space="preserve">
     <value>HTTP Port</value>
   </data>

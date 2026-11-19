@@ -126,6 +126,13 @@ public partial class SettingsViewModel : ObservableObject
         set => SetSetting(S.ServerTCPing, value, v => S.ServerTCPing = v);
     }
 
+    /// <summary>真实测速地址（经节点出站访问取延迟）；非法输入保存时由 CheckSetting 回落默认</summary>
+    public string DelayTestUrl
+    {
+        get => S.DelayTestUrl;
+        set => SetSetting(S.DelayTestUrl, value, v => S.DelayTestUrl = v);
+    }
+
     public int ProfileCount
     {
         get => S.ProfileCount;

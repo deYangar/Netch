@@ -19,6 +19,9 @@ public static class Constants
     {
         public const string Show = "-show";
         public const string ForceUpdate = "-forceUpdate";
+
+        /// <summary>自测钩子：主窗显示后自动「测速全部」真实测速，结果导出 data\speedtest-result.json 后退出（界面自动化验收用）</summary>
+        public const string SpeedtestAll = "-speedtestAll";
     }
 
     public const string WintunDllFile = "bin\\wintun.dll";

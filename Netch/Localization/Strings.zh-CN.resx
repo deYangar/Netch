@@ -1456,6 +1456,9 @@
   <data name="settings.general.detectionTick" xml:space="preserve">
     <value>检测间隔（秒）</value>
   </data>
+  <data name="settings.general.delayTestUrl" xml:space="preserve">
+    <value>真实测速地址</value>
+  </data>
   <data name="settings.general.httpPort" xml:space="preserve">
     <value>HTTP 端口</value>
   </data>

@@ -33,7 +33,7 @@ public class SingboxController : Guard, IServerController
     ///     当前实例的节点出站 tag 到 Server 的映射（多节点模式）；
     ///     Clash API delay 测试按 tag 请求后经此回填 Server.Delay
     /// </summary>
-    public IReadOnlyDictionary<string, Server> OutboundTagMap { get; private set; } = new Dictionary<string, Server>();
+    public IReadOnlyDictionary<string, Server> OutboundTagMap { get; protected set; } = new Dictionary<string, Server>();
 
     /// <summary>
     ///     进程模式的路由层规则（MainController 注入）：非空时生成 route.rules 并开启 Clash API
@@ -49,7 +49,7 @@ public class SingboxController : Guard, IServerController
     /// <summary>
     ///     Clash API 端口（一律开启：连接表观测/延迟测试/规则命中查询；仅绑 127.0.0.1 无暴露面）
     /// </summary>
-    public ushort? ClashApiPort { get; private set; }
+    public ushort? ClashApiPort { get; protected set; }
 
     public bool MultiNode => OutboundTagMap.Count > 1;
 

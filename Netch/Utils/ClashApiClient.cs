@@ -19,7 +19,7 @@ public static class ClashApiClient
         Timeout = TimeSpan.FromSeconds(10)
     };
 
-    private const string DelayTestUrl = "https://www.gstatic.com/generate_204";
+    private const string DelayTestUrl = Setting.DefaultDelayTestUrl;
 
     /// <summary>
     ///     经指定出站访问测试地址的真实延迟
@@ -29,7 +29,7 @@ public static class ClashApiClient
     {
         try
         {
-            var url = $"http://127.0.0.1:{port}/proxies/{Uri.EscapeDataString(tag)}/delay?timeout=5000&url={Uri.EscapeDataString(DelayTestUrl)}";
+            var url = $"http://127.0.0.1:{port}/proxies/{Uri.EscapeDataString(tag)}/delay?timeout=5000&url={Uri.EscapeDataString(EffectiveDelayTestUrl())}";
 
             using var response = await HttpClient.GetAsync(url);
             var json = await response.Content.ReadFromJsonAsync<JsonElement>();
@@ -44,6 +44,47 @@ public static class ClashApiClient
             Log.Warning(e, "Clash API delay test failed for {Tag}", tag);
             return null;
         }
+    }
+
+    /// <summary>
+    ///     当前生效的测速地址：设置里的自定义值（非法值加载时已被 CheckSetting 回落，这里空值再兜一道）
+    /// </summary>
+    public static string EffectiveDelayTestUrl()
+    {
+        var url = Global.Settings.DelayTestUrl?.Trim();
+        return string.IsNullOrEmpty(url) ? DelayTestUrl : url;
+    }
+
+    /// <summary>
+    ///     Clash API 探活（GET /version）：临时测速实例就绪判定用，1s 间隔轮询至通或超时
+    /// </summary>
+    public static async Task<bool> GetVersionAsync(ushort port, TimeSpan timeout)
+    {
+        using var cts = new CancellationTokenSource(timeout);
+        while (!cts.IsCancellationRequested)
+        {
+            try
+            {
+                using var response = await HttpClient.GetAsync($"http://127.0.0.1:{port}/version", cts.Token);
+                if (response.IsSuccessStatusCode)
+                    return true;
+            }
+            catch (Exception)
+            {
+                // 未就绪（连接拒绝），继续轮询
+            }
+
+            try
+            {
+                await Task.Delay(1000, cts.Token);
+            }
+            catch (OperationCanceledException)
+            {
+                break;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>

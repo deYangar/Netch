@@ -106,6 +106,20 @@ public static class Configuration
         foreach (var sub in settings.Subscription)
             if (sub.UserAgent == WebUtil.DefaultUserAgent)
                 sub.UserAgent = string.Empty;
+
+        // 测速方式 ICMP → TCPing 一次性迁移（2026-11-19 咩咩拍板）：ICMP 对禁 ping 的服务器
+        // 全列表假超时（TAG 机场实测所有入口/落地均不回 ICMP），TCPing 才是可用性真实信号；
+        // 存量 false 是旧版默认值迁移产物，翻转一次并落标记，此后用户显式选 ICMP 不再动
+        if (!settings.ServerTCPingMigrated)
+        {
+            settings.ServerTCPing = true;
+            settings.ServerTCPingMigrated = true;
+        }
+
+        // 真实测速地址：非 http(s) URL 一律回落默认（防手滑输入炸 sing-box delay 的 url 参数）
+        if (!settings.DelayTestUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
+            !settings.DelayTestUrl.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+            settings.DelayTestUrl = Setting.DefaultDelayTestUrl;
     }
 
     /// <summary>

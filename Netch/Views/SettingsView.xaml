@@ -196,6 +196,14 @@
                             <ColumnDefinition Width="190" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.delayTestUrl}" />
+                        <TextBox Grid.Column="1" Width="360" Text="{Binding DelayTestUrl, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                    <Grid Style="{StaticResource SettingRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="190" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
                         <TextBlock Style="{StaticResource SettingLabel}" Text="{loc:I18N settings.general.profileCount}" />
                         <TextBox Grid.Column="1" Width="110" Text="{Binding ProfileCount, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>

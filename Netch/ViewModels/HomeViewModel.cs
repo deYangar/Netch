@@ -297,32 +297,18 @@ public partial class HomeViewModel : ObservableObject
         if (row == null)
             return;
 
-        if (MainViewModel.IsWaiting(State))
-        {
-            await row.Model.PingAsync();
-            row.SyncFromModel();
-        }
-        else
-        {
-            await MainController.TestNodeDelayAsync(row.Model);
-            row.SyncFromModel();
-        }
+        // 统一真实测速入口（2026-11-19）：成员经主实例 Clash API，非成员经临时实例出站实测
+        await MainController.TestNodeDelayAsync(row.Model);
+        row.SyncFromModel();
     }
 
-    /// <summary>测速全部：等待态走周期测速池（DelayTestHelper）；运行态 Clash API 限流遍历
-    /// （C-5：与等待态共用 16 并发池——无上限并发在数百节点下是连接风暴）</summary>
+    /// <summary>测速全部：真实测速（成员经主实例 Clash API，其余经临时实例出站实测）；
+    /// 16 并发防连接风暴（C-5），重复点击忽略（DelayTestHelper 内防重入）</summary>
     [RelayCommand]
     private async Task TestAllDelayAsync()
     {
-        if (MainViewModel.IsWaiting(State))
-        {
-            await DelayTestHelper.PerformTestAsync(true);
-            RefreshDelays();
-            return;
-        }
-
         Global.UIHub.StatusText(I18N.T("common.testing"));
-        await DelayTestHelper.PerformRunningTestAsync();
+        await DelayTestHelper.PerformRealTestAsync();
         RefreshDelays();
         Global.UIHub.StatusText(null);
     }

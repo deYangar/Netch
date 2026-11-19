@@ -130,6 +130,17 @@ public class Setting
     /// </summary>
     public bool ServerTCPing { get; set; } = true;
 
+    /// <summary>ServerTCPing 存量迁移标记（false→true 一次性，2026-11-19；true=已迁移，此后尊重用户显式选择）</summary>
+    public bool ServerTCPingMigrated { get; set; } = false;
+
+    /// <summary>
+    ///     真实测速（经节点出站访问）的测试地址；须为 http(s) URL，非法值加载时回落默认
+    /// </summary>
+    public string DelayTestUrl { get; set; } = DefaultDelayTestUrl;
+
+    /// <summary>真实测速地址默认值（gstatic 204，clash/v2rayN 系惯例）</summary>
+    public const string DefaultDelayTestUrl = "https://www.gstatic.com/generate_204";
+
     /// <summary>
     ///     Socks5 本地端口
     /// </summary>
