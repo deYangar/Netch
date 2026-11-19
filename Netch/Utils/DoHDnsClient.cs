@@ -11,10 +11,13 @@ namespace Netch.Utils;
 ///     支持任意 DoH URL（含自定义路径，如 https://host:port/api-query）。
 ///     直连查询（解析节点域名时代理尚未启动，与 mihomo proxy-server-nameserver 直连语义一致）。
 ///     缓存独立于 DnsUtils 的系统 DNS 缓存，key 掺 DoH URL——同一域名在系统/不同 DoH 解析器间不串结果。
+///     失败负缓存（2026-11-19 42s 启动事故）：DoH 被服务器限速/不可达时失败结果同样缓存（短 TTL），
+///     同一 DoH 对同一域名短期内不重试——多节点启动曾把失败放大成节点数×DoH 数连击，且连击本身持续触发限速。
 /// </summary>
 public static class DoHDnsClient
 {
     private const int CacheTtlSeconds = 60;
+    private const int NegativeCacheTtlSeconds = 30;
     private const ushort QTypeA = 1;
     private const ushort QTypeAAAA = 28;
 
@@ -30,27 +33,39 @@ public static class DoHDnsClient
         Timeout = TimeSpan.FromSeconds(3)
     };
 
-    private sealed record CacheEntry(IPAddress Address, DateTime SavedAt);
+    /// <summary>Address 为 null 表示负缓存（该 URL 对该域名解析失败，TTL 内不再重试）</summary>
+    private sealed record CacheEntry(IPAddress? Address, DateTime SavedAt)
+    {
+        public bool Alive(DateTime now)
+        {
+            var ttl = Address == null ? NegativeCacheTtlSeconds : CacheTtlSeconds;
+            return (now - SavedAt).TotalSeconds <= ttl;
+        }
+    }
 
     /// <summary>
     ///     用指定 DoH 上游解析域名。失败（网络/格式/RCODE）返回 null，不抛异常（对齐 DnsUtils.LookupAsync 语义）
     /// </summary>
     public static async Task<IPAddress?> ResolveAsync(string dohUrl, string hostname, AddressFamily inet = AddressFamily.Unspecified)
     {
+        var host = hostname.TrimEnd('.');
+        var key = CacheKey(dohUrl, host, inet);
         try
         {
-            var host = hostname.TrimEnd('.');
-            if (Cache.TryGetValue(CacheKey(dohUrl, host, inet), out var cached) && (DateTime.UtcNow - cached.SavedAt).TotalSeconds <= CacheTtlSeconds)
+            if (Cache.TryGetValue(key, out var cached) && cached.Alive(DateTime.UtcNow))
                 return cached.Address;
 
             var result = await ResolveNoCacheAsync(dohUrl, host, inet);
-            if (result != null)
-                Cache[CacheKey(dohUrl, host, inet)] = new CacheEntry(result, DateTime.UtcNow);
+
+            // 成功与失败都写缓存：失败负缓存防止同域名重复烧失败路径（见类注释）
+            Cache[key] = new CacheEntry(result, DateTime.UtcNow);
 
             return result;
         }
         catch (Exception e)
         {
+            // 异常（网络不可达/超时）与快拒绝同语义：负缓存
+            Cache[key] = new CacheEntry(null, DateTime.UtcNow);
             Log.Verbose(e, "DoH resolve {Hostname} via {Url} failed", hostname, dohUrl);
             return null;
         }

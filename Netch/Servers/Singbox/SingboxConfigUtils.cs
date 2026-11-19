@@ -38,6 +38,11 @@ public static class SingboxConfigUtils
         if (!ordered.Contains(primary))
             ordered.Insert(0, primary);
 
+        // 域名并行预解析（2026-11-19 42s 启动事故）：组内待解析目标去重后并行解析一轮，
+        // 下方逐节点构建循环全部命中 DoH/DnsUtils 缓存——原串行循环在 DoH 被限速时
+        // 每个节点都要重烧一遍失败路径（172 节点 × 2 DoH 快拒 = 42s），现最坏一轮失败即收口
+        await ParallelResolveAsync(CollectResolveTargets(ordered));
+
         var multi = ordered.Count > 1;
         var outbounds = new List<object>();
         var endpoints = new List<object>();
@@ -129,6 +134,34 @@ public static class SingboxConfigUtils
         FillDns(config, mode, tunMode != null);
 
         return (config, tagMap);
+    }
+
+    /// <summary>
+    ///     收集节点待解析目标：应用订阅 Hosts 映射后按 (组, 域名) 去重，IP 字面量跳过（无需解析）。
+    ///     映射语义与循环体内 CloneWithHosts 一致，预解析结果即循环体实际查询目标
+    /// </summary>
+    internal static List<(string Group, string Hostname)> CollectResolveTargets(IEnumerable<Server> servers)
+    {
+        return servers
+            .Select(s =>
+            {
+                var node = ServerDnsResolver.CloneWithHosts(s);
+                return (node.Group, node.Hostname);
+            })
+            .Where(t => !System.Net.IPAddress.TryParse(t.Hostname, out _))
+            .Distinct()
+            .ToList();
+    }
+
+    /// <summary>
+    ///     分批并行解析（每批 16）：常见订阅组入口域名极少（几个），一轮即热；
+    ///     全异域名大组也不会一次性压满系统 DNS 客户端。
+    ///     解析失败不在此抛（预解析只负责把结果灌进缓存，失败路径由循环体按原语义报错）
+    /// </summary>
+    private static async Task ParallelResolveAsync(List<(string Group, string Hostname)> targets)
+    {
+        foreach (var batch in targets.Chunk(16))
+            await Task.WhenAll(batch.Select(t => ServerDnsResolver.ResolveHostnameAsync(t.Group, t.Hostname)));
     }
 
     /// <summary>
