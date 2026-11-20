@@ -17,7 +17,7 @@ public static class UpdateChecker
     public const string Copyright = @"Copyright © 2019 - 2026";
 
     // 2.0.0 = WPF 重制版起点（上游 1.x = WinForms），与上游 tag 序列彻底分离
-    public const string AssemblyVersion = @"2.0.0";
+    public const string AssemblyVersion = @"2.1.0";
     private const string Suffix = @"";
 
     public static readonly string Version = $"{AssemblyVersion}{(string.IsNullOrEmpty(Suffix) ? "" : $"-{Suffix}")}";
