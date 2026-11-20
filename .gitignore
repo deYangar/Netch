@@ -7,3 +7,5 @@ Tests/TestResults/
 bin/
 obj/
 Storage/kernel/*.zip
+# 发版 zip（build.ps1 产物，2026-11-20 起以 zip 文件夹形态分发）
+/Netch-win64.zip

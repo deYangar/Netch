@@ -14,7 +14,9 @@ public class Updater
     private string InstallDirectory { get; }
 
     private readonly string _tempDirectory;
-    private static readonly string[] KeepDirectories = { "data", "mode\\Custom", "logging" };
+    // 与 build.ps1 用户区清单对齐：bin\rule-set 除内置快照外还有用户下载的规则集缓存
+    // （ruleset.custom.*），zip 覆盖更新时同名内置快照仍会被 MoveFilesOver 覆盖，仅缓存保命
+    private static readonly string[] KeepDirectories = { "data", "mode\\Custom", "logging", "bin\\rule-set" };
     private static readonly string[] KeepFiles = { Constants.DisableModeDirectoryFileName };
 
     internal Updater(string updateFile, string installDirectory)

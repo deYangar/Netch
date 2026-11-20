@@ -1,7 +1,7 @@
 name: Release CI
 
 # 重 workflow：push main 全链——单元测试 + 双内核配置校验 + 发版构建（build.ps1：
-# 单文件自包含 + 内核嵌入 exe）+ 条件发布。
+# 散装自包含 + 全组件随包，打 Netch-win64.zip 文件夹分发）+ 条件发布。
 # 发布条件（FH6_Auto 模式）：docs/release-notes/v{版本}.md 存在且 frontmatter publish
 # 不为 false 才创建 GitHub Release；没有 note 就只构建出 artifact，不发布。
 # 版本号唯一来源 = UpdateChecker.cs 的 AssemblyVersion（程序内更新对比同一来源）。
@@ -103,13 +103,21 @@ jobs:
       - name: Xray config check
         run: dotnet run --project XrayConfigVerifier -c Release --no-build -- verify_out_xray tools/bin/xray.exe tools/bin/sing-box.exe
 
-      # 内核预置进 release/bin = build.ps1 的用户区 stash 链路会收走并嵌入 exe，与本地发版同一路径
-      - name: Stage kernels for embedding
+      # 组件预置进 release/bin = build.ps1 的用户区 stash 链路会收走再放回进 zip，与本地发版同一路径。
+      # ip2region 上游 master 漂移不锁 hash，只卡运行时同口径 MinBytes（v4≥1MB / v6≥20MB）
+      - name: Stage kernels & datafiles for shipping
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force release/bin | Out-Null
           Copy-Item tools/bin/sing-box.exe release/bin/
           Copy-Item tools/bin/xray.exe release/bin/
+
+          $v4 = "https://raw.githubusercontent.com/lionsoul2014/ip2region/master/data/ip2region_v4.xdb"
+          $v6 = "https://raw.githubusercontent.com/lionsoul2014/ip2region/master/data/ip2region_v6.xdb"
+          Invoke-WebRequest -Uri $v4 -OutFile release/bin/ip2region.xdb
+          Invoke-WebRequest -Uri $v6 -OutFile release/bin/ip2region_v6.xdb
+          if ((Get-Item release/bin/ip2region.xdb).Length -lt 1MB) { throw "ip2region.xdb too small" }
+          if ((Get-Item release/bin/ip2region_v6.xdb).Length -lt 20MB) { throw "ip2region_v6.xdb too small" }
           # Other\release 空目录：让 build.ps1 跳过 Other\build.ps1（上游上古下载脚本）；
           # 后续 cp 通配（*.bin 等）对空集是 no-op
           New-Item -ItemType Directory -Force Other/release | Out-Null
@@ -118,24 +126,47 @@ jobs:
         shell: pwsh
         run: .\build.ps1
 
-      # 防假产物：本地曾有 455KB 普通编译 exe / 0MB 假压缩包两类事故
+      # 防假产物：本地曾有 455KB 普通编译 exe / 0MB 假压缩包两类事故。
+      # 关键文件抽查 = 单 exe 嵌入清单漏项事故（2026-11-20 Redirector 缺失「Dll was not found」）
+      # 的出街防线：zip 里逐个验存在 + 红线验用户数据不进包
       - name: Assert artifact & checksum
         id: artifact
         shell: pwsh
         run: |
-          $exe = Get-Item release/Netch.exe
-          if ($exe.Length -lt 150MB) { throw "Netch.exe suspiciously small: $($exe.Length) bytes" }
-          $hash = (Get-FileHash release/Netch.exe -Algorithm SHA256).Hash.ToLower()
-          "$hash  Netch.exe" | Set-Content SHA256SUMS.txt -Encoding ascii
+          $zip = Get-Item Netch-win64.zip
+          if ($zip.Length -lt 100MB) { throw "Netch-win64.zip suspiciously small: $($zip.Length) bytes" }
+
+          $check = Join-Path $env:RUNNER_TEMP "zipcheck"
+          if (Test-Path $check) { Remove-Item -Recurse -Force $check }
+          Expand-Archive $zip.FullName $check
+          $mustHave = @(
+            'Netch/Netch.exe',
+            'Netch/Resources/7za.exe',
+            'Netch/bin/sing-box.exe',
+            'Netch/bin/xray.exe',
+            'Netch/bin/Redirector.bin',
+            'Netch/bin/nfapi.dll',
+            'Netch/bin/RouteHelper.bin',
+            'Netch/bin/ip2region.xdb',
+            'Netch/bin/ip2region_v6.xdb'
+          )
+          foreach ( $f in $mustHave ) {
+            if ( -Not (Test-Path (Join-Path $check $f)) ) { throw "zip missing: $f" }
+          }
+          if ( Test-Path "$check/Netch/data" ) { throw "LEAK: user data/ found in release zip" }
+          if ( Test-Path "$check/Netch/logging" ) { throw "LEAK: user logging/ found in release zip" }
+
+          $hash = (Get-FileHash $zip.FullName -Algorithm SHA256).Hash.ToLower()
+          "$hash  Netch-win64.zip" | Set-Content SHA256SUMS.txt -Encoding ascii
           "sha256=$hash" >> $env:GITHUB_OUTPUT
-          Write-Host "Netch.exe $($exe.Length) bytes, SHA256 $hash"
+          Write-Host "Netch-win64.zip $($zip.Length) bytes, SHA256 $hash"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
           name: Netch-win64
           path: |
-            release/Netch.exe
+            Netch-win64.zip
             SHA256SUMS.txt
           retention-days: 14
           if-no-files-found: error
@@ -160,11 +191,11 @@ jobs:
           }
 
           $body = Get-Content release_body.md -Raw
-          $full = "# v$tag`r`n`r`n$body`r`n`r`n## 校验和`r`n`r`n| 文件名 | SHA256 |`r`n| :- | :- |`r`n| Netch.exe | $env:SHA256 |`r`n"
+          $full = "# v$tag`r`n`r`n$body`r`n`r`n## 校验和`r`n`r`n| 文件名 | SHA256 |`r`n| :- | :- |`r`n| Netch-win64.zip | $env:SHA256 |`r`n"
           $full | Set-Content -NoNewline full_body.md -Encoding utf8
 
           $ghArgs = @('release', 'create', $tag,
-            'release/Netch.exe', 'SHA256SUMS.txt',
+            'Netch-win64.zip', 'SHA256SUMS.txt',
             '--title', "v$tag", '--notes-file', 'full_body.md',
             '--target', $env:GITHUB_SHA)
           if ($env:PRERELEASE -eq 'true') { $ghArgs += '--prerelease' }

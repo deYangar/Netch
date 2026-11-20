@@ -13,9 +13,12 @@ param (
 	[bool]
 	$SelfContained = $True,
 
+	# 2026-11-20 咩咩拍板：发版形态从单 exe 改 zip 文件夹（单 exe 自举要维护嵌入清单，
+	# 漏一项就「Dll was not found」——ReleaseRedirector 组件缺失事故；散装 exe 进 zip
+	# 本体更小启动更快，程序内 Updater 本就是 zip+顶层 Netch/ 目录契约，回 zip 即修好）
 	[Parameter()]
 	[bool]
-	$PublishSingleFile = $True,
+	$PublishSingleFile = $False,
 
 	[Parameter()]
 	[bool]
@@ -72,29 +75,18 @@ if ( Test-Path -Path $OutputPath ) {
 	rm -Recurse -Force $OutputPath
 }
 
-# 内核随包嵌入源（咩咩 2026-10-31 拍板：发版 exe 自带内核，首启缺失/残缺自动释放，
-# 用户区有效内核（含自行升级版）永不回写——覆盖语义在 KernelBootstrap）。
-# 从 stash 的发版内核压缩生成 Storage\kernel\*.zip（csproj 条件嵌入）；内核不在用户区=exe 不嵌该内核并告警
+# 2026-11-20 发版形态改 zip：不再生成内核嵌入包。清掉 Storage\kernel 旧残留——
+# csproj 条件嵌入仍在（Exists 才嵌），旧 zip 不清会被继续嵌进 exe 且永远没人更新它
 $kernelEmbedDir = Join-Path (Get-Location) "Storage\kernel"
-New-Item -ItemType Directory $kernelEmbedDir -Force | Out-Null
+if ( Test-Path $kernelEmbedDir ) {
+	rm -Recurse -Force $kernelEmbedDir
+	Write-Host "Cleared legacy kernel embed dir (zip shipping mode)"
+}
+# 内核随 zip 分发：stash 收走的内核/归属地库在尾部放回后进包，缺失即告警（防打出不完整包）
 $stashAbs = Join-Path (Get-Location) $stash
 foreach ( $k in $binKeepFiles ) {
-	if ( $k -notmatch '\.exe$' ) { continue }   # 只嵌内核 exe；归属地库 37MB 不随 exe（外部资源页首拉通道）
-	$src = Join-Path $stashAbs $k
-	$zipName = [IO.Path]::GetFileNameWithoutExtension($k) + '.zip'
-	$dst = Join-Path $kernelEmbedDir $zipName
-	if ( Test-Path $src ) {
-		# tmp 必须以 .zip 结尾：Compress-Archive 拒绝其它后缀（NotSupportedArchiveFileExtension，
-		# 曾被非终止错误语义静默吞掉、连续两版打出 0 MB 假成功 2026-10-31）；全程绝对路径防 Push/Pop CWD 陷阱
-		$tmpZip = "$dst.tmp.zip"
-		if ( Test-Path $tmpZip ) { rm -Force $tmpZip }
-		Compress-Archive -Path (Join-Path $stashAbs $k) -DestinationPath $tmpZip -CompressionLevel Optimal -Force
-		Move-Item $tmpZip $dst -Force
-		Write-Host "Kernel embedded: $k -> $zipName ($([math]::Round((Get-Item $dst).Length/1MB,1)) MB)"
-	}
-	else {
-		Write-Warning "Kernel NOT in user zone (bin\$k): Netch.exe will ship WITHOUT embedded $k"
-	}
+	if ( Test-Path (Join-Path $stashAbs $k) ) { continue }
+	Write-Warning "NOT in user zone (bin\$k): zip will ship WITHOUT $k"
 }
 
 # 干净构建（XAML/嵌入资源曾不被 dotnet 增量编译吃进 publish 产物：连续两版 exe 哈希相同事故 2026-10-31）
@@ -131,14 +123,6 @@ cp -Force '.\Other\release\*.exe' "$OutputPath\bin"
 # publish 之后被普通编译污染过，强制重 publish
 $publishStamp = ".\Netch\bin\$Configuration\.publish_stamp"
 $publishExe = ".\Netch\bin\$Configuration\Netch.exe"
-# 内核 zip 比上次 publish 新 → 删 stamp 强制重 publish（重嵌内核进 exe；否则代码没变时旧 exe 一直嵌着旧内核包）
-foreach ( $z in Get-ChildItem $kernelEmbedDir -Filter '*.zip' -ErrorAction SilentlyContinue ) {
-	if ( (Test-Path $publishStamp) -and ($z.LastWriteTime -gt (Get-Item $publishStamp).LastWriteTime) ) {
-		rm -Force $publishStamp
-		Write-Host "Kernel zip newer than last publish: forcing republish"
-		break
-	}
-}
 $publishFresh = (Test-Path $publishStamp) -and (Test-Path $publishExe) -and
 	((Get-Item $publishExe).LastWriteTime -le (Get-Item $publishStamp).LastWriteTime.AddSeconds(2))
 if ( -Not $publishFresh ) {
@@ -154,7 +138,6 @@ if ( -Not $publishFresh ) {
 		-p:PublishSingleFile=$PublishSingleFile `
 		-p:PublishReadyToRun=$PublishReadyToRun `
 		-p:PublishReadyToRunShowWarnings=$PublishReadyToRun `
-		-p:IncludeNativeLibrariesForSelfExtract=$SelfContained `
 		-p:SatelliteResourceLanguages='zh-CN' `
 		-o ".\Netch\bin\$Configuration" `
 		'.\Netch\Netch.csproj'
@@ -164,7 +147,11 @@ if ( -Not $publishFresh ) {
 	Set-Content -Path $publishStamp -Value $now.ToString('o')
 	(Get-Item $publishStamp).LastWriteTime = $now.AddSeconds(1)
 }
-cp -Force ".\Netch\bin\$Configuration\Netch.exe" $OutputPath
+# 散装 publish 全量拷进 release（原单文件时代只拷 Netch.exe 一个；PublishSingleFile=False 后
+# publish 输出是 exe+dll 散件，漏拷即缺运行库）。.publish_stamp 是本脚本的假产物防重标记，不进包
+$publishOut = ".\Netch\bin\$Configuration"
+Get-ChildItem $publishOut | Where-Object { $_.Name -ne '.publish_stamp' } |
+	Copy-Item -Destination $OutputPath -Recurse -Force
 
 if ( -Not ( Test-Path ".\Redirector\bin\$Configuration" ) ) {
 	Write-Host
@@ -197,10 +184,16 @@ if ( $Configuration.Equals('Release') ) {
 }
 
 # 用户区放回（见顶部保护逻辑）。放回不全必须炸停绝不删 stash：
-# 曾因非终止错误吞掉 Move 失败、无条件删 stash 而真丢内核（sing-box.exe 2026-10-31 事故）
+# 曾因非终止错误吞掉 Move 失败、无条件删 stash 而真丢内核（sing-box.exe 2026-10-31 事故）。
+# 目录一律 robocopy /MOVE 合并（2026-11-20 散装化后 publish 输出自带 bin\rule-set 内置快照，
+# release 侧目录已存在，裸 Move-Item 目录到已存在路径会炸；默认 mtime 语义下内置 srs 较新
+# 保留发版版、用户新增缓存文件照常挪回）
 foreach ( $d in $userZoneDirs ) {
 	$src = Join-Path $stash $d
-	if ( Test-Path $src ) { Move-Item $src (Join-Path $OutputPath $d) }
+	if ( Test-Path $src ) {
+		robocopy $src (Join-Path $OutputPath $d) /MOVE /E /NFL /NDL /NJH /NJS | Out-Null
+		if ( $LASTEXITCODE -ge 8 ) { throw "robocopy restore failed ($LASTEXITCODE): $src" }
+	}
 }
 foreach ( $f in $binKeepFiles ) {
 	$src = Join-Path $stash $f
@@ -213,6 +206,38 @@ if ( $leftover ) {
 	throw "user zone stash not fully restored: $($leftover.FullName -join ', ')"
 }
 rm -Recurse -Force $stash
+
+# ===== 发版 zip（2026-11-20 咩咩拍板：zip 文件夹替代单 exe 分发）=====
+# 顶层 Netch/ 目录是程序内 Updater.ApplyUpdate 的硬契约（7za 解压后必须存在 extract\Netch\Netch.exe）。
+# 红线：release/ 是咩咩日用目录，用户区绝不进公开发布包。排除清单有意窄于 userZoneDirs——
+# data（订阅节点）、mode\Custom（自定义模式）、logging（运行日志，含节点域名）排除；
+# bin\rule-set 保留：内置规则集快照的分发位，混入的用户缓存 srs 是公开规则文件无隐私
+$zipExcludeDirs = @('data', 'mode\Custom', 'logging')
+$zipName = 'Netch-win64.zip'
+$zipPath = Join-Path (Get-Location) $zipName
+if ( Test-Path $zipPath ) { rm -Force $zipPath }
+# staging 干净结构再打包：Compress-Archive 无排除参数，先 robocopy 出「无用户区」的副本
+# （全程绝对路径防 Push/Pop CWD 陷阱；*.tmp/.*.old 残件不进包）
+$releaseAbs = Join-Path (Get-Location) $OutputPath
+$zipStage = Join-Path ([IO.Path]::GetTempPath()) ("netch-zip-" + [IO.Path]::GetRandomFileName())
+$stageRoot = Join-Path $zipStage 'Netch'
+New-Item -ItemType Directory $stageRoot | Out-Null
+try {
+	$xd = $zipExcludeDirs | ForEach-Object { Join-Path $releaseAbs $_ }
+	robocopy $releaseAbs $stageRoot /E /XD $xd /XF *.tmp *.old* /NFL /NDL /NJH /NJS /NP | Out-Null
+	if ( $LASTEXITCODE -ge 8 ) { throw "robocopy zip stage failed ($LASTEXITCODE)" }
+
+	# tmp 必须以 .zip 结尾：Compress-Archive 拒绝其它后缀（NotSupportedArchiveFileExtension，
+	# 曾被非终止错误语义静默吞掉打出 0 MB 假成功 2026-10-31）
+	$tmpZip = "$zipPath.tmp.zip"
+	if ( Test-Path $tmpZip ) { rm -Force $tmpZip }
+	Compress-Archive -Path $stageRoot -DestinationPath $tmpZip -CompressionLevel Optimal -Force
+	Move-Item $tmpZip $zipPath -Force
+	Write-Host "Release zip: $zipName ($([math]::Round((Get-Item $zipPath).Length/1MB,1)) MB)"
+}
+finally {
+	if ( Test-Path $zipStage ) { rm -Recurse -Force $zipStage }
+}
 
 Pop-Location
 exit 0
