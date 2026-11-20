@@ -16,9 +16,11 @@ param (
 	# 2026-11-20 咩咩拍板：发版形态从单 exe 改 zip 文件夹（单 exe 自举要维护嵌入清单，
 	# 漏一项就「Dll was not found」——ReleaseRedirector 组件缺失事故；散装 exe 进 zip
 	# 本体更小启动更快，程序内 Updater 本就是 zip+顶层 Netch/ 目录契约，回 zip 即修好）
+	# 同日咩咩二拍板：PublishSingleFile 回开（纯 dll 打包进 exe，文件夹清爽）——只收
+	# 托管程序集+runtime，内核/组件/库照旧走 bin，与已废弃的「内核嵌入」是两码事
 	[Parameter()]
 	[bool]
-	$PublishSingleFile = $False,
+	$PublishSingleFile = $True,
 
 	[Parameter()]
 	[bool]
@@ -139,6 +141,7 @@ if ( -Not $publishFresh ) {
 		-p:PublishReadyToRun=$PublishReadyToRun `
 		-p:PublishReadyToRunShowWarnings=$PublishReadyToRun `
 		-p:SatelliteResourceLanguages='zh-CN' `
+		-p:IncludeNativeLibrariesForSelfExtract='True' `
 		-o ".\Netch\bin\$Configuration" `
 		'.\Netch\Netch.csproj'
 	if ( -Not $? ) { exit $lastExitCode }

@@ -156,6 +156,10 @@ jobs:
           if ( Test-Path "$check/Netch/data" ) { throw "LEAK: user data/ found in release zip" }
           if ( Test-Path "$check/Netch/logging" ) { throw "LEAK: user logging/ found in release zip" }
 
+          # 单文件自包含 exe：dll+runtime 全在 exe 里，正常 >100MB（455KB 假 exe=普通编译产物事故防线）
+          $exeLen = (Get-Item "$check/Netch/Netch.exe").Length
+          if ($exeLen -lt 100MB) { throw "Netch.exe suspiciously small: $exeLen bytes (not single-file?)" }
+
           $hash = (Get-FileHash $zip.FullName -Algorithm SHA256).Hash.ToLower()
           "$hash  Netch-win64.zip" | Set-Content SHA256SUMS.txt -Encoding ascii
           "sha256=$hash" >> $env:GITHUB_OUTPUT
