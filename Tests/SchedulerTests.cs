@@ -85,11 +85,21 @@ public class SchedulerTests
     {
         // 真实一轮（真网络：srs/xdb 探测+按需下载；GitHub API 内核检查）。
         // 验收点：静默失败不抛（断网/波动只记日志）；成功路径写 LastCheckAt。
+        // 60s 上界：测试环境 data/ 为空会真下载（v6 库 37MB），慢代理下无限等=整轮挂死；
+        // 取消链已通到 HTTP 层，到点取消即止，验收点（静默不抛）两种结局都成立。
         var original = NetchGlobal.Settings.ExternalResources.AutoUpdateEnabled;
         NetchGlobal.Settings.ExternalResources.AutoUpdateEnabled = true;
         try
         {
-            await ExternalResourceScheduler.RunOnceAsync(CancellationToken.None);
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(60));
+            try
+            {
+                await ExternalResourceScheduler.RunOnceAsync(cts.Token);
+            }
+            catch (OperationCanceledException)
+            {
+                // 网络慢被上界取消：静默路径同样合法
+            }
 
             var geo = ExternalResourceService.Find("geo.ip2region-v6")!;
             var state = ExternalResourceService.GetState(geo);

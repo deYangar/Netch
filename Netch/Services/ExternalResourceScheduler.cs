@@ -81,16 +81,16 @@ public static class ExternalResourceScheduler
 
             try
             {
-                await CheckAndUpdateAsync(resource);
+                await CheckAndUpdateAsync(resource, ct);
             }
-            catch (Exception e)
+            catch (Exception e) when (e is not OperationCanceledException)
             {
                 Log.Warning(e, "Auto-update failed: {Key}", resource.Key);
             }
         }
     }
 
-    private static async Task CheckAndUpdateAsync(ExternalResource resource)
+    private static async Task CheckAndUpdateAsync(ExternalResource resource, CancellationToken ct)
     {
         switch (resource.Provider)
         {
@@ -111,7 +111,7 @@ public static class ExternalResourceScheduler
 
             case ExternalResourceProviderKind.HttpFile:
             {
-                var (outcome, _, _) = await ExternalResourceService.UpdateHttpFileAsync(resource);
+                var (outcome, _, _) = await ExternalResourceService.UpdateHttpFileAsync(resource, ct: ct);
                 if (outcome == ExternalResourceService.ResourceUpdateOutcome.Updated)
                 {
                     Log.Information("External resource auto-updated: {Key}", resource.Key);

@@ -134,14 +134,16 @@ public static class WebUtil
         return new HttpClient(handler, disposeHandler: true) { Timeout = Timeout.InfiniteTimeSpan };
     }
 
-    private static async Task<HttpResponseMessage> SendAsync(HttpClient client, WebReq req)
+    private static async Task<HttpResponseMessage> SendAsync(HttpClient client, WebReq req, CancellationToken ct = default)
     {
         using var msg = new HttpRequestMessage(HttpMethod.Get, req.Url);
         msg.Headers.TryAddWithoutValidation("User-Agent", req.UserAgent);
         msg.Headers.TryAddWithoutValidation("Accept", "*/*");
         msg.Headers.TryAddWithoutValidation("Accept-Charset", "utf-8");
 
-        using var cts = new CancellationTokenSource(req.Timeout);
+        // 响应头阶段上界 = 请求超时与调用方取消的交集（取消立即断，不等满超时）
+        using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+        cts.CancelAfter(req.Timeout);
         var response = await client.SendAsync(msg, HttpCompletionOption.ResponseHeadersRead, cts.Token);
         if (!response.IsSuccessStatusCode)
         {
@@ -188,13 +190,14 @@ public static class WebUtil
     ///     GitHub release 静态资产 302 后落到 CDN，ETag 为对象指纹稳定可比；raw.githubusercontent 对 HEAD 回 ETag。
     ///     非 2xx / 网络失败上抛，语义与 Get 一致。
     /// </summary>
-    public static async Task<HeadProbe> ProbeHeadersAsync(WebReq req)
+    public static async Task<HeadProbe> ProbeHeadersAsync(WebReq req, CancellationToken ct = default)
     {
         using var client = BuildClient(req);
         using var msg = new HttpRequestMessage(HttpMethod.Head, req.Url);
         msg.Headers.TryAddWithoutValidation("User-Agent", req.UserAgent);
 
-        using var cts = new CancellationTokenSource(req.Timeout);
+        using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+        cts.CancelAfter(req.Timeout);
         using var response = await client.SendAsync(msg, HttpCompletionOption.ResponseHeadersRead, cts.Token);
         if (!response.IsSuccessStatusCode)
             throw new HttpRequestException($"Response status code does not indicate success: {(int)response.StatusCode} ({response.StatusCode}).");
@@ -212,15 +215,15 @@ public static class WebUtil
         return new HeadProbe(etag, lastModified, length);
     }
 
-    public static async Task DownloadFileAsync(WebReq req, string fileFullPath, IProgress<int>? progress)
+    public static async Task DownloadFileAsync(WebReq req, string fileFullPath, IProgress<int>? progress, CancellationToken ct = default)
     {
         var fileStream = new FileStream(fileFullPath, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true);
         await using (fileStream)
         {
             using var client = BuildClient(req);
-            using var response = await SendAsync(client, req);
-            await using var input = await response.Content.ReadAsStreamAsync();
-            using var downloadTask = input.CopyToAsync(fileStream);
+            using var response = await SendAsync(client, req, ct);
+            await using var input = await response.Content.ReadAsStreamAsync(ct);
+            using var downloadTask = input.CopyToAsync(fileStream, ct);
             if (progress != null)
                 ReportProgressAsync(response.Content.Headers.ContentLength ?? -1, downloadTask, fileStream, progress, 200).Forget();
 

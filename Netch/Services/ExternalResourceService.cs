@@ -281,10 +281,10 @@ public static class ExternalResourceService
     ///     HEAD 探测远端指纹（网络失败上抛；GitHub release 静态资产 302 后落到 CDN 的 ETag 为对象指纹，稳定可比）。
     ///     全部头缺失返回 null（无法判定，按可更新处理由调用方决定）。
     /// </summary>
-    public static async Task<string?> ProbeFingerprintAsync(string url)
+    public static async Task<string?> ProbeFingerprintAsync(string url, CancellationToken ct = default)
     {
         var req = WebUtil.CreateResourceRequest(url);
-        var (etag, lastModified, length) = await WebUtil.ProbeHeadersAsync(req);
+        var (etag, lastModified, length) = await WebUtil.ProbeHeadersAsync(req, ct);
         var hasAny = etag != null || lastModified != null || length != null;
         return hasAny ? ComposeFingerprint(etag, lastModified, length) : null;
     }
@@ -305,15 +305,15 @@ public static class ExternalResourceService
     ///     调用方持 BusyLock。
     /// </summary>
     public static async Task<(ResourceUpdateOutcome outcome, string usedUrl, bool viaMirror)> UpdateHttpFileAsync(
-        ExternalResource resource, IProgress<int>? progress = null)
+        ExternalResource resource, IProgress<int>? progress = null, CancellationToken ct = default)
     {
         // 指纹短路：远端未变且本地文件在 → 不重复下载（立即全部更新对 8+ 资源逐个 HEAD 的成本可接受）
         string? probe = null;
         try
         {
-            probe = await ProbeFingerprintAsync(resource.Url!);
+            probe = await ProbeFingerprintAsync(resource.Url!, ct);
         }
-        catch (Exception e)
+        catch (Exception e) when (e is not OperationCanceledException)
         {
             Log.Warning(e, "Probe fingerprint failed for {Url}", resource.Url);
         }
@@ -335,14 +335,15 @@ public static class ExternalResourceService
             string fingerprint;
             try
             {
-                fingerprint = await DownloadValidatedAsync(resource, resource.Url!, tempFile, progress, probe);
+                fingerprint = await DownloadValidatedAsync(resource, resource.Url!, tempFile, progress, probe, ct);
                 usedUrl = resource.Url!;
             }
-            catch (Exception) when (!string.IsNullOrEmpty(resource.FallbackUrl) && Global.Settings.ExternalResources.RuleSetFallbackMirror)
+            catch (Exception) when (!string.IsNullOrEmpty(resource.FallbackUrl) && Global.Settings.ExternalResources.RuleSetFallbackMirror
+                                     && !ct.IsCancellationRequested)
             {
-                // 备胎切换仅覆盖网络类失败与校验失败（主源给出的产物不可用）；切换结果由返回值如实暴露
+                // 备胎切换仅覆盖网络类失败与校验失败（主源给出的产物不可用）；调用方取消直接外传，不转备胎
                 progress?.Report(0);
-                fingerprint = await DownloadValidatedAsync(resource, resource.FallbackUrl!, tempFile, progress, null);
+                fingerprint = await DownloadValidatedAsync(resource, resource.FallbackUrl!, tempFile, progress, null, ct);
                 usedUrl = resource.FallbackUrl!;
             }
 
@@ -365,7 +366,7 @@ public static class ExternalResourceService
 
     /// <returns>下载前探测到的远端指纹（probeOverride 非 null 时复用免二次探测；探测失败为 null，不阻塞下载）</returns>
     private static async Task<string> DownloadValidatedAsync(ExternalResource resource, string url, string tempFile,
-        IProgress<int>? progress, string? probeOverride)
+        IProgress<int>? progress, string? probeOverride, CancellationToken ct = default)
     {
         string fingerprint;
         if (probeOverride != null)
@@ -376,9 +377,9 @@ public static class ExternalResourceService
         {
             try
             {
-                fingerprint = await ProbeFingerprintAsync(url) ?? "";
+                fingerprint = await ProbeFingerprintAsync(url, ct) ?? "";
             }
-            catch (Exception e)
+            catch (Exception e) when (e is not OperationCanceledException)
             {
                 Log.Warning(e, "Probe fingerprint failed for {Url}", url);
                 fingerprint = "";
@@ -386,7 +387,7 @@ public static class ExternalResourceService
         }
 
         var req = WebUtil.CreateResourceRequest(url, timeout: 120_000);
-        await WebUtil.DownloadFileAsync(req, tempFile, progress);
+        await WebUtil.DownloadFileAsync(req, tempFile, progress, ct);
         ValidateDownloaded(resource, tempFile);
         return fingerprint;
     }
