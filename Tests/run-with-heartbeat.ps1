@@ -1,17 +1,21 @@
 # 带进度心跳跑 dotnet test：每 10 秒报新增输出与已通过数；90 秒无新输出判定挂死并杀掉
-# 用法：pwsh -File run-with-heartbeat.ps1 -Classes A,B -Label R1 [-TimeoutSec 120]
+# 用法：pwsh -File run-with-heartbeat.ps1 -Classes A,B -Label R1 [-TimeoutSec 120] [-Serial]
+# -Serial：全量禁并行（mihomo 在线等环境下并行合跑会挂死，全绿基准就是串行跑出来的）
 param(
     [string[]]$Classes,
     [string]$Label,
-    [int]$TimeoutSec = 120
+    [int]$TimeoutSec = 120,
+    [switch]$Serial
 )
 if ($Classes.Count -eq 1 -and $Classes[0].Contains(',')) { $Classes = $Classes[0] -split ',' }
 $ErrorActionPreference = 'Continue'
 
 $filter = ($Classes | Where-Object { $_ } | ForEach-Object { "FullyQualifiedName~$_" }) -join '|'
-$args = @('test', 'Tests/Tests.csproj', '--nologo', '--no-build')
+# -c Release：与 CI 同配置（脚本曾漏配置跑过 Debug 旧产物，治本改动「没生效」的假象由此而来）
+$args = @('test', 'Tests/Tests.csproj', '-c', 'Release', '--nologo', '--no-build')
 if ($filter) { $args += @('--filter', $filter) }
 $args += @('--logger', 'console;verbosity=normal')
+if ($Serial) { $args += @('--', 'RunConfiguration.DisableParallelization=true') }
 $out = "$env:TEMP\hb-$Label-out.log"
 $err = "$env:TEMP\hb-$Label-err.log"
 Remove-Item $out, $err -ErrorAction SilentlyContinue
